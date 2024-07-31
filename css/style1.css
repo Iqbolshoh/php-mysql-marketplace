@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.admin-panel h2 {
+    color: #333;
+}
+
+.admin-panel p {
+    margin-bottom: 20px;
+}
+
+.admin-panel a {
+    display: block;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
