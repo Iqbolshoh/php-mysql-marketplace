@@ -1,4 +1,4 @@
-```markdown
+
 # PHP-MySQL Marketplace
 
 👋 **Welcome to the PHP-MySQL Marketplace!**
