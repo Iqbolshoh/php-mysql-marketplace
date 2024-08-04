@@ -1,136 +1,107 @@
-# Iqbolshoh Ilhomjonov
+Mana PHP va MySQL asosidagi marketplace loyihasi uchun `README.md` faylini to'liq kod shaklida yozilgan ko'rinish:
 
-👋 **Hello! I'm Iqbolshoh Ilhomjonov.**
+```markdown
+# PHP-MySQL Marketplace
 
-![Profile Banner](https://github.com/Iqbolshoh/Iqbolshoh/blob/main/images/banner.png?raw=true)
+👋 **Welcome to the PHP-MySQL Marketplace!**
 
-## About Me
+![Marketplace Banner](https://github.com/yourusername/your-repo-name/blob/main/images/banner.png?raw=true)
 
-I am a passionate Full-Stack Developer from Samarkand, Uzbekistan, currently in my 3rd year of studying Software Engineering at Samarkand State University. With over 3 years of programming experience, I have developed a strong proficiency in various programming languages and frameworks. I enjoy learning new technologies and continuously improving my skills.
+## About This Project
 
-- 🌍 **Location:** Samarkand, Uzbekistan
-- 🎓 **Education:** Samarkand State University, Software Engineering, 3rd year student
-- 💻 **Occupation:** Full-Stack Developer
-- 🚀 **Experience:** 3+ years in programming
-- 🌐 **Website:** [iqbolshoh.uz](https://iqbolshoh.uz)
-- 📫 **Contact:** iilhomjonov777@gmail.com | +998(99)7799333
+This is a marketplace platform built using PHP and MySQL. It provides a user-friendly interface where users can buy and sell various products. The project showcases the use of PHP for server-side scripting and MySQL for database management.
 
-### Languages I Speak
-- **Tajik:** Native
-- **Persian:** Fluent
-- **Uzbek:** Fluent
-- **Russian:** Intermediate
-- **English:** Intermediate
-  
-### Interests
-- **Programming**
-- **AI & Machine Learning**
-- **Cybersecurity**
-- **Language Learning**
+- 🌐 **Project URL:** [Marketplace](http://your-marketplace-url.com)
+- 📫 **Contact:** your-email@example.com
 
-## Technologies
+### Features
 
-I have worked with a variety of programming languages and frameworks, which allows me to build robust and scalable applications.
-  
-### Specialties
-- **Algorithms**
-- **Cybersecurity**
-- **Web Development**
-- **Data Science**
+- **User Registration and Login:** Users can create accounts, log in, and manage their profiles.
+- **Product Listings:** Users can list products for sale with details such as price, description, and images.
+- **Search and Filters:** Users can search for products and filter them based on various criteria.
+- **Shopping Cart:** Users can add products to their shopping cart and proceed to checkout.
+- **Order Management:** Admins can manage orders, view order details, and update order statuses.
 
-- **Programming Languages:**
-  - ![C++](https://img.shields.io/badge/C++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white)
-  - ![Python](https://img.shields.io/badge/Python-%2314354C.svg?style=for-the-badge&logo=python&logoColor=white)
+### Technologies Used
+
+- **Server-side Scripting:**
   - ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
-  - ![JavaScript](https://img.shields.io/badge/JavaScript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
-  - ![TypeScript](https://img.shields.io/badge/TypeScript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
+- **Database Management:**
+  - ![MySQL](https://img.shields.io/badge/MySQL-%2300f2d8.svg?style=for-the-badge&logo=mysql&logoColor=white)
 
 - **Frontend Technologies:**
   - ![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
   - ![CSS](https://img.shields.io/badge/CSS-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
-  - ![Sass](https://img.shields.io/badge/Sass-%23CC6699.svg?style=for-the-badge&logo=sass&logoColor=white)
   - ![Bootstrap](https://img.shields.io/badge/Bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-  - ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-- **Frameworks and Libraries:** 
-  - ![jQuery](https://img.shields.io/badge/jQuery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
-  - ![React](https://img.shields.io/badge/React-%2320232A.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
-  - ![Vue.js](https://img.shields.io/badge/Vue.js-%234FC08D.svg?style=for-the-badge&logo=vue.js&logoColor=white)
-  - ![Angular](https://img.shields.io/badge/Angular-%23212121.svg?style=for-the-badge&logo=angular&logoColor=white)
-  - ![Node.js](https://img.shields.io/badge/Node.js-%2343853D.svg?style=for-the-badge&logo=node.js&logoColor=white)
-  - ![Laravel](https://img.shields.io/badge/Laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)
+### Installation
 
-- **Databases:**
-  - ![MySQL](https://img.shields.io/badge/MySQL-%2300f2d8.svg?style=for-the-badge&logo=mysql&logoColor=white)
+To get started with the PHP-MySQL Marketplace, follow these steps:
 
-- **Coding Profiles:**
-  - [Codewars](https://www.codewars.com/users/Iqbolshoh_777) 
-  - [LeetCode](https://leetcode.com/Iqbolshoh_777) 
-  - [Codeforces](https://codeforces.com/profile/Iqbolshoh_777) 
-  - [Kep.uz](https://kep.uz/profile/Iqbolshoh_777) 
-  - [Robocontest.uz](https://robocontest.uz/profile/Iqbolshoh_777)
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   ```
 
-## Projects
+2. **Navigate to the Project Directory:**
+   ```bash
+   cd your-repo-name
+   ```
 
-Here are some of the projects I have worked on:
+3. **Set Up the Database:**
+   - Create a new MySQL database:
+     ```sql
+     CREATE DATABASE marketplace_db;
+     ```
 
-### [templates.uz](http://templates.uz)
-A platform for developers to sell their own websites. Users can find the websites they need.
+   - Import the `database.sql` file located in the `db` directory to set up the initial database structure:
+     ```bash
+     mysql -u yourusername -p marketplace_db < db/database.sql
+     ```
 
-**Technologies Used:** Laravel, JavaScript, HTML, CSS
+4. **Configure Database Connection:**
+   - Open the `config.php` file in the root directory.
+   - Update the database credentials to match your MySQL setup:
+     ```php
+     <?php
+     define('DB_SERVER', 'localhost');
+     define('DB_USERNAME', 'yourusername');
+     define('DB_PASSWORD', 'yourpassword');
+     define('DB_DATABASE', 'marketplace_db');
 
-### [Online Market](https://iqbolshoh.uz/market)
-An online marketplace platform that is user-friendly and efficient.
+     $conn = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 
-**Technologies Used:** Laravel, JavaScript, HTML, CSS, MySql
+     if ($conn->connect_error) {
+         die("Connection failed: " . $conn->connect_error);
+     }
+     ?>
+     ```
 
-### [Personal Websites](https://iqbolshoh.uz)
-Developed and enhanced numerous personal and business websites.
+5. **Run the Application:**
+   - Deploy the application on a PHP-compatible server (e.g., Apache or Nginx).
+   - Access the marketplace through your web browser at `http://localhost/your-repo-name`.
 
-**Technologies Used:** PHP, Laravel, React
+### Contributing
 
-## GitHub Stats
+Contributions are welcome! If you have suggestions or find issues, please create a pull request or open an issue on GitHub.
 
-![Iqbolshoh's GitHub stats](https://github-readme-stats.vercel.app/api?username=iqbolshoh&show_icons=true&theme=radical)
+### License
 
-## Top Languages
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/yourusername/your-repo-name/blob/main/LICENSE) file for details.
 
-![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=iqbolshoh&layout=compact&theme=radical)
+## Connect with Me
 
-## GitHub Contributions
+Feel free to reach out or connect through the following platforms:
 
-![GitHub Contributions](https://github-readme-streak-stats.herokuapp.com/?user=iqbolshoh&theme=radical)
+[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://www.instagram.com/yourusername)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/yourusername/)
+[![GitHub](https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/yourusername)
+[![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/yourusername)
 
-## Language Statistics
+**Thank you for checking out the PHP-MySQL Marketplace!** 😊
 
-![Most Used Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=iqbolshoh&theme=radical)
+![Your Profile Picture](https://github.com/yourusername/your-repo-name/blob/main/images/profile.jpg)
+```
 
-## Top Repositories
-
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=iqbolshoh&repo=market&theme=radical)](https://github.com/iqbolshoh/market)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=iqbolshoh&repo=Admin-User-Roles&theme=radical)](https://github.com/iqbolshoh/Admin-User-Roles)
-
-## Coding Stats
-
-![Coding Stats](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=iqbolshoh&theme=radical)
-![Coding Activity](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=iqbolshoh&theme=radical)
-
-## GitHub Trophy
-
-![GitHub Trophy](https://github-profile-trophy.vercel.app/?username=iqbolshoh&theme=radical)
-
-## Let's Connect
-
-I love connecting with new people and exploring new opportunities. Feel free to reach out to me through any of the platforms below:
-
-[![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=Instagram&logoColor=white)](https://www.instagram.com/iqbolshoh_777)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/iqbolshoh/)
-[![Thread](https://img.shields.io/badge/Thread-%2317B7B7.svg?style=for-the-badge&logo=thread&logoColor=white)](https://www.threads.net/Iqbolshoh_777)
-[![Telegram](https://img.shields.io/badge/Telegram-%0088CC.svg?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/Iqbolshoh_777)
-[![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Iqbolshoh_777)
-[![TikTok](https://img.shields.io/badge/TikTok-%000000.svg?style=for-the-badge&logo=tiktok&logoColor=white)](https://www.tiktok.com/@iqbolshoh_777)
-[![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@Iqbolshoh_777)
-
-**I am always eager to learn new technologies and improve my skills.** 😊
-
-![Iqbolshoh](https://github.com/iqbolshoh/Iqbolshoh/blob/main/images/iqbolshoh.jpg)
+Yuqoridagi koddagi `yourusername`, `your-repo-name`, `your-email@example.com`, `yourusername`, va `yourpassword` kabi joylarni mos ma'lumotlar bilan almashtiring. `database.sql` faylini va boshqa tasvirlarni mos URL-lar bilan yangilashni unutmang.
