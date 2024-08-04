@@ -1,4 +1,3 @@
-
 # PHP-MySQL Marketplace
 
 👋 **Welcome to the PHP-MySQL Marketplace!**
@@ -19,6 +18,24 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 - **Search and Filters:** Users can search for products and filter them based on various criteria.
 - **Shopping Cart:** Users can add products to their shopping cart and proceed to checkout.
 - **Order Management:** Admins can manage orders, view order details, and update order statuses.
+
+### User Roles
+
+1. **Admin:**
+   - Manages the entire marketplace.
+   - Can view and manage all users and their products.
+   - Can update or delete any listings.
+   - Oversees order management and resolves any issues.
+
+2. **Seller:**
+   - Can list products for sale and manage their own product listings.
+   - Can view and update their orders and order statuses.
+   - Manages their own profile and product details.
+
+3. **User:**
+   - Can browse products, add them to the shopping cart, and make purchases.
+   - Can create and manage their own profile.
+   - Can view their own order history and track orders.
 
 ### Technologies Used
 
@@ -46,7 +63,7 @@ To get started with the PHP-MySQL Marketplace, follow these steps:
 
 2. **Navigate to the Project Directory:**
    ```bash
-   php-mysql-marketplace
+   cd php-mysql-marketplace
    ```
 
 3. **Set Up the Database:**
@@ -65,31 +82,21 @@ To get started with the PHP-MySQL Marketplace, follow these steps:
    - Update the database credentials to match your MySQL setup:
      ```php
      <?php
-     class Query
-{
-    private $conn;
 
-    public function __construct()
-    {
-        $servername = "localhost";
-        $username = "your_username";
-        $password = "password";
-        $dbname = "database";
-        $this->conn = new mysqli($servername, $username, $password, $dbname);
+         public function __construct() {
+             $servername = "localhost";
+             $username = "your_username";
+             $password = "password";
+             $dbname = "marketplace_db";
 
-        if ($this->conn->connect_error) {
-            die("Ulanishda xatolik: " . $this->conn->connect_error);
-        }
-    }
+             $this->conn = new mysqli($servername, $username, $password, $dbname);
 
-    public function __destruct()
-    {
-        if ($this->conn) {
-            $this->conn->close();
-        }
-    }
-    }
+             if ($this->conn->connect_error) {
+                 die("Connection failed: " . $this->conn->connect_error);
+             }
+         }
      ```
+   - Note: You should add the `class Database` in the `config.php` file and call the `getConnection` method to connect to the database.
 
 5. **Run the Application:**
    - Deploy the application on a PHP-compatible server (e.g., Apache or Nginx).
@@ -109,4 +116,3 @@ Feel free to reach out or connect through the following platforms:
 [![X](https://img.shields.io/badge/X-%23000000.svg?style=for-the-badge&logo=x&logoColor=white)](https://x.com/Iqbolshoh_777)
 
 **Thank you for checking out the PHP-MySQL Marketplace!** 😊
-```
