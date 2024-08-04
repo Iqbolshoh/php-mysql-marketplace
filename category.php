@@ -153,7 +153,6 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
         function openProductDetails(productId) {
             window.location.href = 'shop-details.php?product_id=' + productId;
         }
-        
     </script>
 
 </body>

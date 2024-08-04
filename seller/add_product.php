@@ -27,6 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($product_id) {
         $uploaded_images = $query->saveImagesToDatabase($_FILES['image'], "../images/products/", $product_id);
-        header("Location: /");
+        header("Location: ./");
     }
 }

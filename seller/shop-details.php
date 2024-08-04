@@ -6,7 +6,7 @@ $query->checkSellerRole();
 <?php
 $product_id = $query->validate($_GET['product_id']);
 if (!is_numeric($product_id) or $query->select('products', 'id', 'where id = ' . $product_id)[0]['id'] !== $product_id) {
-    header("Location: ./");
+    header("Location: /");
     exit;
 }
 

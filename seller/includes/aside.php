@@ -50,7 +50,7 @@ function active($Page, $Menu)
                             </li>
                         </ul>
                     </li>
-
+                    
                     <li class="nav-item">
                         <a href="../logout/" class="nav-link <?php echo ($Menu === 'users') ? 'active' : ''; ?>">
                             <i class="far fa-circle nav-icon"></i>

@@ -8,9 +8,9 @@ class Query
     public function __construct()
     {
         $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "Market";
+        $username = "your_username";
+        $password = "password";
+        $dbname = "database";
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($this->conn->connect_error) {

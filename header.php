@@ -132,7 +132,6 @@ if (!empty($cartItem)) foreach ($cartItem as $item) $total_price += $item['total
                         <form action="#">
                             <div class="hero__search__categories">
                                 Barcha Categoriyalar
-                                <span class="arrow_carrot-down"></span>
                             </div>
                             <input type="text" placeholder="Sizga nima kerak?">
                             <button type="submit" class="site-btn">SEARCH</button>
@@ -153,3 +152,6 @@ if (!empty($cartItem)) foreach ($cartItem as $item) $total_price += $item['total
     </div>
 </section>
 <!-- Hero Section End -->
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script> -->

@@ -227,7 +227,7 @@ $query->checkUserRole();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
-                    window.location.reload();
+                                        window.location.reload();
 
                 }
             };
@@ -242,7 +242,8 @@ $query->checkUserRole();
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot izohga qo\'shildi!');
-                    window.location.reload();
+                                         window.location.reload();
+
                 }
             };
         }

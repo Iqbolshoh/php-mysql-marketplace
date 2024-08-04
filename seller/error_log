@@ -1,0 +1,13 @@
+[19-May-2024 10:13:15 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
+[28-May-2024 13:25:10 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
+[28-May-2024 13:25:11 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
+[28-May-2024 13:52:11 Asia/Tashkent] PHP Notice:  Undefined index: extension in /home/milliyto/public_html/market/config.php on line 134
+[28-May-2024 13:52:11 Asia/Tashkent] PHP Notice:  Undefined offset: 0 in /home/milliyto/public_html/market/seller/index.php on line 126
+[28-May-2024 13:52:11 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/milliyto/public_html/market/seller/index.php on line 126
+[28-May-2024 13:52:15 Asia/Tashkent] PHP Notice:  Undefined offset: 0 in /home/milliyto/public_html/market/seller/shop-details.php on line 52
+[28-May-2024 13:52:19 Asia/Tashkent] PHP Notice:  Undefined offset: 0 in /home/milliyto/public_html/market/seller/index.php on line 126
+[28-May-2024 13:52:19 Asia/Tashkent] PHP Notice:  Trying to access array offset on value of type null in /home/milliyto/public_html/market/seller/index.php on line 126
+[28-May-2024 15:22:13 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
+[28-May-2024 15:22:15 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
+[27-Jun-2024 13:43:58 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
+[30-Jul-2024 22:11:18 Asia/Tashkent] PHP Notice:  Undefined index: role in /home/milliyto/public_html/market/config.php on line 195
