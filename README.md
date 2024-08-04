@@ -9,7 +9,7 @@
 This is a marketplace platform built using PHP and MySQL. It provides a user-friendly interface where users can buy and sell various products. The project showcases the use of PHP for server-side scripting and MySQL for database management.
 
 - 🌐 **Project URL:** [Marketplace](http://iqbolshoh.uz/market)
-- 📫 **Contact:** iilhomjonov@gmail.com
+- 📫 **Contact:** iilhomjonov777@gmail.com
 
 ### Features
 
@@ -20,27 +20,34 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 - **Order Management:** Admins can manage orders, view order details, and update order statuses.
 
 ### User Roles
+![Roles](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/roles.png?raw=true)
 
 1. **Admin:**
    - Manages the entire marketplace.
    - Can view and manage all users and their products.
    - Can update or delete any listings.
    - Oversees order management and resolves any issues.
+   - Can also block users.
+![Admin](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/admin.png?raw=true)
 
-2. **Seller:**
+
+1. **Seller:**
    - Can list products for sale and manage their own product listings.
    - Can view and update their orders and order statuses.
    - Manages their own profile and product details.
+![Seller](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/seller.png?raw=true)
 
-3. **User:**
+2. **User:**
    - Can browse products, add them to the shopping cart, and make purchases.
    - Can create and manage their own profile.
    - Can view their own order history and track orders.
+![User](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/user.png?raw=true)
 
 ### Technologies Used
 
 - **Server-side Scripting:**
   - ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
+  - 
 
 - **Database Management:**
   - ![MySQL](https://img.shields.io/badge/MySQL-%2300f2d8.svg?style=for-the-badge&logo=mysql&logoColor=white)
