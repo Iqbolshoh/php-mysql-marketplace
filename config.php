@@ -10,7 +10,7 @@ class Query
         $servername = "localhost";
         $username = "your_username";
         $password = "password";
-        $dbname = "database";
+        $dbname = "marketplace";
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($this->conn->connect_error) {
