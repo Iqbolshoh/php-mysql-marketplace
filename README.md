@@ -4,8 +4,6 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 
 ![Marketplace Banner](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/banner.png?raw=true)
 
-## About This Project
-
 ### Features
 
 - **User Registration and Login:** Users can create accounts, log in, and manage their profiles.
@@ -40,6 +38,7 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 
 ### Technologies Used
 
+<div style="display: flex; flex-wrap: wrap; gap: 5px;">
   - ![HTML](https://img.shields.io/badge/HTML-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
   - ![CSS](https://img.shields.io/badge/CSS-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
   - ![Bootstrap](https://img.shields.io/badge/Bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
@@ -47,6 +46,9 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
   - ![jQuery](https://img.shields.io/badge/jQuery-%230e76a8.svg?style=for-the-badge&logo=jquery&logoColor=white)
   - ![PHP](https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)
   - ![MySQL](https://img.shields.io/badge/MySQL-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+</div>
+
+
 
 ### Installation
 
