@@ -108,9 +108,10 @@ To get started with the PHP-MySQL Marketplace, follow these steps:
    - Deploy the application on a PHP-compatible server (e.g., Apache or Nginx).
    - Access the marketplace through your web browser at `http://localhost/php-mysql-marketplace`.
 
-### Contributing
+## Contributing
 
-Contributions are welcome! If you have suggestions or find issues, please create a pull request or open an issue on GitHub.
+Contributions are welcome! If you have suggestions or want to enhance the project, feel free to fork the repository and submit a pull request.
+
 
 ## Connect with Me
 
