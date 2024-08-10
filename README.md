@@ -1,15 +1,10 @@
 # PHP-MySQL Marketplace
 
-👋 **Welcome to the PHP-MySQL Marketplace!**
+This is a marketplace platform built using PHP and MySQL. It provides a user-friendly interface where users can buy and sell various products. The project showcases the use of PHP for server-side scripting and MySQL for database management.
 
 ![Marketplace Banner](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/banner.png?raw=true)
 
 ## About This Project
-
-This is a marketplace platform built using PHP and MySQL. It provides a user-friendly interface where users can buy and sell various products. The project showcases the use of PHP for server-side scripting and MySQL for database management.
-
-- 🌐 **Project URL:** [Marketplace](http://iqbolshoh.uz/market)
-- 📫 **Contact:** iilhomjonov777@gmail.com
 
 ### Features
 
