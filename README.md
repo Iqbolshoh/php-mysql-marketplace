@@ -17,7 +17,7 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 ### User Roles
 ![Roles](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/roles.png?raw=true)
 
-1. **Admin:**
+## Admin
 ![Admin](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/admin.png?raw=true)
    - Manages the entire marketplace.
    - Can view and manage all users and their products.
@@ -26,7 +26,7 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
    - Can also block users.
 
 
-1. **Seller:**
+## Seller
 ![Seller](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/seller.png?raw=true)
    - Can list products for sale and manage their own product listings.
    - Can view and update their orders and order statuses.
