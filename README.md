@@ -14,10 +14,10 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 - **Shopping Cart:** Users can add products to their shopping cart and proceed to checkout.
 - **Order Management:** Admins can manage orders, view order details, and update order statuses.
 
-### User Roles
+## User Roles
 ![Roles](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/roles.png?raw=true)
 
-## Admin
+### Admin
 ![Admin](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/admin.png?raw=true)
    - Manages the entire marketplace.
    - Can view and manage all users and their products.
@@ -26,13 +26,13 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
    - Can also block users.
 
 
-## Seller
+### Seller
 ![Seller](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/seller.png?raw=true)
    - Can list products for sale and manage their own product listings.
    - Can view and update their orders and order statuses.
    - Manages their own profile and product details.
 
-1. **User:**
+### User
 ![User](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/user.png?raw=true)
    - Can browse products, add them to the shopping cart, and make purchases.
    - Can create and manage their own profile.
