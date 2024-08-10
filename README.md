@@ -11,7 +11,7 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 - **Search and Filters:** Users can search for products and filter them based on various criteria.
 - **Shopping Cart:** Users can add products to their shopping cart and proceed to checkout.
 - **Order Management:** Admins can manage orders, view order details, and update order statuses.
-- 
+
 ### Login Page
 
 ![Roles](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/roles.png?raw=true)
