@@ -12,6 +12,32 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 - **Shopping Cart:** Users can add products to their shopping cart and proceed to checkout.
 - **Order Management:** Admins can manage orders, view order details, and update order statuses.
 
+## Pages
+
+### Home Page
+![Home Page](images/home.png)
+- The home page welcomes users to the platform and provides navigation links to other sections.
+
+### Dictionary Page
+![Dictionary Page](images/dictionary.png)
+- Users can add and view vocabulary words along with their translations and definitions.
+
+### Sentences Page
+![Sentences Page](images/sentences.png)
+- Users can create and view sentences using the vocabulary words, including translations.
+
+### Texts Page
+![Texts Page](images/texts.png)
+- Users can upload and read texts, and add translations for practice.
+
+### Exercises Page
+![Exercises Page](images/exercise.png)
+- Contains tests for vocabulary and sentences to help users practice and improve their English.
+
+### Settings Page
+![Settings Page](images/settings.png)
+- Users can manage their account settings and preferences.
+
 ### Login Page
 
 ![Roles](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/roles.png?raw=true)
