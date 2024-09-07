@@ -6,7 +6,7 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: ../checkAuthentication.php");
+    header("Location: ../authentication.php");
 
     exit;
 }
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['profile_image'] = $profile_image;
             $_SESSION['role'] = $role;
 
-            header("Location: ../checkAuthentication.php");
+            header("Location: ../authentication.php");
 
             exit;
         } else {

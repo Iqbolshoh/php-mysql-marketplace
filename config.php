@@ -8,8 +8,8 @@ class Query
     public function __construct()
     {
         $servername = "localhost";
-        $username = "your_username";
-        $password = "password";
+        $username = "root";
+        $password = "";
         $dbname = "marketplace";
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -184,7 +184,7 @@ class Query
     function checkAdminRole()
     {
         if ($_SESSION['role'] !== 'admin' or $this->isBlocked()) {
-            header("Location: ../checkAuthentication.php");
+            header("Location: ../authentication.php");
             exit;
         }
     }
@@ -193,7 +193,7 @@ class Query
     function checkSellerRole()
     {
         if ($_SESSION['role'] !== 'seller' or $this->isBlocked()) {
-            header("Location: ../checkAuthentication.php");
+            header("Location: ../authentication.php");
             exit;
         }
     }
@@ -202,7 +202,7 @@ class Query
     function checkUserRole()
     {
         if ($_SESSION['role'] !== 'user' or $this->isBlocked()) {
-            header("Location: ./checkAuthentication.php");
+            header("Location: ./authentication.php");
             exit;
         }
     }
@@ -242,7 +242,7 @@ class Query
     function getProductImage($id)
     {
         global $query;
-        $result =  $this->select('product_images', 'image_url', 'WHERE id = ' . $id);
+        $result = $this->select('product_images', 'image_url', 'WHERE id = ' . $id);
         return $result[0]['image_url'];
     }
 

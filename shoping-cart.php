@@ -64,7 +64,8 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                                         <tr>
                                             <td class="shoping__cart__item">
                                                 <!-- Mahsulot rasmi -->
-                                                <img src="images/products/<?php echo $query->getProductImages($item['id'])[0] ?>" style="width: 55px;" alt="">
+                                                <img src="images/products/<?php echo $query->getProductImages($item['id'])[0] ?>"
+                                                    style="width: 55px;" alt="">
                                                 <!-- Mahsulot nomi -->
                                                 <h5><?php echo $item['name']; ?></h5>
                                             </td>
@@ -87,7 +88,8 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                                             </td>
                                             <!-- Mahsulotni savatdan o'chirish -->
                                             <td class="shoping__cart__item__close">
-                                                <span class="icon_close" onclick="removeCartItem(<?php echo $item['id']; ?>)"></span>
+                                                <span class="icon_close"
+                                                    onclick="removeCartItem(<?php echo $item['id']; ?>)"></span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -166,7 +168,7 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', 'remove_cart.php?remove_item=' + itemId, true);
                 xhr.send();
-                xhr.onload = function() {
+                xhr.onload = function () {
                     if (xhr.status == 200) {
                         window.location.reload();
                     } else {

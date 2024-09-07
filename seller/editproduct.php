@@ -28,7 +28,7 @@ $seller_id = $_SESSION['id'];
     <!-- css -->
     <?php include 'includes/css.php'; ?>
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/card.css" type="text/css">
+    <link rel="stylesheet" href="../css/card.css" type="text/css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -127,8 +127,8 @@ $seller_id = $_SESSION['id'];
     </div>
 
     <!-- SCRIPTS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/adminlte.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/adminlte.js"></script>
     <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>

@@ -1,5 +1,5 @@
 <?php include '../config.php'; ?>
-<?php $query =  new Query ?>
+<?php $query = new Query ?>
 <?php $query->checkAdminRole() ?>
 <?php
 session_start();

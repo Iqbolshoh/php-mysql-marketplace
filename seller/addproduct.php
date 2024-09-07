@@ -53,7 +53,8 @@ $query->checkSellerRole();
                 <div class="card">
                   <div class="card-body">
                     <h4>Mahsulotni qo'shish</h4>
-                    <form action="add_product.php" method="POST" enctype="multipart/form-data" onsubmit="return checkFilesCount()">
+                    <form action="add_product.php" method="POST" enctype="multipart/form-data"
+                      onsubmit="return checkFilesCount()">
                       <div class="form-group">
                         <label for="name">Mahsulot nomi:</label>
                         <input type="text" class="form-control" id="name" name="name" required>
@@ -82,7 +83,8 @@ $query->checkSellerRole();
                         <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
                       </div>
                       <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="image" name="image[]" accept="image/*" multiple>
+                        <input type="file" class="custom-file-input" id="image" name="image[]" accept="image/*"
+                          multiple>
                         <label class="custom-file-label" for="image">Rasmlarni tanlang...</label>
                       </div>
                       <div class="form-group">
@@ -120,7 +122,7 @@ $query->checkSellerRole();
       return true;
     }
 
-    document.getElementById('image').addEventListener('change', function() {
+    document.getElementById('image').addEventListener('change', function () {
       let files = document.getElementById('image').files;
       let fileLabel = document.getElementById('fileLabel');
       fileLabel.textContent = files.length + ' fayl tanlandi.';

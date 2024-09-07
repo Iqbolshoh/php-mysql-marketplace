@@ -1,5 +1,5 @@
 <?php include '../config.php'; ?>
-<?php $query =  new Query ?>
+<?php $query = new Query ?>
 <?php $query->checkAdminRole() ?>
 
 <!DOCTYPE html>
@@ -9,7 +9,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AdminLTE 3 | Starter</title>
   <!-- css -->
   <?php include 'includes/css.php'; ?>
@@ -164,16 +163,16 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="js/jquery.min.js"></script>
-  <script src="js/adminlte.js"></script>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../js/adminlte.js"></script>
   <!-- Bootstrap 4 -->
-  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="../js/bootstrap.bundle.min.js"></script>
   <!-- DataTables -->
-  <script src="js/jquery.dataTables.min.js"></script>
-  <script src="js/dataTables.bootstrap4.min.js"></script>
+  <script src="../js/jquery.dataTables.min.js"></script>
+  <script src="../js/dataTables.bootstrap4.min.js"></script>
 
   <script>
-    $(function() {
+    $(function () {
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,

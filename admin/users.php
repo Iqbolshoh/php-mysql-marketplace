@@ -1,5 +1,5 @@
 <?php include '../config.php'; ?>
-<?php $query =  new Query ?>
+<?php $query = new Query ?>
 <?php $query->checkAdminRole() ?>
 
 <!DOCTYPE html>
@@ -50,7 +50,8 @@
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -63,7 +64,8 @@
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -76,7 +78,8 @@
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -89,7 +92,8 @@
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -160,16 +164,16 @@
     </div>
 
     <!-- SCRIPTS -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/adminlte.js"></script>
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/adminlte.js"></script>
     <!-- Bootstrap 4 -->
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <!-- DataTables -->
-    <script src="js/jquery.dataTables.min.js"></script>
-    <script src="js/dataTables.bootstrap4.min.js"></script>
+    <script src="../js/jquery.dataTables.min.js"></script>
+    <script src="../js/dataTables.bootstrap4.min.js"></script>
 
     <script>
-        $(function() {
+        $(function () {
             $('#example2').DataTable({
                 "paging": true,
                 "lengthChange": false,

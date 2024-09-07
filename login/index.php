@@ -6,7 +6,7 @@ include '../config.php';
 $query = new Query();
 
 if ($_SESSION['loggedin'])
-    header("Location: ../checkAuthentication.php");
+    header("Location: ../authentication.php");
 
 if (isset($_POST['submit'])) {
 
@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['profile_image'] = $user[0]['profile_image'];
         $_SESSION['role'] = $user[0]['role'];
 
-        header("Location: ../checkAuthentication.php");
+        header("Location: ../authentication.php");
         exit;
     } else {
         $error = "The login or password is incorrect";
@@ -52,8 +52,8 @@ if (isset($_POST['submit'])) {
         <p>Don't have an account? <a href="../signup/">Sign up</a></p>
     </form>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
                 var errorElement = document.querySelector('.error');
                 if (errorElement) {
                     errorElement.remove();

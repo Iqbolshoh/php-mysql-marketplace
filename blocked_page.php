@@ -5,7 +5,7 @@ include 'config.php';
 $query = new Query;
 
 if (!isset($_SESSION['loggedin']) or $_SESSION['loggedin'] !== true or $query->isBlocked() === false) {
-    header("Location: ./checkAuthentication.php");
+    header("Location: ./authentication.php");
     exit;
 }
 

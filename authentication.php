@@ -17,7 +17,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         header("Location: ./");
         exit;
     }
-} else {
-    header("Location: ./login/");
-    exit;
 }
+
+header("Location: ./login/");
