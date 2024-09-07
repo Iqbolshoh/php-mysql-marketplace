@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-
+ 
 $query = new Query;
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
@@ -17,6 +17,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
         header("Location: ./");
         exit;
     }
+} else {
+    header("Location: ./login/");
 }
-
-header("Location: ./login/");

@@ -5,8 +5,10 @@ include '../config.php';
 
 $query = new Query();
 
-if ($_SESSION['loggedin'])
+if ($_SESSION['loggedin'] === true) {
     header("Location: ../authentication.php");
+    exit;
+}
 
 if (isset($_POST['submit'])) {
 

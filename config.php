@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 class Query
 {
     private $conn;
@@ -11,10 +12,11 @@ class Query
         $username = "root";
         $password = "";
         $dbname = "marketplace";
+
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 
         if ($this->conn->connect_error) {
-            die("Ulanishda xatolik: " . $this->conn->connect_error);
+            die("Connection failed: " . $this->conn->connect_error);
         }
     }
 
