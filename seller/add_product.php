@@ -1,9 +1,9 @@
-<?php include '../config.php';
-$query = new Query;
+<?php
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
+
+include '../config.php';
+$query = new Query();
 
 $query->checkSellerRole();
 

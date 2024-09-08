@@ -1,11 +1,9 @@
 <?php
 
+session_start();
+
 include '../config.php';
 $query = new Query();
-
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 
 if ($_SESSION['loggedin'] === true) {
     header("Location: ../authentication.php");

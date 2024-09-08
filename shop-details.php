@@ -1,5 +1,9 @@
-<?php include 'config.php';
-$query = new Query;
+<?php
+
+session_start();
+
+include 'config.php';
+$query = new Query();
 $query->checkUserRole();
 ?>
 
@@ -186,7 +190,7 @@ $product = $query->getProduct($product_id);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
-                                        window.location.reload();
+                    window.location.reload();
                 }
             };
         }
@@ -194,7 +198,7 @@ $product = $query->getProduct($product_id);
         function openProductDetails(productId) {
             window.location.href = 'shop-details.php?product_id=' + productId;
         }
-        
+
         function addToWishlist(productId) {
             var xhr = new XMLHttpRequest();
             var url = 'add_to_wishlist.php?product_id=' + productId;
@@ -204,7 +208,7 @@ $product = $query->getProduct($product_id);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot izohga qo\'shildi!');
-                                        window.location.reload();
+                    window.location.reload();
                 }
             };
         }

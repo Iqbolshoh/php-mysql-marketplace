@@ -1,6 +1,11 @@
-<?php include '../config.php'; ?>
-<?php $query = new Query ?>
-<?php $query->checkAdminRole() ?>
+<?php
+
+session_start();
+
+include '../config.php';
+$query = new Query();
+
+$query->checkAdminRole() ?>
 
 <!DOCTYPE html>
 <html lang="en">

@@ -1,11 +1,9 @@
 <?php
 
-include 'config.php';
-$query = new Query;
+session_start();
 
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+include 'config.php';
+$query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     if ($query->isBlocked()) {

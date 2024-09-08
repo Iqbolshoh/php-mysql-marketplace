@@ -1,12 +1,11 @@
 <?php
-// config.php va Query klassini chaqirish
-include 'config.php';
-$query = new Query;
 
-// Foydalanuvchi rolini tekshirish
+session_start();
+
+include 'config.php';
+$query = new Query();
 $query->checkUserRole();
 
-// Savatdagi mahsulotlarni olish
 $cartItems = $query->getCartItems($_SESSION['id']);
 ?>
 
@@ -168,7 +167,7 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', 'remove_cart.php?remove_item=' + itemId, true);
                 xhr.send();
-                xhr.onload = function () {
+                xhr.onload = function() {
                     if (xhr.status == 200) {
                         window.location.reload();
                     } else {

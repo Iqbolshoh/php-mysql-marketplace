@@ -1,9 +1,11 @@
-<?php include 'config.php';
-$query = new Query;
-$query->checkUserRole();
-?>
-
 <?php
+
+session_start();
+
+include 'config.php';
+$query = new Query();
+$query->checkUserRole();
+
 $category_id = $query->validate($_GET['category']);
 $product_id = $query->select('products', 'id', 'where category_id = ' . $category_id);
 if (!is_numeric($category_id) or !$product_id) {

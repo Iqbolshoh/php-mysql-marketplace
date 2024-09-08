@@ -1,7 +1,9 @@
 <?php
 
+session_start();
+
 include 'config.php';
-$query = new Query; 
+$query = new Query();
 $query->checkUserRole();
 
 if (isset($_GET['remove_item']) && !empty($_GET['remove_item'])) {
@@ -11,4 +13,3 @@ if (isset($_GET['remove_item']) && !empty($_GET['remove_item'])) {
     header("Location: ./shoping-cart.php");
     exit;
 }
-?>

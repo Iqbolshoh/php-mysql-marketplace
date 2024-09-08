@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 class Query
 {
     private $conn;
@@ -12,6 +10,11 @@ class Query
         $username = "root";
         $password = "";
         $dbname = "marketplace";
+
+        // $servername = "localhost";
+        // $username = "iqbolsho_iqbolshoh";
+        // $password = "Iqbolshoh&777";
+        // $dbname = "iqbolsho_market";
 
         $this->conn = new mysqli($servername, $username, $password, $dbname);
 

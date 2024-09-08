@@ -1,5 +1,9 @@
-<?php include 'config.php';
-$query = new Query;
+<?php
+
+session_start();
+
+include 'config.php';
+$query = new Query();
 $query->checkUserRole();
 
 $cartItemsHeart = $query->getWishes($_SESSION['id']);

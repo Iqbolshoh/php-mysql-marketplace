@@ -1,8 +1,5 @@
-<?php
-function active($Page, $Menu)
-{
-    session_start() ?>
-
+<?php function active($Page, $Menu)
+{ ?>
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
@@ -69,14 +66,14 @@ function active($Page, $Menu)
         <!-- /.sidebar -->
     </aside>
 
-    <?php
+<?php
 }
 ?>
 
 <?php
 function pagePath($pageTitle, $breadcrumb)
 {
-    ?>
+?>
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -99,5 +96,5 @@ function pagePath($pageTitle, $breadcrumb)
         </div>
     </div>
 
-    <?php
+<?php
 }
