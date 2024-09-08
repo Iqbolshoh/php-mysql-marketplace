@@ -1,9 +1,11 @@
 <?php
-session_start();
 
 include '../config.php';
-
 $query = new Query();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SESSION['loggedin'] === true) {
     header("Location: ../authentication.php");
@@ -54,8 +56,8 @@ if (isset($_POST['submit'])) {
         <p>Don't have an account? <a href="../signup/">Sign up</a></p>
     </form>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            setTimeout(function () {
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(function() {
                 var errorElement = document.querySelector('.error');
                 if (errorElement) {
                     errorElement.remove();

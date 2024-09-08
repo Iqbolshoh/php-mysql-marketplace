@@ -1,5 +1,10 @@
 <?php include '../config.php';
 $query = new Query;
+
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
 $query->checkSellerRole();
 ?>
 
@@ -122,7 +127,7 @@ $query->checkSellerRole();
       return true;
     }
 
-    document.getElementById('image').addEventListener('change', function () {
+    document.getElementById('image').addEventListener('change', function() {
       let files = document.getElementById('image').files;
       let fileLabel = document.getElementById('fileLabel');
       fileLabel.textContent = files.length + ' fayl tanlandi.';

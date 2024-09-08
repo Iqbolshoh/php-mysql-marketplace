@@ -1,5 +1,8 @@
 <?php include '../config.php';
 $query = new Query;
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 $query->checkSellerRole();
 $seller_id = $_SESSION['id'];
 ?>
@@ -117,7 +120,7 @@ $seller_id = $_SESSION['id'];
                 <div class="row">
                     <?php $seller_id = $_SESSION['id']; ?>
                     <?php
-                    $products = $query->select('products', "*", "WHERE seller_id = '$seller_id'");
+                    $products = $query->select('products', "*", "WHERE seller_id = '$seller_id' ORDER BY added_to_site DESC");
                     foreach ($products as $product) :
                         $productImages = $query->select('product_images', 'image_url', 'WHERE product_id=' . $product['id']);
                         $category_name = $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'];

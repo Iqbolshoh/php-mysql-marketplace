@@ -1,9 +1,11 @@
 <?php
-session_start();
 
 include '../config.php';
-
 $query = new Query();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if ($_SESSION['loggedin'] === true) {
     header("Location: ../authentication.php");
@@ -103,7 +105,7 @@ if (isset($_POST['submit'])) {
     </form>
 
     <script>
-        $('#file-input').on('change', function () {
+        $('#file-input').on('change', function() {
             var fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').html(fileName);
         });
@@ -111,8 +113,8 @@ if (isset($_POST['submit'])) {
 
 
     <script>
-        $(document).ready(function () {
-            $('input[name="number"]').on('input', function () {
+        $(document).ready(function() {
+            $('input[name="number"]').on('input', function() {
                 var number = $(this).val();
                 if (number.length > 0 && !/^\d+$/.test(number)) {
                     $('#number-error').text('Nomer faqat sondan iborat bo\'lishi kerak');
@@ -121,7 +123,7 @@ if (isset($_POST['submit'])) {
                 }
             });
 
-            $('input[name="email"]').on('input', function () {
+            $('input[name="email"]').on('input', function() {
                 var email = $(this).val();
                 if (email.length > 0 && !/\S+@\S+\.\S+/.test(email)) {
                     $('#email-error').text('Xato email.');
@@ -131,7 +133,7 @@ if (isset($_POST['submit'])) {
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             function isOne(value, callback) {
                 $.ajax({
                     url: 'check_username.php',
@@ -139,7 +141,7 @@ if (isset($_POST['submit'])) {
                     data: {
                         username: value
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -149,7 +151,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="username"]').on('input', function () {
+            $('input[name="username"]').on('input', function() {
                 var username = $(this).val();
                 if (username.length > 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
                     $('#username-error').text('Username should contain only letters, digits, and underscores.');
@@ -157,7 +159,7 @@ if (isset($_POST['submit'])) {
                     $('#username-error').text('');
                 }
                 if (username.length > 0) {
-                    isOne(username, function (result) {
+                    isOne(username, function(result) {
                         if (result) {
                             $('#username-error').text('Bunday username mavjud.');
                         } else {
@@ -168,7 +170,7 @@ if (isset($_POST['submit'])) {
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             function isEmailExists(email, callback) {
                 $.ajax({
                     url: 'check_email.php',
@@ -176,7 +178,7 @@ if (isset($_POST['submit'])) {
                     data: {
                         email: email
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -186,7 +188,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="email"]').on('input', function () {
+            $('input[name="email"]').on('input', function() {
                 console.log($('input[name="email"]').val())
                 var email = $(this).val();
                 if (email.length > 0 && !isValidEmail(email)) {
@@ -195,7 +197,7 @@ if (isset($_POST['submit'])) {
                     $('#email-error').text('');
                 }
                 if (email.length > 0) {
-                    isEmailExists(email, function (result) {
+                    isEmailExists(email, function(result) {
                         if (result) {
                             $('#email-error').text('Bunday email mavjud.');
                         } else {
@@ -209,7 +211,7 @@ if (isset($_POST['submit'])) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             }
         });
-        $(document).ready(function () {
+        $(document).ready(function() {
             function isNumberExists(number, callback) {
                 $.ajax({
                     url: 'check_number.php',
@@ -217,7 +219,7 @@ if (isset($_POST['submit'])) {
                     data: {
                         number: number
                     },
-                    success: function (response) {
+                    success: function(response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -227,7 +229,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="number"]').on('input', function () {
+            $('input[name="number"]').on('input', function() {
                 var number = $(this).val();
                 if (number.length > 0 && !/^\d+$/.test(number)) {
                     $('#number-error').text('Nomer faqat sondan iborat bo\'lishi kerak');
@@ -235,7 +237,7 @@ if (isset($_POST['submit'])) {
                     $('#number-error').text('');
                 }
                 if (number.length > 0) {
-                    isNumberExists(number, function (result) {
+                    isNumberExists(number, function(result) {
                         if (result) {
                             $('#number-error').text('Bunday raqam mavjud.');
                         } else {
@@ -252,8 +254,8 @@ if (isset($_POST['submit'])) {
     </script>
     <?php if (isset($error)): ?>
         <script>
-            $(document).ready(function () {
-                setTimeout(function () {
+            $(document).ready(function() {
+                setTimeout(function() {
                     hideErrorMessage();
                 }, 4000);
             });

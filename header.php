@@ -1,5 +1,8 @@
-<?php session_start(); ?>
+<?php if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+} ?>
 <?php
+
 $cartItem = $query->getCartItems($_SESSION['id']);
 $total_price = 0;
 if (!empty($cartItem)) foreach ($cartItem as $item) $total_price += $item['total_price']

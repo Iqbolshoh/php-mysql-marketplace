@@ -1,5 +1,10 @@
 <?php include '../config.php';
 $query = new Query;
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $query->checkSellerRole();
 
 $seller_id = $_SESSION['id'];

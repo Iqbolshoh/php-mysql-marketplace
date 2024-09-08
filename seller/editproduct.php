@@ -1,5 +1,10 @@
 <?php include '../config.php';
 $query = new Query;
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 $query->checkSellerRole();
 
 if (isset($_GET['product_id'])) {
@@ -13,9 +18,7 @@ if (isset($_GET['product_id'])) {
 
 ?>
 
-<?php
-$seller_id = $_SESSION['id'];
-?>
+<?php $seller_id = $_SESSION['id']; ?>
 <!DOCTYPE html>
 <html lang="en">
 

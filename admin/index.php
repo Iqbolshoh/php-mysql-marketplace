@@ -172,7 +172,7 @@
   <script src="../js/dataTables.bootstrap4.min.js"></script>
 
   <script>
-    $(function () {
+    $(function() {
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,

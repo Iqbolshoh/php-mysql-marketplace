@@ -1,9 +1,11 @@
 <?php
+
 include 'config.php';
-
-session_start();
-
 $query = new Query();
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (isset($_GET['product_id']) && isset($_SESSION['id'])) {
     $productId = $_GET['product_id'];
@@ -18,4 +20,3 @@ if (isset($_GET['product_id']) && isset($_SESSION['id'])) {
         $query->insert('wishes', $cartData);
     }
 }
-?>
