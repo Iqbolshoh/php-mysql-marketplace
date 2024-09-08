@@ -183,7 +183,7 @@ class Query
     // checkAdminRole(): Faqatgina Admin kirishi uchun
     function checkAdminRole()
     {
-        if ($_SESSION['role'] !== 'admin' or $this->isBlocked()) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin' or !isset($_SESSION['loggedin'])) {
             header("Location: ../authentication.php");
             exit;
         }
@@ -192,7 +192,7 @@ class Query
     // checkSellerRole(): Faqatgina Seller kirishi uchun
     function checkSellerRole()
     {
-        if ($_SESSION['role'] !== 'seller' or $this->isBlocked()) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] !== 'seller' or !isset($_SESSION['loggedin'])) {
             header("Location: ../authentication.php");
             exit;
         }
@@ -201,7 +201,7 @@ class Query
     // checkUserRole(): Faqatgina user kirishi uchun
     function checkUserRole()
     {
-        if ($_SESSION['role'] !== 'user' or $this->isBlocked()) {
+        if (isset($_SESSION['role']) && $_SESSION['role'] !== 'user' or !isset($_SESSION['loggedin'])) {
             header("Location: ./authentication.php");
             exit;
         }
