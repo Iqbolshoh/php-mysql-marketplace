@@ -1,9 +1,4 @@
-<?php
-
-session_start();
-
-include 'config.php';
-$query = new Query();
+<?php include 'check.php';
 
 if (isset($_GET['product_id']) && isset($_SESSION['id'])) {
     $productId = $_GET['product_id'];

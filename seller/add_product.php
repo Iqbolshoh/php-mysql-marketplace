@@ -1,11 +1,4 @@
-<?php
-
-session_start();
-
-include '../config.php';
-$query = new Query();
-
-$query->checkSellerRole();
+<?php include 'check.php';
 
 $seller_id = $_SESSION['id'];
 

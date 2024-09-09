@@ -1,11 +1,5 @@
 <?php
-
-session_start();
-
-include '../config.php';
-$query = new Query();
-
-$query->checkSellerRole();
+include 'check.php';
 
 if (isset($_GET['product_id']) && isset($_SESSION['id'])) {
     $productId = $query->validate($_GET['product_id']);

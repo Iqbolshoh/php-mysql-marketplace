@@ -1,11 +1,4 @@
-<?php
-
-session_start();
-
-include '../config.php';
-$query = new Query();
-
-$query->checkAdminRole() ?>
+<?php include 'check.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -177,7 +170,7 @@ $query->checkAdminRole() ?>
   <script src="../js/dataTables.bootstrap4.min.js"></script>
 
   <script>
-    $(function() {
+    $(function () {
       $('#example2').DataTable({
         "paging": true,
         "lengthChange": false,

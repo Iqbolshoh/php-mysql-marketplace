@@ -1,10 +1,4 @@
-<?php
-
-session_start();
-
-include 'config.php';
-$query = new Query();
-$query->checkUserRole();
+<?php include 'check.php';
 
 if (isset($_GET['remove_item']) && !empty($_GET['remove_item'])) {
     $item_id = $_GET['remove_item'];

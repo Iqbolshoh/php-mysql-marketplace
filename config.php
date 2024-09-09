@@ -180,33 +180,6 @@ class Query
         return false;
     }
 
-    // checkAdminRole(): Faqatgina Admin kirishi uchun
-    function checkAdminRole()
-    {
-        if (isset($_SESSION['role']) && $_SESSION['role'] !== 'admin' or !isset($_SESSION['loggedin'])) {
-            header("Location: ../authentication.php");
-            exit;
-        }
-    }
-
-    // checkSellerRole(): Faqatgina Seller kirishi uchun
-    function checkSellerRole()
-    {
-        if (isset($_SESSION['role']) && $_SESSION['role'] !== 'seller' or !isset($_SESSION['loggedin'])) {
-            header("Location: ../authentication.php");
-            exit;
-        }
-    }
-
-    // checkUserRole(): Faqatgina user kirishi uchun
-    function checkUserRole()
-    {
-        if (isset($_SESSION['role']) && $_SESSION['role'] !== 'user' or !isset($_SESSION['loggedin'])) {
-            header("Location: ./authentication.php");
-            exit;
-        }
-    }
-
     // getCategories(): Categoriyani tanlash uchun
     public function getCategories()
     {
@@ -217,7 +190,6 @@ class Query
         }
         return $categories;
     }
-
 
     // getProduct(): mahsulotlarni qaytaradi
     public function getProduct($product_id)

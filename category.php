@@ -1,10 +1,4 @@
-<?php
-
-session_start();
-
-include 'config.php';
-$query = new Query();
-$query->checkUserRole();
+<?php include 'check.php';
 
 $category_id = $query->validate($_GET['category']);
 $product_id = $query->select('products', 'id', 'where category_id = ' . $category_id);
@@ -60,27 +54,35 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
             <div class="row">
                 <?php
                 $products = $query->select('products', '*', "WHERE category_id = '$category_id'");
-                foreach ($products as $product) :
+                foreach ($products as $product):
                     $product_name = $product['name'];
                     $category_name = $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'];
                     $price_current = $product['price_current'];
                     $price_old = $product['price_old'];
                     $product_id = $product['id'];
                     $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                ?>
+                    ?>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
-                            <div class="product__discount__item__pic set-bg" data-setbg="images/products/<?php echo $image ?>">
+                            <div class="product__discount__item__pic set-bg"
+                                data-setbg="images/products/<?php echo $image ?>">
                                 <ul class="product__item__pic__hover">
-                                    <li><a onclick="addToWishlist(<?php echo $product_id; ?>)"><i class="fa fa-heart"></i></a></li>
-                                    <li><a onclick="openProductDetails(<?php echo $product_id; ?>)"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a onclick="addToCart(<?php echo $product_id; ?>)"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a onclick="addToWishlist(<?php echo $product_id; ?>)"><i
+                                                class="fa fa-heart"></i></a></li>
+                                    <li><a onclick="openProductDetails(<?php echo $product_id; ?>)"><i
+                                                class="fa fa-retweet"></i></a></li>
+                                    <li><a onclick="addToCart(<?php echo $product_id; ?>)"><i
+                                                class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
                                 <span><?php echo $category_name; ?></span>
-                                <h5><a onclick="openProductDetails(<?php echo $product_id; ?>)"><?php echo $product_name; ?></a></h5>
-                                <div class="product__item__price">$<?php echo $price_current; ?> <span>$<?php echo $price_old; ?></span></div>
+                                <h5><a
+                                        onclick="openProductDetails(<?php echo $product_id; ?>)"><?php echo $product_name; ?></a>
+                                </h5>
+                                <div class="product__item__price">$<?php echo $price_current; ?>
+                                    <span>$<?php echo $price_old; ?></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -105,7 +107,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-        $(function() {
+        $(function () {
             var min_price = <?php echo $min_price; ?>;
             var max_price = <?php echo $max_price; ?>;
 
@@ -114,7 +116,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
                 min: min_price,
                 max: max_price,
                 values: [min_price, max_price],
-                slide: function(event, ui) {
+                slide: function (event, ui) {
                     $("#minamount").val(ui.values[0]);
                     $("#maxamount").val(ui.values[1]);
                 }
@@ -130,7 +132,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
                     window.location.reload();
@@ -144,7 +146,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot izohga qo\'shildi!');
                     window.location.reload();

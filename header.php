@@ -2,18 +2,22 @@
 
 $cartItem = $query->getCartItems($_SESSION['id']);
 $total_price = 0;
-if (!empty($cartItem)) foreach ($cartItem as $item) $total_price += $item['total_price']
-?>
+if (!empty($cartItem))
+    foreach ($cartItem as $item)
+        $total_price += $item['total_price']
+            ?>
 
-<div class="humberger__menu__overlay"></div>
-<div class="humberger__menu__wrapper">
-    <div class="humberger__menu__logo">
-        <a href="/"><img src="images/logo.png" alt=""></a>
-    </div>
-    <div class="humberger__menu__cart">
-        <ul>
-            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo $query->count('wishes') ?></span></a></li>
-            <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo $query->count('cart') ?></span></a></li>
+        <div class="humberger__menu__overlay"></div>
+        <div class="humberger__menu__wrapper">
+            <div class="humberger__menu__logo">
+                <a href="/"><img src="images/logo.png" alt=""></a>
+            </div>
+            <div class="humberger__menu__cart">
+                <ul>
+                    <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo $query->count('wishes') ?></span></a>
+            </li>
+            <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
+                    <span><?php echo $query->count('cart') ?></span></a></li>
         </ul>
         <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2) ?></span></div>
     </div>
@@ -93,10 +97,13 @@ if (!empty($cartItem)) foreach ($cartItem as $item) $total_price += $item['total
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo $query->count('wishes') ?></span></a></li>
-                        <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo $query->Count('cart') ?></span></a></li>
+                        <li><a href="./heart.php"><i class="fa fa-heart"></i>
+                                <span><?php echo $query->count('wishes') ?></span></a></li>
+                        <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
+                                <span><?php echo $query->Count('cart') ?></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2) ?></span></div>
+                    <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2) ?></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -120,8 +127,10 @@ if (!empty($cartItem)) foreach ($cartItem as $item) $total_price += $item['total
                     <ul>
                         <?php
                         $categories = $query->select('categories', '*');
-                        foreach ($categories as $category) : ?>
-                            <li><a href="category.php?category=<?php echo $category['id'] ?>"><?php echo $category['category_name']; ?></a></li>
+                        foreach ($categories as $category): ?>
+                            <li><a
+                                    href="category.php?category=<?php echo $category['id'] ?>"><?php echo $category['category_name']; ?></a>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

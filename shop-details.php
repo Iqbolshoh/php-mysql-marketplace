@@ -1,11 +1,4 @@
-<?php
-
-session_start();
-
-include 'config.php';
-$query = new Query();
-$query->checkUserRole();
-?>
+<?php include 'check.php'; ?>
 
 <?php
 $product_id = $query->validate($_GET['product_id']);
@@ -54,16 +47,16 @@ $product = $query->getProduct($product_id);
                         <div class="product__details__pic__item">
                             <?php
                             $arr = $query->getProductImageID($product_id);
-                            echo '<img " class="product__details__pic__item--large" src="' . "images/products/" .  $query->getProductImage($arr[0]) . '" alt="">';
+                            echo '<img " class="product__details__pic__item--large" src="' . "images/products/" . $query->getProductImage($arr[0]) . '" alt="">';
                             ?>
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <?php
                             foreach ($arr as $id) {
                                 if (count($arr)) {
-                                    echo '<img data-imgbigurl="' . "images/products/" . $query->getProductImage($id) . '" src="' . "images/products/" .  $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "images/products/" . $query->getProductImage($id) . '" src="' . "images/products/" . $query->getProductImage($id) . '" alt="">';
                                 } elseif ($id + 1 <= end($arr)) {
-                                    echo '<img data-imgbigurl="' . "images/products/" . $query->getProductImage($id + 1) . '" src="' . "images/products/" .  $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "images/products/" . $query->getProductImage($id + 1) . '" src="' . "images/products/" . $query->getProductImage($id) . '" alt="">';
                                 }
                             }
                             ?>
@@ -74,7 +67,9 @@ $product = $query->getProduct($product_id);
                     <div class="product__details__text">
                         <h3><?php echo $product['name']; ?></h3>
                         <div class="product-price">
-                            <div class="product__item__price">$<?php echo $product['price_current'] ?> <span>$<?php echo $product['price_old'] ?></span></div>
+                            <div class="product__item__price">$<?php echo $product['price_current'] ?>
+                                <span>$<?php echo $product['price_old'] ?></span>
+                            </div>
                         </div>
                         <p><?php echo $product['description'] ?></p>
                         <div class="product__details__quantity">
@@ -84,10 +79,14 @@ $product = $query->getProduct($product_id);
                                 </div>
                             </div>
                         </div>
-                        <a onclick="addToCart(<?php echo $product_id; ?>, document.querySelector('.pro-qty input').value)" class="primary-btn" style="color: white">Savatga qo'shish</a>
-                        <a onclick="addToWishlist(<?php echo $product_id; ?>)" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                        <a onclick="addToCart(<?php echo $product_id; ?>, document.querySelector('.pro-qty input').value)"
+                            class="primary-btn" style="color: white">Savatga qo'shish</a>
+                        <a onclick="addToWishlist(<?php echo $product_id; ?>)" class="heart-icon"><span
+                                class="icon_heart_alt"></span></a>
                         <ul>
-                            <li><b>Categoriya</b> <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span></li>
+                            <li><b>Categoriya</b>
+                                <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span>
+                            </li>
 
 
                             <li><b>Reyting</b> <span><?php echo $product['rating']; ?></span></li>
@@ -121,27 +120,35 @@ $product = $query->getProduct($product_id);
             <div class="row">
                 <?php
                 $products = $query->select('products', '*', "WHERE category_id = '" . $product['category_id'] . "' LIMIT 8");
-                foreach ($products as $product) :
+                foreach ($products as $product):
                     $product_name = $product['name'];
                     $category_name = $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'];
                     $price_current = $product['price_current'];
                     $price_old = $product['price_old'];
                     $product_id = $product['id'];
                     $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                ?>
+                    ?>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
-                            <div class="product__discount__item__pic set-bg" data-setbg="images/products/<?php echo $image ?>">
+                            <div class="product__discount__item__pic set-bg"
+                                data-setbg="images/products/<?php echo $image ?>">
                                 <ul class="product__item__pic__hover">
-                                    <li><a onclick="addToWishlist(<?php echo $product_id; ?>)"><i class="fa fa-heart"></i></a></li>
-                                    <li><a onclick="openProductDetails(<?php echo $product_id; ?>)"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a onclick="addToCart(<?php echo $product_id; ?>, 1)"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a onclick="addToWishlist(<?php echo $product_id; ?>)"><i
+                                                class="fa fa-heart"></i></a></li>
+                                    <li><a onclick="openProductDetails(<?php echo $product_id; ?>)"><i
+                                                class="fa fa-retweet"></i></a></li>
+                                    <li><a onclick="addToCart(<?php echo $product_id; ?>, 1)"><i
+                                                class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
                                 <span><?php echo $category_name; ?></span>
-                                <h5><a onclick="openProductDetails(<?php echo $product_id; ?>)"><?php echo $product_name; ?></a></h5>
-                                <div class="product__item__price">$<?php echo $price_current; ?> <span>$<?php echo $price_old; ?></span></div>
+                                <h5><a
+                                        onclick="openProductDetails(<?php echo $product_id; ?>)"><?php echo $product_name; ?></a>
+                                </h5>
+                                <div class="product__item__price">$<?php echo $price_current; ?>
+                                    <span>$<?php echo $price_old; ?></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -174,7 +181,7 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
                 }
@@ -187,7 +194,7 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
                     window.location.reload();
@@ -205,7 +212,7 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot izohga qo\'shildi!');
                     window.location.reload();

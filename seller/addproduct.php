@@ -1,13 +1,4 @@
-<?php
-
-session_start();
-
-include '../config.php';
-$query = new Query();
-
-
-$query->checkSellerRole();
-?>
+<?php include 'check.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -128,7 +119,7 @@ $query->checkSellerRole();
       return true;
     }
 
-    document.getElementById('image').addEventListener('change', function() {
+    document.getElementById('image').addEventListener('change', function () {
       let files = document.getElementById('image').files;
       let fileLabel = document.getElementById('fileLabel');
       fileLabel.textContent = files.length + ' fayl tanlandi.';

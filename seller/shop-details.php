@@ -1,9 +1,5 @@
 <?php
-
-session_start();
-
-include '../config.php';
-$query = new Query();
+include 'check.php';
 
 $product_id = $query->validate($_GET['product_id']);
 if (!is_numeric($product_id) or $query->select('products', 'id', 'where id = ' . $product_id)[0]['id'] !== $product_id) {
@@ -50,16 +46,16 @@ $product = $query->getProduct($product_id);
                         <div class="product__details__pic__item">
                             <?php
                             $arr = $query->getProductImageID($product_id);
-                            echo '<img " class="product__details__pic__item--large" src="' . "../images/products/" .  $query->getProductImage($arr[0]) . '" alt="">';
+                            echo '<img " class="product__details__pic__item--large" src="' . "../images/products/" . $query->getProductImage($arr[0]) . '" alt="">';
                             ?>
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <?php
                             foreach ($arr as $id) {
                                 if (count($arr)) {
-                                    echo '<img data-imgbigurl="' . "../images/products/" . $query->getProductImage($id) . '" src="' . "../images/products/" .  $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "../images/products/" . $query->getProductImage($id) . '" src="' . "../images/products/" . $query->getProductImage($id) . '" alt="">';
                                 } elseif ($id + 1 <= end($arr)) {
-                                    echo '<img data-imgbigurl="' . "../images/products/" . $query->getProductImage($id + 1) . '" src="' . "../images/products/" .  $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "../images/products/" . $query->getProductImage($id + 1) . '" src="' . "../images/products/" . $query->getProductImage($id) . '" alt="">';
                                 }
                             }
                             ?>
@@ -70,12 +66,16 @@ $product = $query->getProduct($product_id);
                     <div class="product__details__text">
                         <h3><?php echo $product['name']; ?></h3>
                         <div class="product-price">
-                            <div class="product__item__price">$<?php echo $product['price_current'] ?> <span>$<?php echo $product['price_old'] ?></span></div>
+                            <div class="product__item__price">$<?php echo $product['price_current'] ?>
+                                <span>$<?php echo $product['price_old'] ?></span>
+                            </div>
                         </div>
                         <p><?php echo $product['description'] ?></p>
                         <a href="/" class="primary-btn">Mahsulotlarga qaytish</a>
                         <ul>
-                            <li><b>Categoriya</b> <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span></li>
+                            <li><b>Categoriya</b>
+                                <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span>
+                            </li>
 
 
                             <li><b>Reyting</b> <span><?php echo $product['rating']; ?></span></li>

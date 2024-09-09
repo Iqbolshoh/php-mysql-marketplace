@@ -1,11 +1,5 @@
 <?php
-
-session_start();
-
-include '../config.php';
-$query = new Query();
-
-$query->checkSellerRole();
+include 'check.php';
 
 if (isset($_GET['product_id'])) {
     $product_id = $_GET['product_id'];
@@ -73,40 +67,51 @@ if (isset($_GET['product_id'])) {
                                 </div>
                                 <!-- /.card-header -->
                                 <!-- form start -->
-                                <form role="form" action="update_product.php" method="POST" enctype="multipart/form-data" onsubmit="return checkFilesCount()">
+                                <form role="form" action="update_product.php" method="POST"
+                                    enctype="multipart/form-data" onsubmit="return checkFilesCount()">
                                     <div class="card-body">
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <div class="form-group">
                                             <label for="name">Mahsulot nomi:</label>
-                                            <input type="text" class="form-control" id="name" name="name" value="<?php echo $product['name']; ?>" required>
+                                            <input type="text" class="form-control" id="name" name="name"
+                                                value="<?php echo $product['name']; ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="category_id">Mahsulot Kategoriyasi:</label>
                                             <select class="form-control" id="category_id" name="category_id" required>
                                                 <?php foreach ($categories as $id => $category_name) { ?>
-                                                    <option value="<?php echo $id; ?>" <?php if ($id == $product['category_id']) echo 'selected'; ?>><?php echo $category_name; ?></option>
+                                                    <option value="<?php echo $id; ?>" <?php if ($id == $product['category_id'])
+                                                           echo 'selected'; ?>>
+                                                        <?php echo $category_name; ?>
+                                                    </option>
                                                 <?php } ?>
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="price_old">Eski narxi:</label>
-                                            <input type="number" class="form-control" id="price_old" name="price_old" value="<?php echo $product['price_old']; ?>" required>
+                                            <input type="number" class="form-control" id="price_old" name="price_old"
+                                                value="<?php echo $product['price_old']; ?>" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="price_current">Joriy narxi:</label>
-                                            <input type="number" class="form-control" id="price_current" name="price_current" value="<?php echo $product['price_current']; ?>" required>
+                                            <input type="number" class="form-control" id="price_current"
+                                                name="price_current" value="<?php echo $product['price_current']; ?>"
+                                                required>
                                         </div>
                                         <div class="form-group">
                                             <label for="description">Ta'rif:</label>
-                                            <textarea class="form-control" id="description" name="description" rows="3" required><?php echo $product['description']; ?></textarea>
+                                            <textarea class="form-control" id="description" name="description" rows="3"
+                                                required><?php echo $product['description']; ?></textarea>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="image" name="image[]" accept="image/*" multiple>
+                                            <input type="file" class="custom-file-input" id="image" name="image[]"
+                                                accept="image/*" multiple>
                                             <label class="custom-file-label" for="image">Rasmlarni tanlang...</label>
                                         </div>
                                         <div class="form-group">
                                             <label for="quantity">Miqdor:</label>
-                                            <input type="number" class="form-control" id="quantity" name="quantity" value="<?php echo $product['quantity']; ?>" required>
+                                            <input type="number" class="form-control" id="quantity" name="quantity"
+                                                value="<?php echo $product['quantity']; ?>" required>
                                         </div>
                                     </div>
                                     <!-- /.card-body -->
@@ -167,7 +172,7 @@ if (isset($_GET['product_id'])) {
             return true;
         }
 
-        document.getElementById('image').addEventListener('change', function() {
+        document.getElementById('image').addEventListener('change', function () {
             let files = document.getElementById('image').files;
             let fileLabel = document.querySelector('.custom-file-label');
             fileLabel.textContent = files.length + ' fayl tanlandi.';

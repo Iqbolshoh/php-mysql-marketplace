@@ -1,10 +1,4 @@
-<?php
-
-session_start();
-
-include 'config.php';
-$query = new Query();
-$query->checkUserRole();
+<?php include 'check.php';
 
 $cartItemsHeart = $query->getWishes($_SESSION['id']);
 ?>
@@ -46,7 +40,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                 <div class="col-lg-12">
                     <?php
                     if (!empty($cartItemsHeart)) {
-                    ?>
+                        ?>
                         <div class="shoping__cart__table">
                             <table>
                                 <thead>
@@ -62,7 +56,8 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                                         <tr>
                                             <td class="shoping__cart__item">
                                                 <!-- Mahsulot rasmi -->
-                                                <img src="images/products/<?php echo $query->getProductImages($item['product_id'])[0] ?>" style="width: 55px;" alt="">
+                                                <img src="images/products/<?php echo $query->getProductImages($item['product_id'])[0] ?>"
+                                                    style="width: 55px;" alt="">
                                                 <!-- Mahsulot nomi -->
                                                 <h5><?php echo $item['name']; ?></h5>
                                             </td>
@@ -76,10 +71,12 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                                                 $<?php echo number_format($item['price_current'], 2); ?>
                                             </td>
                                             <td>
-                                                <a class="primary-btn" style="color: white;" onclick="addToCart(<?php echo $item['product_id']; ?>)">Savatga qo'shish</a>
+                                                <a class="primary-btn" style="color: white;"
+                                                    onclick="addToCart(<?php echo $item['product_id']; ?>)">Savatga qo'shish</a>
                                             </td>
                                             <td class="shoping__car t__item__close">
-                                                <span class="icon_close" onclick="removeCartItem(<?php echo $item['product_id']; ?>)"></span>
+                                                <span class="icon_close"
+                                                    onclick="removeCartItem(<?php echo $item['product_id']; ?>)"></span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -87,13 +84,13 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                             </table>
                         </div>
                         <div style="padding-bottom: 30vh;"></div>
-                    <?php
+                        <?php
                     } else {
-                    ?>
+                        ?>
                         <div style="padding-bottom: 30vh;">
                             <p style="text-align: center; font-size:25px">Hech qanday mahsulot topilmadi.</p>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>
@@ -123,7 +120,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                 var xhr = new XMLHttpRequest();
                 xhr.open('GET', 'remove_heart.php?remove_item=' + itemId, true);
                 xhr.send();
-                xhr.onload = function() {
+                xhr.onload = function () {
                     if (xhr.status == 200) {
                         window.location.reload();
                     } else {
@@ -141,7 +138,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
                 }

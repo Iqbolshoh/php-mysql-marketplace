@@ -42,7 +42,8 @@
                         <input type="text" placeholder="Enter your mail">
                         <button type="submit" class="site-btn">Subscribe</button>
                     </form>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
                     <div class="footer__widget__social">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>

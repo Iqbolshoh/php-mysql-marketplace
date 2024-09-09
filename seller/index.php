@@ -1,11 +1,6 @@
 <?php
+include 'check.php';
 
-session_start();
-
-include '../config.php';
-$query = new Query();
-
-$query->checkSellerRole();
 $seller_id = $_SESSION['id'];
 ?>
 
@@ -67,7 +62,8 @@ $seller_id = $_SESSION['id'];
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -82,7 +78,8 @@ $seller_id = $_SESSION['id'];
                                 <div class="icon">
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -96,7 +93,8 @@ $seller_id = $_SESSION['id'];
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
 
@@ -111,7 +109,8 @@ $seller_id = $_SESSION['id'];
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                                <a href="#" class="small-box-footer">More info <i
+                                        class="fas fa-arrow-circle-right"></i></a>
                             </div>
 
                         </div>
@@ -123,22 +122,28 @@ $seller_id = $_SESSION['id'];
                     <?php $seller_id = $_SESSION['id']; ?>
                     <?php
                     $products = $query->select('products', "*", "WHERE seller_id = '$seller_id' ORDER BY added_to_site DESC");
-                    foreach ($products as $product) :
+                    foreach ($products as $product):
                         $productImages = $query->select('product_images', 'image_url', 'WHERE product_id=' . $product['id']);
                         $category_name = $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'];
-                    ?> <div class="col-lg-2 col-md-4 col-sm-6">
+                        ?>
+                        <div class="col-lg-2 col-md-4 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="../images/products/<?php echo $productImages[0]['image_url']; ?>">
+                                <div class="product__item__pic set-bg"
+                                    data-setbg="../images/products/<?php echo $productImages[0]['image_url']; ?>">
                                     <ul class="product__item__pic__hover" style="height: 20px;">
-                                        <li><a href="#" onclick="delete_product(<?php echo $product['id']; ?>)"><i class="fa fa-trash"></i></a></li>
-                                        <li><a href="#" onclick="openProductDetails(<?php echo $product['id']; ?>)"><i class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#" onclick="edit_product(<?php echo $product['id']; ?>)"><i class="fa fa-pen"></i></a></li>
+                                        <li><a href="#" onclick="delete_product(<?php echo $product['id']; ?>)"><i
+                                                    class="fa fa-trash"></i></a></li>
+                                        <li><a href="#" onclick="openProductDetails(<?php echo $product['id']; ?>)"><i
+                                                    class="fa fa-retweet"></i></a></li>
+                                        <li><a href="#" onclick="edit_product(<?php echo $product['id']; ?>)"><i
+                                                    class="fa fa-pen"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__discount__item__text">
                                     <span><?php echo $category_name ?></span>
-                                    <h5><a href="#"><?php echo $product['name']  ?></a></h5>
-                                    <div class="product__item__price">$<?php echo $product['price_current'] ?> <span>$<?php echo $product['price_old'] ?></span></div>
+                                    <h5><a href="#"><?php echo $product['name'] ?></a></h5>
+                                    <div class="product__item__price">$<?php echo $product['price_current'] ?>
+                                        <span>$<?php echo $product['price_old'] ?></span></div>
                                 </div>
                             </div>
                         </div>

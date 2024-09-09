@@ -1,11 +1,4 @@
-<?php
-
-session_start();
-
-include 'config.php';
-$query = new Query();
-$query->checkUserRole();
-?>
+<?php include 'check.php'; ?>
 
 <!DOCTYPE html>
 <html lang="eng">
@@ -101,12 +94,13 @@ $query->checkUserRole();
 
                                     foreach ($products as $product):
                                         $product_name = $product['name'];
-                                        $category_name = $category['category_name'];;
+                                        $category_name = $category['category_name'];
+                                        ;
                                         $price_current = $product['price_current'];
                                         $price_old = $product['price_old'];
                                         $product_id = $product['id'];
                                         $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                                    ?>
+                                        ?>
 
                                         <div class="col-lg-4">
                                             <div class="product__discount__item">
@@ -172,7 +166,7 @@ $query->checkUserRole();
                             $price_old = $product['price_old'];
                             $product_id = $product['id'];
                             $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                        ?>
+                            ?>
 
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
@@ -222,7 +216,7 @@ $query->checkUserRole();
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
     <script>
-        $(function() {
+        $(function () {
             var min_price = <?php echo $min_price; ?>;
             var max_price = <?php echo $max_price; ?>;
 
@@ -231,7 +225,7 @@ $query->checkUserRole();
                 min: min_price,
                 max: max_price,
                 values: [min_price, max_price],
-                slide: function(event, ui) {
+                slide: function (event, ui) {
                     $("#minamount").val(ui.values[0]);
                     $("#maxamount").val(ui.values[1]);
                 }
@@ -247,7 +241,7 @@ $query->checkUserRole();
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot savatchaga qo\'shildi!');
                     window.location.reload();
@@ -262,7 +256,7 @@ $query->checkUserRole();
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     alert('Mahsulot izohga qo\'shildi!');
                     window.location.reload();
