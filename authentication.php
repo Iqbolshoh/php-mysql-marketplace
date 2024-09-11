@@ -1,11 +1,10 @@
 <?php
 
 session_start();
-
 include 'config.php';
 $query = new Query();
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+if (empty($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: ./login/");
     exit;
 }
@@ -21,10 +20,10 @@ $roleRedirects = [
     'user' => './',
 ];
 
-if (isset($roleRedirects[$_SESSION['role']])) {
+if (isset($_SESSION['role'], $roleRedirects[$_SESSION['role']])) {
     header("Location: " . $roleRedirects[$_SESSION['role']]);
-} else {
-    header("Location: ./login/");
+    exit;
 }
-exit;
 
+header("Location: ./login/");
+exit;
