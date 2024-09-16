@@ -25,5 +25,5 @@ if (isset($_SESSION['role'], $roleRedirects[$_SESSION['role']])) {
     exit;
 }
 
-header("Location: ./login/");
+header("Location: ./");
 exit;
