@@ -5,16 +5,16 @@ $total_price = 0;
 if (!empty($cartItem))
     foreach ($cartItem as $item)
         $total_price += $item['total_price']
-            ?>
+?>
 
-        <div class="humberger__menu__overlay"></div>
-        <div class="humberger__menu__wrapper">
-            <div class="humberger__menu__logo">
-                <a href="/"><img src="images/logo.png" alt=""></a>
-            </div>
-            <div class="humberger__menu__cart">
-                <ul>
-                    <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo $query->count('wishes') ?></span></a>
+<div class="humberger__menu__overlay"></div>
+<div class="humberger__menu__wrapper">
+    <div class="humberger__menu__logo">
+        <a href="/"><img src="images/logo.png" alt=""></a>
+    </div>
+    <div class="humberger__menu__cart">
+        <ul>
+            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo $query->count('wishes') ?></span></a>
             </li>
             <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
                     <span><?php echo $query->count('cart') ?></span></a></li>
@@ -23,7 +23,11 @@ if (!empty($cartItem))
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
-            <?php echo $_SESSION['loggedin'] ? '<a href="./logout/" onclick="return confirm(\'Aniq chiqmoqchimisiz?\')"><i class="fa fa-user"></i>Logout</a>' : '<a href="./login/"><i class="fa fa-user"></i>Login</a>' ?>
+            <?php
+            echo $_SESSION['loggedin'] ?
+                '<a href="#" onclick="logout()"><i class="fa fa-user"></i>Logout</a>' :
+                '<a href="./login/"><i class="fa fa-user"></i>Login</a>';
+            ?>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -71,7 +75,11 @@ if (!empty($cartItem))
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__auth">
-                            <?php echo $_SESSION['loggedin'] ? '<a href="./logout/" onclick="return confirm(\'Aniq chiqmoqchimisiz?\')"><i class="fa fa-user"></i>Logout</a>' : '<a href="./login/"><i class="fa fa-user"></i>Login</a>' ?>
+                            <?php
+                            echo $_SESSION['loggedin'] ?
+                                '<a href="#" onclick="logout()"><i class="fa fa-user"></i>Logout</a>' :
+                                '<a href="./login/"><i class="fa fa-user"></i>Login</a>';
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -163,4 +171,23 @@ if (!empty($cartItem))
 <!-- Hero Section End -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function logout() {
+        Swal.fire({
+            title: 'Aniq chiqmoqchimisiz?',
+            text: "Siz bu amalni bekor qilolmaysiz!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ha, chiqaman!',
+            cancelButtonText: 'Bekor qilish'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../logout/';
+            }
+        });
+    }
+</script>

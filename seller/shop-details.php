@@ -18,6 +18,7 @@ $product = $query->getProduct($product_id);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product | <?php echo $product['name']; ?></title>
+    <link rel="icon" href="../favicon.ico">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">

@@ -11,11 +11,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 }
 
 if ($_SESSION['role'] !== 'admin') {
-    header("Location: ../authentication.php");
-    exit;
-}
-
-if ($query->isBlocked()) {
-    header("Location: ../blocked_page.php");
+    header("Location: ../roles.php");
     exit;
 }

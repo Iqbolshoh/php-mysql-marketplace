@@ -50,9 +50,9 @@ function active($Page, $Menu)
                             </li>
                         </ul>
                     </li>
-                    
+
                     <li class="nav-item">
-                        <a href="../logout/" class="nav-link <?php echo ($Menu === 'users') ? 'active' : ''; ?>">
+                        <a onclick="logout()" class="nav-link <?php echo ($Menu === 'users') ? 'active' : ''; ?>">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Chiqish</p>
                         </a>
@@ -96,3 +96,25 @@ function pagePath($pageTitle, $breadcrumb)
 
 <?php
 }
+?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    function logout() {
+        Swal.fire({
+            title: 'Aniq chiqmoqchimisiz?',
+            text: "Siz bu amalni bekor qilolmaysiz!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ha, chiqaman!',
+            cancelButtonText: 'Bekor qilish'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = '../logout/';
+            }
+        });
+    }
+</script>

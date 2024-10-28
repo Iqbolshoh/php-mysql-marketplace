@@ -25,7 +25,6 @@ class Query
         }
     }
 
-    // validate() bunda @#$%^ belgilarni html codega o'tkazadi
     function validate($value)
     {
         $value = trim($value);
@@ -35,7 +34,6 @@ class Query
         return $value;
     }
 
-    // executeQuery() so'rovni bajarish uchun
     public function executeQuery($sql)
     {
         $result = $this->conn->query($sql);
@@ -45,14 +43,12 @@ class Query
         return $result;
     }
 
-    // select(): Ma'lumotlarni ma'lumot bazasidan tanlash uchun.
     public function select($table, $columns = "*", $condition = "")
     {
         $sql = "SELECT $columns FROM $table $condition";
         return $this->executeQuery($sql)->fetch_all(MYSQLI_ASSOC);
     }
 
-    // insert(): Ma'lumotlarni ma'lumot bazasiga qo'shish uchun.
     public function insert($table, $data)
     {
         $keys = implode(', ', array_keys($data));
@@ -61,7 +57,6 @@ class Query
         return $this->executeQuery($sql);
     }
 
-    // update(): Ma'lumotlarni ma'lumot bazasida yangilash uchun.
     public function update($table, $data, $condition = "")
     {
         $set = '';
@@ -73,21 +68,17 @@ class Query
         return $this->executeQuery($sql);
     }
 
-    // delete(): Ma'lumotlarni ma'lumot bazasidan o'chirish uchun.
     public function delete($table, $condition = "")
     {
         $sql = "DELETE FROM $table $condition";
         return $this->executeQuery($sql);
     }
-
-    // Parolni heshlash
     function hashPassword($password)
     {
         $key = "AccountPassword";
         return hash_hmac('sha256', $password, $key);
     }
 
-    // authenticate(): Foydalanuvchining kirish ma'lumotlarini tekshirish uchun.
     public function authenticate($username, $password, $table)
     {
         $username = $this->validate($username);
@@ -95,7 +86,6 @@ class Query
         return $this->select($table, "*", $condition);
     }
 
-    // registerUser(): Yangi foydalanuvchini ro'yxatdan o'tkazish uchun.
     public function registerUser($name, $number, $email, $username, $password, $profile_image, $role)
     {
         $name = $this->validate($name);
@@ -123,7 +113,6 @@ class Query
         return false;
     }
 
-    // saveImage(): Rasm yulash uchun
     function saveImagesToDatabase($files, $path, $productId)
     {
         if (is_array($files['tmp_name'])) {
@@ -172,7 +161,6 @@ class Query
         return false;
     }
 
-    // isBlocked(): bu block ekanligini tekshiradi
     public function isBlocked()
     {
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true)
@@ -180,7 +168,6 @@ class Query
         return false;
     }
 
-    // getCategories(): Categoriyani tanlash uchun
     public function getCategories()
     {
         $categories = array();
@@ -191,14 +178,12 @@ class Query
         return $categories;
     }
 
-    // getProduct(): mahsulotlarni qaytaradi
     public function getProduct($product_id)
     {
         $result = $this->select('products', '*', 'WHERE id = ' . $product_id);
         return $result[0];
     }
 
-    // getProductImages(): Mahsulotning barcha rasm url-larini olish uchun
     public function getProductImageID($product_id)
     {
         $images = $this->select('product_images', 'id', 'WHERE product_id = ' . $product_id);
@@ -210,7 +195,6 @@ class Query
     }
 
 
-    // getProductImages(): Mahsulotning barcha rasm url-larini olish uchun
     function getProductImage($id)
     {
         global $query;
@@ -242,7 +226,6 @@ class Query
         return $cartItems;
     }
 
-    // getProductImages(): Mahsulotning barcha rasm url-larini olish uchun
     public function getProductImages($product_id)
     {
         $sql = "SELECT image_url FROM product_images WHERE product_id = $product_id";
@@ -281,7 +264,6 @@ class Query
         return $wishes;
     }
 
-    // Count(): element somini chiqaradi
     public function count($table)
     {
         $userId = $_SESSION['id'];
@@ -290,7 +272,6 @@ class Query
         return $row['total_elements'];
     }
 
-    // lastInsertId(): Ma'lumotlarni ma'lumot bazasiga qo'shish uchun.
     public function lastInsertId($table, $data)
     {
         $keys = implode(', ', array_keys($data));

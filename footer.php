@@ -46,8 +46,8 @@
                         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
                     <div class="footer__widget__social">
                         <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/iqbolshoh_777/"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.x.com/iqbolshoh_777/"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>

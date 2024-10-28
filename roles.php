@@ -1,16 +1,12 @@
 <?php
 
-session_start();
-include 'config.php';
+include './config.php';
 $query = new Query();
 
-if (empty($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: ./login/");
-    exit;
-}
+session_start();
 
-if ($query->isBlocked()) {
-    header("Location: ./blocked_page.php");
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header("Location: ./login/");
     exit;
 }
 
@@ -24,6 +20,3 @@ if (isset($_SESSION['role'], $roleRedirects[$_SESSION['role']])) {
     header("Location: " . $roleRedirects[$_SESSION['role']]);
     exit;
 }
-
-header("Location: ./");
-exit;

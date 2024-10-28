@@ -10,12 +10,12 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-if ($_SESSION['role'] !== 'user') {
-    header("Location: ./authentication.php");
+if ($query->isBlocked()) {
+    header("Location: ./blocked_page.php");
     exit;
 }
 
-if ($query->isBlocked()) {
-    header("Location: ./blocked_page.php");
+if ($_SESSION['role'] !== 'user') {
+    header("Location: ./roles.php");
     exit;
 }

@@ -1,4 +1,4 @@
-<?php include 'check.php';?>
+<?php include 'check.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="../favicon.ico">
   <title>Seller | <?php echo $_SESSION['name'] ?></title>
   <!-- css -->
   <?php include 'includes/css.php'; ?>
@@ -119,7 +120,7 @@
       return true;
     }
 
-    document.getElementById('image').addEventListener('change', function () {
+    document.getElementById('image').addEventListener('change', function() {
       let files = document.getElementById('image').files;
       let fileLabel = document.getElementById('fileLabel');
       fileLabel.textContent = files.length + ' fayl tanlandi.';

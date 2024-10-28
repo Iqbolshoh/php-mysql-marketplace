@@ -6,7 +6,7 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: ../authentication.php");
+    header("Location: ../roles.php");
     exit;
 }
 
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['profile_image'] = $profile_image;
             $_SESSION['role'] = $role;
 
-            header("Location: ../authentication.php");
+            header("Location: ../roles.php");
 
             exit;
         } else {
@@ -54,12 +54,19 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up</title>
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="icon" href="../favicon.ico">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .error-message {
             color: red;
             font-size: 12px;
             margin-top: 5px;
+        }
+
+        body {
+            padding: 30px !important;
         }
     </style>
 </head>
@@ -68,43 +75,90 @@ if (isset($_POST['submit'])) {
     <?php if (isset($error)): ?>
         <p class="error"><?php echo $error; ?></p>
     <?php endif; ?>
-    <form method="post" action="" enctype="multipart/form-data" id="signup-form">
+
+    <div class="form-container">
+
         <h2>Sign Up</h2>
-        <input type="text" name="name" placeholder="Name" required>
-        <input type="phone" name="number" placeholder="Number" required>
-        <p class="error-message" id="number-error"></p>
 
-        <select name="role" required>
-            <option value="" disabled selected>Select Role</option>
-            <option value="user">User</option>
-            <option value="seller">Seller</option>
-        </select>
+        <form method="post" action="" enctype="multipart/form-data" id="signup-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" name="name" placeholder="Name" required>
+            </div>
 
-        <input type="email" name="email" placeholder="Email" required>
-        <p class="error-message" id="email-error"></p>
+            <div class="form-group">
+                <label for="number">Number</label>
+                <input type="phone" name="number" placeholder="Number" required>
+                <p class="error-message" id="number-error"></p>
+            </div>
 
-        <input type="text" name="username" placeholder="Username" required>
-        <p class="error-message" id="username-error"></p>
+            <div class="form-group">
+                <label for="role" class="font-weight-bold">Role</label>
+                <select id="role" name="role" class="form-control" required>
+                    <option value="" disabled selected>Select Role</option>
+                    <option value="user">User</option>
+                    <option value="seller">Seller</option>
+                </select>
+            </div>
 
-        <input type="password" name="password" placeholder="Password" required>
 
-        <div class="file-input-container">
-            <div class="input-group">
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="file-input" accept="image/*" name="image">
-                    <label class="custom-file-label" for="file-input">Choose Image</label>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="email" name="email" placeholder="Email" required>
+                <p class="error-message" id="email-error"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Username" required>
+                <p class="error-message" id="username-error"></p>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required="" maxlength="255">
+                    <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
                 </div>
             </div>
-        </div>
 
-        <input type="submit" name="submit" value="Submit">
-        <p>Already have an account? <a href="../login/">Log in</a></p>
-    </form>
+            <div class="form-group">
+                <label for="file-input" class="font-weight-bold">Choose Image</label>
+                <div class="custom-file">
+                    <input type="file" id="file-input" class="custom-file-input" accept="image/*" name="image">
+                    <label class="custom-file-label" for="file-input">Choose file</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" name="submit" id="submit" value="Submit">
+            </div>
+
+            <div class="text-center">
+                <p>Already have an account? <a href="../login/">Log in</a></p>
+            </div>
+        </form>
+
+    </div>
 
     <script>
         $('#file-input').on('change', function() {
             var fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').html(fileName);
+        });
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = this.querySelector('i');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
         });
     </script>
 

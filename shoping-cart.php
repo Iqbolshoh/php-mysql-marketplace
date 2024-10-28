@@ -14,6 +14,7 @@ $cartItems = $query->getCartItems($_SESSION['id']);
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="./favicon.ico">
     <title>Savat</title>
 
     <!-- Google Font -->
@@ -28,6 +29,9 @@ $cartItems = $query->getCartItems($_SESSION['id']);
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -70,10 +74,7 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                                             <!-- Mahsulot soni -->
                                             <td class="shoping__cart__quantity">
                                                 <div class="quantity">
-                                                    <div class="pro-qty">
-                                                        <!-- Mahsulot sonini kiritish oynasi -->
-                                                        <input type="text" value="<?php echo $item['number_of_products']; ?>">
-                                                    </div>
+                                                    <?php echo $item['number_of_products']; ?>
                                                 </div>
                                             </td>
                                             <!-- Mahsulot jami narxi -->
@@ -82,8 +83,9 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                                             </td>
                                             <!-- Mahsulotni savatdan o'chirish -->
                                             <td class="shoping__cart__item__close">
-                                                <span class="icon_close"
-                                                    onclick="removeCartItem(<?php echo $item['id']; ?>)"></span>
+                                                <span onclick="removeCartItem(<?php echo $item['id']; ?>)" style="cursor: pointer;">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -158,18 +160,43 @@ $cartItems = $query->getCartItems($_SESSION['id']);
 
     <script>
         function removeCartItem(itemId) {
-            if (confirm('Haqiqatdan ham ushbu mahsulotni savatdan o\'chirmoqchimisiz?')) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'remove_cart.php?remove_item=' + itemId, true);
-                xhr.send();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        window.location.reload();
-                    } else {
-                        alert('Xato yuz berdi: ' + xhr.statusText);
-                    }
-                };
-            }
+            Swal.fire({
+                title: 'Mahsulotni o‘chirishni xohlaysizmi?',
+                text: "Bu amalni qaytarib bo'lmaydi!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ha, o‘chirish!',
+                cancelButtonText: 'Bekor qilish'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'remove_cart.php?remove_item=' + itemId, true);
+                    xhr.send();
+
+                    xhr.onload = function() {
+                        if (xhr.status == 200) {
+                            Swal.fire({
+                                title: 'O‘chirildi!',
+                                text: 'Mahsulot savatdan muvaffaqiyatli o‘chirildi.',
+                                icon: 'success',
+                                confirmButtonText: 'OK'
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            // Xato xabari
+                            Swal.fire({
+                                title: 'Xatolik!',
+                                text: 'Xato yuz berdi: ' + xhr.statusText,
+                                icon: 'error',
+                                confirmButtonText: 'OK'
+                            });
+                        }
+                    };
+                }
+            });
         }
     </script>
 

@@ -6,7 +6,7 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: ../authentication.php");
+    header("Location: ../roles.php");
     exit;
 }
 
@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['profile_image'] = $user[0]['profile_image'];
         $_SESSION['role'] = $user[0]['role'];
 
-        header("Location: ../authentication.php");
+        header("Location: ../roles.php");
         exit;
     } else {
         $error = "The login or password is incorrect";
@@ -39,20 +39,46 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+<style>
+    body {
+        height: 100vh;
+
+    }
+</style>
 
 <body>
-    <?php if (isset($error)) { ?>
-        <p class="error"><?= $error ?></p><?php } ?>
 
-    <form method="post" action="">
-        <h2>Login</h2>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" name="submit" value="Submit">
-        <p>Don't have an account? <a href="../signup/">Sign up</a></p>
-    </form>
+    <div class="form-container">
+
+        <h1>Login</h1>
+
+        <form method="post" action="">
+            <div class="form-group">
+                <label for="username">Username or Email</label>
+                <input type="text" id="username" name="username" required="" maxlength="255">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" required="" maxlength="255">
+                    <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" name="submit" id="submit">Login</button>
+            </div>
+        </form>
+
+        <div class="text-center">
+            <p>Don't have an account? <a href="../signup/">Sign Up</a></p>
+        </div>
+
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
@@ -62,7 +88,23 @@ if (isset($_POST['submit'])) {
                 }
             }, 3000);
         });
+
+        document.getElementById('toggle-password').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const toggleIcon = this.querySelector('i');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.classList.remove('fa-eye');
+                toggleIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.classList.remove('fa-eye-slash');
+                toggleIcon.classList.add('fa-eye');
+            }
+        });
     </script>
+
 </body>
 
 </html>

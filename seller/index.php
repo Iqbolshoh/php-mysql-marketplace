@@ -12,6 +12,7 @@ $seller_id = $_SESSION['id'];
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../favicon.ico">
     <title>AdminLTE 3 | Starter</title>
     <!-- css -->
     <?php include 'includes/css.php'; ?>

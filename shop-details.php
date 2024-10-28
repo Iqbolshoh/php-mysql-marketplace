@@ -17,6 +17,7 @@ $product = $query->getProduct($product_id);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon.ico">
     <title>Product | <?php echo $product['name']; ?></title>
 
     <!-- Google Font -->
@@ -31,6 +32,9 @@ $product = $query->getProduct($product_id);
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -81,8 +85,10 @@ $product = $query->getProduct($product_id);
                         </div>
                         <a onclick="addToCart(<?php echo $product_id; ?>, document.querySelector('.pro-qty input').value)"
                             class="primary-btn" style="color: white">Savatga qo'shish</a>
-                        <a onclick="addToWishlist(<?php echo $product_id; ?>)" class="heart-icon"><span
-                                class="icon_heart_alt"></span></a>
+                        <a onclick="addToWishlist(<?php echo $product_id; ?>)" class="heart-icon">
+                            <i class="fas fa-heart"></i>
+                        </a>
+
                         <ul>
                             <li><b>Categoriya</b>
                                 <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span>
@@ -127,7 +133,7 @@ $product = $query->getProduct($product_id);
                     $price_old = $product['price_old'];
                     $product_id = $product['id'];
                     $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                    ?>
+                ?>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
@@ -175,29 +181,23 @@ $product = $query->getProduct($product_id);
     <script src="js/main.js"></script>
 
     <script>
-        function addToCart(productId) {
-            var xhr = new XMLHttpRequest();
-            var url = 'add_to_cart.php?product_id=' + productId;
-            xhr.open('GET', url, true);
-            xhr.send();
-
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Mahsulot savatchaga qo\'shildi!');
-                }
-            };
-        }
-
         function addToCart(productId, quantity) {
             var xhr = new XMLHttpRequest();
             var url = 'add_to_cart.php?product_id=' + productId + '&quantity=' + quantity;
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Mahsulot savatchaga qo\'shildi!');
-                    window.location.reload();
+                    // SweetAlert2 bilan muvaffaqiyatli xabar
+                    Swal.fire({
+                        title: 'Muvaffaqiyat!',
+                        text: 'Mahsulot savatchaga qo\'shildi!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.reload(); // Sahifani yangilash
+                    });
                 }
             };
         }
@@ -212,14 +212,21 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Mahsulot izohga qo\'shildi!');
-                    window.location.reload();
+                    Swal.fire({
+                        title: 'Muvaffaqiyat!',
+                        text: 'Mahsulot izohga qo\'shildi!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then(() => {
+                        window.location.reload(); // Sahifani yangilash
+                    });
                 }
             };
         }
     </script>
+
 
 </body>
 

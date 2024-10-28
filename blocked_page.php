@@ -19,6 +19,7 @@ if (!isset($_SESSION['loggedin']) or $_SESSION['loggedin'] !== true or $query->i
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blocked Page</title>
+    <link rel="icon" href="./favicon.ico">
     <link rel="stylesheet" href="./css/blocked_page.css">
 </head>
 

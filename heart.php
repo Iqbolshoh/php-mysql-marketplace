@@ -1,5 +1,4 @@
 <?php include 'check.php';
-
 $cartItemsHeart = $query->getWishes($_SESSION['id']);
 ?>
 
@@ -12,6 +11,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="./favicon.ico">
     <title>Saralangan mahsulotlar</title>
 
     <!-- Google Font -->
@@ -26,6 +26,8 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -40,7 +42,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                 <div class="col-lg-12">
                     <?php
                     if (!empty($cartItemsHeart)) {
-                        ?>
+                    ?>
                         <div class="shoping__cart__table">
                             <table>
                                 <thead>
@@ -74,9 +76,10 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                                                 <a class="primary-btn" style="color: white;"
                                                     onclick="addToCart(<?php echo $item['product_id']; ?>)">Savatga qo'shish</a>
                                             </td>
-                                            <td class="shoping__car t__item__close">
-                                                <span class="icon_close"
-                                                    onclick="removeCartItem(<?php echo $item['product_id']; ?>)"></span>
+                                            <td class="shoping__cart__item__close">
+                                                <span onclick="removeCartItem(<?php echo $item['product_id']; ?>)" style="cursor: pointer;">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </span>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -84,13 +87,13 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                             </table>
                         </div>
                         <div style="padding-bottom: 30vh;"></div>
-                        <?php
+                    <?php
                     } else {
-                        ?>
+                    ?>
                         <div style="padding-bottom: 30vh;">
                             <p style="text-align: center; font-size:25px">Hech qanday mahsulot topilmadi.</p>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
@@ -113,21 +116,45 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
     <script src="js/mixitup.min.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
         function removeCartItem(itemId) {
-            if (confirm('Haqiqatdan ham ushbu mahsulotni savatdan o\'chirmoqchimisiz?')) {
-                var xhr = new XMLHttpRequest();
-                xhr.open('GET', 'remove_heart.php?remove_item=' + itemId, true);
-                xhr.send();
-                xhr.onload = function () {
-                    if (xhr.status == 200) {
-                        window.location.reload();
-                    } else {
-                        alert('Xato yuz berdi: ' + xhr.statusText);
-                    }
-                };
-            }
+            // SweetAlert orqali confirm dialogi
+            Swal.fire({
+                title: 'Haqiqatdan ham ushbu mahsulotni savatdan o\'chirmoqchimisiz?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Ha, o\'chirish!',
+                cancelButtonText: 'Bekor qilish'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('GET', 'remove_heart.php?remove_item=' + itemId, true);
+                    xhr.send();
+                    xhr.onload = function() {
+                        if (xhr.status == 200) {
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'Mahsulot muvaffaqiyatli o\'chirildi!',
+                                showConfirmButton: false,
+                                timer: 1500
+                            }).then(() => {
+                                window.location.reload();
+                            });
+                        } else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Xato yuz berdi!',
+                                text: xhr.statusText
+                            });
+                        }
+                    };
+                }
+            });
         }
     </script>
 
@@ -138,14 +165,19 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    alert('Mahsulot savatchaga qo\'shildi!');
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Mahsulot savatchaga qo\'shildi!',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             };
-            window.location.reload();
         }
     </script>
+
 
 </body>
 
