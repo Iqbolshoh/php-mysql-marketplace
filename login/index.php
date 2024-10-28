@@ -24,7 +24,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['profile_image'] = $user[0]['profile_image'];
         $_SESSION['role'] = $user[0]['role'];
 
-        $success = "Welcome back, " . $user[0]['name'] . "!";
+        $success = "You are welcome, " . $user[0]['name'] . "!";
     } else {
         $error = "The login or password is incorrect.";
     }
