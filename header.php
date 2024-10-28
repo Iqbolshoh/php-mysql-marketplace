@@ -186,7 +186,7 @@ if (!empty($cartItem))
             cancelButtonText: 'Bekor qilish'
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = '../logout/';
+                window.location.href = './logout/';
             }
         });
     }

@@ -1,7 +1,5 @@
 <?php
-
 session_start();
-
 include '../config.php';
 $query = new Query();
 
@@ -10,8 +8,10 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     exit;
 }
 
-if (isset($_POST['submit'])) {
+$error = '';
+$success = '';
 
+if (isset($_POST['submit'])) {
     $user = $query->authenticate($_POST['username'], $_POST['password'], 'accounts');
 
     if ($user) {
@@ -24,10 +24,9 @@ if (isset($_POST['submit'])) {
         $_SESSION['profile_image'] = $user[0]['profile_image'];
         $_SESSION['role'] = $user[0]['role'];
 
-        header("Location: ../roles.php");
-        exit;
+        $success = "Welcome back, " . $user[0]['name'] . "!";
     } else {
-        $error = "The login or password is incorrect";
+        $error = "The login or password is incorrect.";
     }
 }
 ?>
@@ -42,20 +41,18 @@ if (isset($_POST['submit'])) {
     <link rel="icon" href="../favicon.ico">
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
     body {
         height: 100vh;
-
     }
 </style>
 
 <body>
 
     <div class="form-container">
-
         <h1>Login</h1>
-
         <form method="post" action="">
             <div class="form-group">
                 <label for="username">Username or Email</label>
@@ -76,32 +73,48 @@ if (isset($_POST['submit'])) {
         <div class="text-center">
             <p>Don't have an account? <a href="../signup/">Sign Up</a></p>
         </div>
-
     </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            setTimeout(function() {
-                var errorElement = document.querySelector('.error');
-                if (errorElement) {
-                    errorElement.remove();
+            <?php if ($error): ?>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: '<?php echo $error; ?>',
+                    position: 'top-end',
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 3000
+                });
+            <?php elseif ($success): ?>
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: '<?php echo $success; ?>',
+                    position: 'top-end',
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 1500
+                }).then(() => {
+                    window.location.href = '../roles.php';
+                });
+            <?php endif; ?>
+
+            document.getElementById('toggle-password').addEventListener('click', function() {
+                const passwordField = document.getElementById('password');
+                const toggleIcon = this.querySelector('i');
+
+                if (passwordField.type === 'password') {
+                    passwordField.type = 'text';
+                    toggleIcon.classList.remove('fa-eye');
+                    toggleIcon.classList.add('fa-eye-slash');
+                } else {
+                    passwordField.type = 'password';
+                    toggleIcon.classList.remove('fa-eye-slash');
+                    toggleIcon.classList.add('fa-eye');
                 }
-            }, 3000);
-        });
-
-        document.getElementById('toggle-password').addEventListener('click', function() {
-            const passwordField = document.getElementById('password');
-            const toggleIcon = this.querySelector('i');
-
-            if (passwordField.type === 'password') {
-                passwordField.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordField.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
-            }
+            });
         });
     </script>
 
