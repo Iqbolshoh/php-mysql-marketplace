@@ -1,9 +1,9 @@
 <?php
 include '../config.php';
+$query = new Query();
 
 if (isset($_POST['email'])) {
     $email = $_POST['email'];
-    $query = new Query();
     $result = $query->executeQuery("SELECT * FROM accounts WHERE email='$email'");
 
     if ($result->num_rows > 0) {

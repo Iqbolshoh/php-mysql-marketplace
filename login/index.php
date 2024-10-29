@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+
 include '../config.php';
 $query = new Query();
 
