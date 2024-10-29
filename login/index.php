@@ -6,12 +6,23 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: ../roles.php");
+
+    if ($query->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"')[0]['status'] === 'blocked') {
+        header("Location: ../blocked_page.php");
+        exit;
+    }
+
+    $roles = [
+        'admin' => '../admin/',
+        'seller' => '../seller/',
+        'user' => '../',
+    ];
+
+    header("Location: " . $roles[$_SESSION['role']]);
     exit;
 }
 
 $error = '';
-$success = '';
 
 if (isset($_POST['submit'])) {
     $user = $query->authenticate($_POST['username'], $_POST['password'], 'accounts');
@@ -26,7 +37,18 @@ if (isset($_POST['submit'])) {
         $_SESSION['profile_image'] = $user[0]['profile_image'];
         $_SESSION['role'] = $user[0]['role'];
 
-        $success = "You are welcome, " . $user[0]['name'] . "!";
+        if ($query->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"')[0]['status'] === 'blocked') {
+            header("Location: ../blocked_page.php");
+            exit;
+        }
+
+        $roles = [
+            'admin' => '../admin/',
+            'seller' => '../seller/',
+            'user' => '../',
+        ];
+
+        header("Location: " . $roles[$user[0]['role']]);
     } else {
         $error = "The login or password is incorrect.";
     }
@@ -88,18 +110,6 @@ if (isset($_POST['submit'])) {
                     toast: true,
                     showConfirmButton: false,
                     timer: 3000
-                });
-            <?php elseif ($success): ?>
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Success!',
-                    text: '<?php echo $success; ?>',
-                    position: 'top-end',
-                    toast: true,
-                    showConfirmButton: false,
-                    timer: 1500
-                }).then(() => {
-                    window.location.href = '../roles.php';
                 });
             <?php endif; ?>
 

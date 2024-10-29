@@ -1,14 +1,26 @@
 <?php
 
 session_start();
-
 include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: ../roles.php");
+    if ($query->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"')[0]['status'] === 'blocked') {
+        header("Location: ../blocked_page.php");
+        exit;
+    }
+
+    $roles = [
+        'admin' => '../admin/',
+        'seller' => '../seller/',
+        'user' => '../',
+    ];
+
+    header("Location: " . $roles[$_SESSION['role']]);
     exit;
 }
+
+$msg = [];
 
 if (isset($_POST['submit'])) {
     $name = $_POST['name'];
@@ -22,7 +34,10 @@ if (isset($_POST['submit'])) {
     $existingUser = $query->executeQuery("SELECT * FROM accounts WHERE username='$username' OR email='$email' OR number='$number'");
 
     if ($existingUser->num_rows > 0) {
-        $error = "Xatolik: Mavjud username, email yoki telefon raqam.";
+        $msg = [
+            "title" => "Xatolik!",
+            "text" => "Mavjud username, email yoki telefon raqam."
+        ];
     } else {
         $result = $query->registerUser($name, $number, $email, $username, $password, $profile_image, $role);
 
@@ -36,11 +51,25 @@ if (isset($_POST['submit'])) {
             $_SESSION['profile_image'] = $profile_image;
             $_SESSION['role'] = $role;
 
-            header("Location: ../roles.php");
+            $msg = [
+                "title" => "Muvaffaqiyat!",
+                "text" => "Ro'yxatdan o'tdingiz!",
+                "icon" => "success"
+            ];
 
+            $roles = [
+                'admin' => '../admin/',
+                'seller' => '../seller/',
+                'user' => '../',
+            ];
+
+            header("Location: " . $roles[$role]);
             exit;
         } else {
-            $error = "Xatolik: Ma'lumotlarni saqlashda xatolik yuz berdi";
+            $msg = [
+                "title" => "Xatolik!",
+                "text" => "Ma'lumotlarni saqlashda xatolik yuz berdi."
+            ];
         }
     }
 }
@@ -58,6 +87,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         .error-message {
             color: red;
@@ -66,14 +96,21 @@ if (isset($_POST['submit'])) {
         }
 
         body {
-            padding: 30px !important;
+            padding: 40px 0px !important;
         }
     </style>
 </head>
 
 <body>
-    <?php if (isset($error)): ?>
-        <p class="error"><?php echo $error; ?></p>
+    <?php if (!empty($msg)): ?>
+        <script>
+            Swal.fire({
+                title: "<?php echo $msg['title']; ?>",
+                text: "<?php echo $msg['text']; ?>",
+                icon: "<?php echo $msg['icon'] ?? 'error'; ?>",
+                confirmButtonText: "OK"
+            });
+        </script>
     <?php endif; ?>
 
     <div class="form-container">
@@ -303,7 +340,7 @@ if (isset($_POST['submit'])) {
             $('.error').hide();
         }
     </script>
-    <?php if (isset($error)): ?>
+    <?php if (isset($msg)): ?>
         <script>
             $(document).ready(function() {
                 setTimeout(function() {

@@ -10,7 +10,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
-    width: calc(100% - 60px);
+    width: calc(100% - 40px);
     max-width: 450px;
     box-sizing: border-box;
 }

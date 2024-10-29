@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS `marketplace`;
+
 USE `marketplace`;
 
 CREATE TABLE `accounts` (
