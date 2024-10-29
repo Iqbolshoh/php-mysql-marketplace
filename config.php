@@ -121,7 +121,7 @@ class Query
                 $file_name = $files['name'][$index];
                 $file_info = pathinfo($file_name);
                 $file_extension = $file_info['extension'];
-                $new_file_name = md5($tmp_name . date("Y-m-d_H-i-s") . $_SESSION['username'] . $productId) . "." . $file_extension;
+                $new_file_name = md5($tmp_name . date("Y-m-d_H-i-s") . rand(1, 9999999) . $productId) . "." . $file_extension;
                 if (move_uploaded_file($tmp_name, $path . $new_file_name)) {
                     $uploaded_files[] = $new_file_name;
                     $this->insert('product_images', array('product_id' => $productId, 'image_url' => $new_file_name));
@@ -135,7 +135,7 @@ class Query
             $file_info = pathinfo($file_name);
             $file_format = $file_info['extension'];
 
-            $new_file_name = md5($file_tmp . date("Y-m-d_H-i-s") . $_SESSION['username'] . $productId) . "." . $file_format;
+            $new_file_name = md5($file_tmp . date("Y-m-d_H-i-s") . rand(1, 9999999) . $productId) . "." . $file_format;
 
             if (move_uploaded_file($file_tmp, $path . $new_file_name)) {
                 $this->insert('product_images', array('product_id' => $productId, 'image_url' => $new_file_name));
@@ -153,18 +153,11 @@ class Query
         $file_info = pathinfo($file_name);
         $file_format = $file_info['extension'];
 
-        $new_file_name = md5($file_tmp . date("Y-m-d_H-i-s") . $_SESSION['username']) . "." . $file_format;
+        $new_file_name = md5($file_tmp . date("Y-m-d_H-i-s")) . rand(1, 9999999) . "." . $file_format;
 
         if (move_uploaded_file($file_tmp, $path . $new_file_name)) {
             return $new_file_name;
         }
-        return false;
-    }
-
-    public function isBlocked()
-    {
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true)
-            return $this->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"')[0]['status'] === 'blocked';
         return false;
     }
 
@@ -262,14 +255,6 @@ class Query
         $stmt->close();
 
         return $wishes;
-    }
-
-    public function count($table)
-    {
-        $userId = $_SESSION['id'];
-        $result = $this->executeQuery("SELECT COUNT(*) AS total_elements FROM $table WHERE user_id = $userId");
-        $row = $result->fetch_assoc();
-        return $row['total_elements'];
     }
 
     public function lastInsertId($table, $data)

@@ -1,10 +1,17 @@
 <?php
+$cartItems = $query->getCartItems($_SESSION['id']);
+$total_price = array_reduce($cartItems, function ($total, $item) {
+    return $total + $item['total_price'];
+}, 0);
 
-$cartItem = $query->getCartItems($_SESSION['id']);
-$total_price = 0;
-if (!empty($cartItem))
-    foreach ($cartItem as $item)
-        $total_price += $item['total_price']
+function countTable($table)
+{
+    global $query;
+    $userId = $_SESSION['id'];
+    $result = $query->executeQuery("SELECT COUNT(*) AS total_elements FROM $table WHERE user_id = $userId");
+    $row = $result->fetch_assoc();
+    return $row['total_elements'];
+}
 ?>
 
 <div class="humberger__menu__overlay"></div>
@@ -14,20 +21,18 @@ if (!empty($cartItem))
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo $query->count('wishes') ?></span></a>
-            </li>
-            <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
-                    <span><?php echo $query->count('cart') ?></span></a></li>
+            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo countTable('wishes'); ?></span></a></li>
+            <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo countTable('cart'); ?></span></a></li>
         </ul>
-        <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2) ?></span></div>
+        <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2); ?></span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
-            <?php
-            echo $_SESSION['loggedin'] ?
-                '<a href="#" onclick="logout()"><i class="fa fa-user"></i>Logout</a>' :
-                '<a href="./login/"><i class="fa fa-user"></i>Login</a>';
-            ?>
+            <?php if ($_SESSION['loggedin']): ?>
+                <a href="#" onclick="logout()"><i class="fa fa-user"></i>Logout</a>
+            <?php else: ?>
+                <a href="./login/"><i class="fa fa-user"></i>Login</a>
+            <?php endif; ?>
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">
@@ -75,11 +80,11 @@ if (!empty($cartItem))
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__auth">
-                            <?php
-                            echo $_SESSION['loggedin'] ?
-                                '<a href="#" onclick="logout()"><i class="fa fa-user"></i>Logout</a>' :
-                                '<a href="./login/"><i class="fa fa-user"></i>Login</a>';
-                            ?>
+                            <?php if ($_SESSION['loggedin']): ?>
+                                <a href="#" onclick="logout()"><i class="fa fa-user"></i>Logout</a>
+                            <?php else: ?>
+                                <a href="./login/"><i class="fa fa-user"></i>Login</a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -105,13 +110,10 @@ if (!empty($cartItem))
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="./heart.php"><i class="fa fa-heart"></i>
-                                <span><?php echo $query->count('wishes') ?></span></a></li>
-                        <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
-                                <span><?php echo $query->Count('cart') ?></span></a></li>
+                        <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo countTable('wishes'); ?></span></a></li>
+                        <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo countTable('cart'); ?></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2) ?></span>
-                    </div>
+                    <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2); ?></span></div>
                 </div>
             </div>
         </div>
@@ -136,9 +138,7 @@ if (!empty($cartItem))
                         <?php
                         $categories = $query->select('categories', '*');
                         foreach ($categories as $category): ?>
-                            <li><a
-                                    href="category.php?category=<?php echo $category['id'] ?>"><?php echo $category['category_name']; ?></a>
-                            </li>
+                            <li><a href="category.php?category=<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

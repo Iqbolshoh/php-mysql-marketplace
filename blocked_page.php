@@ -5,8 +5,8 @@ session_start();
 include 'config.php';
 $query = new Query();
 
-if (!isset($_SESSION['loggedin']) or $_SESSION['loggedin'] !== true or $query->isBlocked() === false) {
-    header("Location: ./authentication.php");
+if (!isset($_SESSION['loggedin']) or $_SESSION['loggedin'] !== true or $query->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"')[0]['status'] !== 'blocked') {
+    header("Location: ./check.php");
     exit;
 }
 
