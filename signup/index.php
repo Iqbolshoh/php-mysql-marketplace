@@ -5,18 +5,7 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    if ($query->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"')[0]['status'] === 'blocked') {
-        header("Location: ../blocked_page.php");
-        exit;
-    }
-
-    $roles = [
-        'admin' => '../admin/',
-        'seller' => '../seller/',
-        'user' => '../',
-    ];
-
-    header("Location: " . $roles[$_SESSION['role']]);
+    header("Location: ../");
     exit;
 }
 
@@ -57,13 +46,7 @@ if (isset($_POST['submit'])) {
                 "icon" => "success"
             ];
 
-            $roles = [
-                'admin' => '../admin/',
-                'seller' => '../seller/',
-                'user' => '../',
-            ];
-
-            header("Location: " . $roles[$role]);
+            header("Location: ../");
             exit;
         } else {
             $msg = [
