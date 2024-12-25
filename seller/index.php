@@ -1,7 +1,7 @@
 <?php
 include 'check.php';
 
-$seller_id = $_SESSION['id'];   
+$seller_id = $_SESSION['id'];
 ?>
 
 <!DOCTYPE html>
