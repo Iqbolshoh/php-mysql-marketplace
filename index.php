@@ -10,12 +10,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="./favicon.ico">
-    <title>iMarket</title>
-
-    <!-- Google Font -->
+    <title>iMarket | Home</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -31,7 +27,6 @@
 
     <?php include 'header.php'; ?>
 
-    <!-- Product Section Begin -->
     <section class="product spad">
         <div class="container">
             <div class="row">
@@ -96,12 +91,13 @@
 
                                     foreach ($products as $product):
                                         $product_name = $product['name'];
-                                        $category_name = $category['category_name'];;
+                                        $category_name = $category['category_name'];
+                                        ;
                                         $price_current = $product['price_current'];
                                         $price_old = $product['price_old'];
                                         $product_id = $product['id'];
                                         $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                                    ?>
+                                        ?>
 
                                         <div class="col-lg-4">
                                             <div class="product__discount__item">
@@ -167,7 +163,7 @@
                             $price_old = $product['price_old'];
                             $product_id = $product['id'];
                             $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                        ?>
+                            ?>
 
                             <div class="col-lg-4">
                                 <div class="product__discount__item">
@@ -201,13 +197,9 @@
             </div>
         </div>
     </section>
-    <!-- Product Section End -->
 
-    <!-- Footer Section Begin -->
     <?php include 'footer.php'; ?>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -219,36 +211,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        $(function() {
-            var min_price = <?php echo $min_price; ?>;
-            var max_price = <?php echo $max_price; ?>;
-
-            $(".price-range").slider({
-                range: true,
-                min: min_price,
-                max: max_price,
-                values: [min_price, max_price],
-                slide: function(event, ui) {
-                    $("#minamount").val(ui.values[0]);
-                    $("#maxamount").val(ui.values[1]);
-                }
-            });
-            $("#minamount").val($(".price-range").slider("values", 0));
-            $("#maxamount").val($(".price-range").slider("values", 1));
-        });
-    </script>
-    <script>
         function addToCart(productId) {
             var xhr = new XMLHttpRequest();
             var url = 'add_to_cart.php?product_id=' + productId;
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Mahsulot savatchaga qo\'shildi!',
+                        title: 'Product added to cart!',
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => {
@@ -264,11 +237,11 @@
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Mahsulot izohga qo\'shildi!',
+                        title: 'Product added to wishlist!',
                         showConfirmButton: false,
                         timer: 1500
                     }).then(() => {

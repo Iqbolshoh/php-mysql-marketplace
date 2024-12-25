@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
             $_SESSION['number'] = $number;
             $_SESSION['email'] = $email;
             $_SESSION['username'] = $username;
-            $_SESSION['profile_image'] = $profile_image;
+            $_SESSION['profile_image'] = $profile_image ?? "no_image.png";
             $_SESSION['role'] = $role;
 
             $msg = [

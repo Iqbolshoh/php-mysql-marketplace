@@ -1,4 +1,5 @@
 <?php
+$currentPage = basename($_SERVER['PHP_SELF']);
 $cartItems = $query->getCartItems($_SESSION['id']);
 $total_price = array_reduce($cartItems, function ($total, $item) {
     return $total + $item['total_price'];
@@ -17,16 +18,16 @@ function countTable($table)
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
     <div class="humberger__menu__logo">
-        <a href="/"><img src="images/logo.png" alt=""></a>
+        <a href="./"><img src="images/logo.png" alt=""></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo countTable('wishes'); ?></span></a>
+            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?= countTable('wishes'); ?></span></a>
             </li>
             <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
-                    <span><?php echo countTable('cart'); ?></span></a></li>
+                    <span><?= countTable('cart'); ?></span></a></li>
         </ul>
-        <div class="header__cart__price">Total: <span>$<?php echo number_format($total_price, 2); ?></span></div>
+        <div class="header__cart__price">Total: <span>$<?= number_format($total_price, 2); ?></span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
@@ -39,9 +40,19 @@ function countTable($table)
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./">Home</a></li>
-            <li><a href="./heart.php">Wishlist</a></li>
-            <li><a href="./shoping-cart.php">Cart</a></li>
+            <li>
+                <a href="./" class="<?= ($currentPage == 'index.php') ? 'active' : ''; ?>">Home</a>
+            </li>
+
+            <li>
+                <a href="./heart.php" class="<?= ($currentPage == 'heart.php') ? 'active' : ''; ?>">Wish
+                    List</a>
+            </li>
+
+            <li>
+                <a href="./shoping-cart.php"
+                    class="<?= ($currentPage == 'shoping-cart.php') ? 'active' : ''; ?>">Cart</a>
+            </li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -58,9 +69,7 @@ function countTable($table)
         </ul>
     </div>
 </div>
-<!-- Humberger End -->
 
-<!-- Header Section Begin -->
 <header class="header">
     <div class="header__top">
         <div class="container">
@@ -103,40 +112,55 @@ function countTable($table)
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./">Home</a></li>
-                        <li><a href="./heart.php">Wishlist</a></li>
-                        <li><a href="./shoping-cart.php">Cart</a></li>
+                        <li>
+                            <a href="./" class="<?= ($currentPage == 'index.php') ? 'active' : ''; ?>">Home</a>
+                        </li>
+
+                        <li>
+                            <a href="./heart.php" class="<?= ($currentPage == 'heart.php') ? 'active' : ''; ?>">Wish
+                                List</a>
+                        </li>
+
+                        <li>
+                            <a href="./shoping-cart.php"
+                                class="<?= ($currentPage == 'shoping-cart.php') ? 'active' : ''; ?>">Cart</a>
+                        </li>
                     </ul>
                 </nav>
             </div>
+
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
                         <li><a href="./heart.php"><i class="fa fa-heart"></i>
-                                <span><?php echo countTable('wishes'); ?></span></a></li>
+                                <span><?= countTable('wishes'); ?></span></a></li>
                         <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
-                                <span><?php echo countTable('cart'); ?></span></a></li>
+                                <span><?= countTable('cart'); ?></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Total: <span>$<?php echo number_format($total_price, 2); ?></span>
+                    <div class="header__cart__price">Total: <span>$<?= number_format($total_price, 2); ?></span>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="humberger__open">
             <i class="fa fa-bars"></i>
         </div>
     </div>
 </header>
-<!-- Header Section End -->
 
 <style>
     .hero__categories__all:after {
         content: '';
         display: block;
     }
+
+    ul li a.active {
+        color: #7fad39 !important;
+        font-weight: bold !important;
+    }
 </style>
 
-<!-- Hero Section Begin -->
 <section class="hero hero-normal" style="margin-bottom: -50px;">
     <div class="container">
         <div class="row">
@@ -152,7 +176,7 @@ function countTable($table)
                         foreach ($categories as $category): ?>
                             <li>
                                 <a
-                                    href="category.php?category=<?php echo $category['id']; ?>"><?php echo $category['category_name'] ?></a>
+                                    href="category.php?category=<?= $category['id']; ?>"><?= $category['category_name'] ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>
@@ -183,7 +207,6 @@ function countTable($table)
         </div>
     </div>
 </section>
-<!-- Hero Section End -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

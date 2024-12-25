@@ -10,7 +10,6 @@ if (!is_numeric($product_id) or $query->select('products', 'id', 'where id = ' .
 $product = $query->getProduct($product_id);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +18,7 @@ $product = $query->getProduct($product_id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./favicon.ico">
     <title>Product | <?php echo $product['name']; ?></title>
-
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -39,10 +34,8 @@ $product = $query->getProduct($product_id);
 
 <body>
 
-
     <?php include 'header.php'; ?>
 
-    <!-- Product Details Section Begin -->
     <section class="product-details spad">
         <div class="container">
             <div class="row">
@@ -84,26 +77,19 @@ $product = $query->getProduct($product_id);
                             </div>
                         </div>
                         <a onclick="addToCart(<?php echo $product_id; ?>, document.querySelector('.pro-qty input').value)"
-                            class="primary-btn" style="color: white">Savatga qo'shish</a>
+                            class="primary-btn" style="color: white">Add to Cart</a>
                         <a onclick="addToWishlist(<?php echo $product_id; ?>)" class="heart-icon">
                             <i class="fas fa-heart"></i>
                         </a>
 
                         <ul>
-                            <li><b>Categoriya</b>
-                                <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span>
+                            <li><b>Category</b>
+                                <span><?php echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span>
                             </li>
-
-
-                            <li><b>Reyting</b> <span><?php echo $product['rating']; ?></span></li>
-                            <li><b>Miqdori</b> <span><?php echo $product['quantity']; ?></span></li>
-                            <li><b>Jo'natish</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
+                            <li><b>Rating</b> <span><?php echo $product['rating']; ?></span></li>
+                            <li><b>Quantity</b> <span><?php echo $product['quantity']; ?></span></li>
+                            <li><b>Number of
+                                    sales</b><?= $query->executeQuery("SELECT SUM(number_of_products) AS total_sales FROM cart WHERE product_id = $product_id")->fetch_all()[0][0] ?>
                             </li>
                         </ul>
                     </div>
@@ -111,9 +97,7 @@ $product = $query->getProduct($product_id);
             </div>
         </div>
     </section>
-    <!-- Product Details Section End -->
 
-    <!-- Related Product Section Begin -->
     <section class="related-product">
         <div class="container">
             <div class="row">
@@ -164,13 +148,8 @@ $product = $query->getProduct($product_id);
         </div>
     </section>
 
-    <!-- Related Product Section End -->
-
-    <!-- Footer Section Begin -->
     <?php include 'footer.php'; ?>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -189,14 +168,13 @@ $product = $query->getProduct($product_id);
 
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
-                    // SweetAlert2 bilan muvaffaqiyatli xabar
                     Swal.fire({
-                        title: 'Muvaffaqiyat!',
-                        text: 'Mahsulot savatchaga qo\'shildi!',
+                        title: 'Success!',
+                        text: 'Product added to cart!',
                         icon: 'success',
                         confirmButtonText: 'OK'
                     }).then(() => {
-                        window.location.reload(); // Sahifani yangilash
+                        window.location.reload();
                     });
                 }
             };
@@ -215,18 +193,15 @@ $product = $query->getProduct($product_id);
             xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
-                        title: 'Muvaffaqiyat!',
-                        text: 'Mahsulot izohga qo\'shildi!',
+                        title: 'Success!',
+                        text: 'Product added to wishlist!',
                         icon: 'success',
                         confirmButtonText: 'OK'
-                    }).then(() => {
-                        window.location.reload(); // Sahifani yangilash
                     });
                 }
             };
         }
     </script>
-
 
 </body>
 

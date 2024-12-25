@@ -8,19 +8,14 @@ $cartItems = $query->getCartItems($_SESSION['id']);
 <html lang="en">
 
 <head>
-    <!-- Meta ma'lumotlari va CSS fayllari -->
     <meta charset="UTF-8">
     <meta name="description" content="Ogani Template">
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="./favicon.ico">
-    <title>Savat</title>
-
-    <!-- Google Font -->
+    <title>Shopping Cart</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- CSS stil fayllari -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -34,12 +29,51 @@ $cartItems = $query->getCartItems($_SESSION['id']);
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
+<style>
+    .product-image {
+        margin-right: 15px;
+    }
+
+    .shoping__cart__price del {
+        color: red;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    .shoping__cart__price {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .shoping__cart__item__clo span {
+        font-size: 24px;
+        color: #b2b2b2;
+        cursor: pointer;
+    }
+
+    .shoping__cart__item__clo span:hover {
+        color: #ff6347;
+        cursor: pointer;
+    }
+
+    .quantity input {
+        width: 50px;
+        text-align: center;
+    }
+
+    .cart-input {
+        width: 50px;
+        padding: 5px;
+        text-align: center;
+        border-radius: 10px;
+        border: 0.5px solid #3085d6;
+    }
+</style>
+
 <body>
 
-    <!-- Header -->
     <?php include 'header.php'; ?>
 
-    <!-- Savat bo'limi -->
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
@@ -49,41 +83,38 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="shoping__product">Mahsulotlar</th>
-                                        <th>Narx</th>
-                                        <th>Soni</th>
-                                        <th>Jami</th>
-                                        <th></th>
+                                        <th class="shoping__product">Products</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <!-- Har bir mahsulot uchun -->
                                     <?php foreach ($cartItems as $item) { ?>
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <!-- Mahsulot rasmi -->
                                                 <img src="images/products/<?php echo $query->getProductImages($item['id'])[0] ?>"
                                                     style="width: 55px;" alt="">
-                                                <!-- Mahsulot nomi -->
                                                 <h5><?php echo $item['name']; ?></h5>
                                             </td>
-                                            <!-- Mahsulot narxi -->
                                             <td class="shoping__cart__price">
+                                                <del>$<?php echo number_format($item['price_old'], 2); ?></del>
                                                 $<?php echo number_format($item['price_current'], 2); ?>
                                             </td>
-                                            <!-- Mahsulot soni -->
                                             <td class="shoping__cart__quantity">
                                                 <div class="quantity">
-                                                    <?php echo $item['number_of_products']; ?>
+                                                    <input type="number" value="<?php echo $item['number_of_products']; ?>"
+                                                        id="quantity_<?php echo $item['id']; ?>" class="cart-input"
+                                                        data-product-id="<?php echo $item['id']; ?>"
+                                                        onchange="updateQuantity(<?php echo $item['id']; ?>)">
                                                 </div>
                                             </td>
-                                            <!-- Mahsulot jami narxi -->
                                             <td class="shoping__cart__total">
                                                 $<?php echo number_format($item['total_price'], 2); ?>
                                             </td>
-                                            <!-- Mahsulotni savatdan o'chirish -->
-                                            <td class="shoping__cart__item__close">
-                                                <span onclick="removeCartItem(<?php echo $item['id']; ?>)" style="cursor: pointer;">
+                                            <td class="shoping__cart__item__clo">
+                                                <span onclick="removeCartItem(<?php echo $item['id']; ?>)">
                                                     <i class="fas fa-trash-alt"></i>
                                                 </span>
                                             </td>
@@ -92,63 +123,31 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                                 </tbody>
                             </table>
                         </div>
-                    <?php } else {
-                        echo "<p>Hech qanday mahsulot topilmadi.</p>";
-                    } ?>
+                    <?php } else { ?>
+                        <div style="padding: 10vh 0;">
+                            <p style="text-align: center; font-size:25px">The cart is still empty.</p>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
 
-            <!-- Savat tugmalar -->
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="shoping__cart__btns">
-                        <!-- Xaridni davom ettirish tugmasi -->
-                        <a href="#" class="primary-btn cart-btn">Xaridni davom ettirish</a>
-                        <!-- Savatni yangilash tugmasi -->
-                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
-                            Savatni yangilash
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Chegirma kodlari bo'limi -->
-                <div class="col-lg-6">
-                    <div class="shoping__continue">
-                        <div class="shoping__discount">
-                            <h5>Chegirma kodlari</h5>
-                            <form action="#">
-                                <!-- Chegirma kodi kiritish oynasi -->
-                                <input type="text" placeholder="Enter your coupon code">
-                                <!-- Chegirma kodini jo'natish tugmasi -->
-                                <button type="submit" class="site-btn">KUPON QO'LLANISH</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Savat jami narxi -->
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
-                        <h5>Savat jami</h5>
+                        <h5>Cart Total</h5>
                         <ul>
-                            <!-- Oraliq jami narx -->
-                            <li>Oraliq jami <span>$<?php echo number_format($total_price, 2); ?></span></li>
-                            <!-- Jami narx -->
-                            <li>Jami <span>$<?php echo number_format($total_price, 2); ?></span></li>
+                            <li>Subtotal <span>$<?php echo number_format($total_price, 2); ?></span></li>
+                            <li>Total <span>$<?php echo number_format($total_price, 2); ?></span></li>
                         </ul>
-                        <!-- Xarid qilish tugmasi -->
-                        <a href="#" class="primary-btn">Xarid qilish</a>
+                        <a href="checkout.php" class="primary-btn">Proceed to Checkout</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Shoping Cart Section End -->
 
-    <!-- Footer -->
     <?php include 'footer.php'; ?>
 
-    <!-- JavaScript -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -159,37 +158,59 @@ $cartItems = $query->getCartItems($_SESSION['id']);
     <script src="js/main.js"></script>
 
     <script>
+        function updateQuantity(itemId) {
+            var quantity = document.getElementById("quantity_" + itemId).value;
+            if (quantity < 1) {
+                Swal.fire("Quantity must be at least 1!");
+                return;
+            }
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'update-cart.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send("item_id=" + itemId + "&quantity=" + quantity);
+
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    Swal.fire('Quantity Updated!', '', 'success').then(() => {
+                        location.reload();
+                    });
+                } else {
+                    Swal.fire('Error!', 'Failed to update the quantity', 'error');
+                }
+            };
+        }
+
         function removeCartItem(itemId) {
             Swal.fire({
-                title: 'Mahsulotni o‘chirishni xohlaysizmi?',
-                text: "Bu amalni qaytarib bo'lmaydi!",
+                title: 'Do you want to remove this product?',
+                text: "This action cannot be undone!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ha, o‘chirish!',
-                cancelButtonText: 'Bekor qilish'
+                confirmButtonText: 'Yes, remove it!',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     var xhr = new XMLHttpRequest();
                     xhr.open('GET', 'remove_cart.php?remove_item=' + itemId, true);
                     xhr.send();
 
-                    xhr.onload = function() {
+                    xhr.onload = function () {
                         if (xhr.status == 200) {
                             Swal.fire({
-                                title: 'O‘chirildi!',
-                                text: 'Mahsulot savatdan muvaffaqiyatli o‘chirildi.',
+                                title: 'Removed!',
+                                text: 'The product was successfully removed from the cart.',
                                 icon: 'success',
                                 confirmButtonText: 'OK'
                             }).then(() => {
                                 window.location.reload();
                             });
                         } else {
-                            // Xato xabari
                             Swal.fire({
-                                title: 'Xatolik!',
-                                text: 'Xato yuz berdi: ' + xhr.statusText,
+                                title: 'Error!',
+                                text: 'An error occurred: ' + xhr.statusText,
                                 icon: 'error',
                                 confirmButtonText: 'OK'
                             });
@@ -199,8 +220,6 @@ $cartItems = $query->getCartItems($_SESSION['id']);
             });
         }
     </script>
-
-
 </body>
 
 </html>

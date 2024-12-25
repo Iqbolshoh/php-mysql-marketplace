@@ -12,12 +12,8 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" href="./favicon.ico">
-    <title>Saralangan mahsulotlar</title>
-
-    <!-- Google Font -->
+    <title>iMarket | Wish List Products</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -30,70 +26,98 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
+<style>
+    .product-image {
+        margin-right: 15px;
+    }
+
+    .shoping__cart__price del {
+        color: red;
+        font-size: 14px;
+        margin-right: 5px;
+    }
+
+    .shoping__cart__price {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .shoping__cart__item__clo span {
+        font-size: 24px;
+        color: #b2b2b2;
+        cursor: pointer;
+    }
+
+    .shoping__cart__item__clo span:hover {
+        color: #ff6347;
+        cursor: pointer;
+    }
+</style>
+
 <body>
 
     <?php include 'header.php'; ?>
 
 
-    <!-- Shoping Cart Section Begin -->
     <section class="shoping-cart spad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <?php
                     if (!empty($cartItemsHeart)) {
-                    ?>
+                        ?>
                         <div class="shoping__cart__table">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="shoping__product">Mahsulotlar</th>
-                                        <th>Narx</th>
-                                        <th>Hozirgi</th>
-                                        <th>Savatga qo'shish</th>
+                                        <th class="shoping__product">Products</th>
+                                        <th>Price</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($cartItemsHeart as $item) { ?>
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <!-- Mahsulot rasmi -->
-                                                <img src="images/products/<?php echo $query->getProductImages($item['product_id'])[0] ?>"
-                                                    style="width: 55px;" alt="">
-                                                <!-- Mahsulot nomi -->
-                                                <h5><?php echo $item['name']; ?></h5>
-                                            </td>
-                                            <td class="shoping__cart__price">
-                                                <!-- Mahsulot narxi -->
-                                                $<?php echo number_format($item['price_old'], 2); ?>
+                                                <div class="product-image">
+                                                    <img src="images/products/<?php echo $query->getProductImages($item['product_id'])[0] ?>"
+                                                        style="width: 55px;" alt="">
+                                                    <h5><?php echo $item['name']; ?></h5>
+                                                </div>
                                             </td>
 
-                                            <td class="shoping__cart__total">
-                                                <!-- Jami narxi -->
+                                            <td class="shoping__cart__price">
+                                                <del>$<?php echo number_format($item['price_old'], 2); ?></del>
                                                 $<?php echo number_format($item['price_current'], 2); ?>
                                             </td>
-                                            <td>
-                                                <a class="primary-btn" style="color: white;"
-                                                    onclick="addToCart(<?php echo $item['product_id']; ?>)">Savatga qo'shish</a>
-                                            </td>
-                                            <td class="shoping__cart__item__close">
-                                                <span onclick="removeCartItem(<?php echo $item['product_id']; ?>)" style="cursor: pointer;">
-                                                    <i class="fas fa-trash-alt"></i>
-                                                </span>
+
+                                            <td class="shoping__cart__item__clo">
+                                                <div class="action-icons">
+                                                    <span onclick="addToCart(<?php echo $item['product_id']; ?>)"
+                                                        style="cursor: pointer;">
+                                                        <i class="fas fa-cart-plus"></i>
+                                                    </span>
+
+                                                    <span onclick="removeCartItem(<?php echo $item['product_id']; ?>)"
+                                                        style="cursor: pointer;">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </span>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
                             </table>
                         </div>
-                        <div style="padding-bottom: 30vh;"></div>
-                    <?php
+
+                        <div style="padding-bottom: 10vh;"></div>
+                        <?php
                     } else {
-                    ?>
-                        <div style="padding-bottom: 30vh;">
-                            <p style="text-align: center; font-size:25px">Hech qanday mahsulot topilmadi.</p>
+                        ?>
+                        <div style="padding: 20vh 0;">
+                            <p style="text-align: center; font-size:25px">The liked products are empty.</p>
                         </div>
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>
@@ -101,13 +125,9 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
             </div>
         </div>
     </section>
-    <!-- Shoping Cart Section End -->
 
-    <!-- Footer Section Begin -->
     <?php include 'footer.php'; ?>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.nice-select.min.js"></script>
@@ -118,28 +138,26 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
     <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <script>
         function removeCartItem(itemId) {
-            // SweetAlert orqali confirm dialogi
             Swal.fire({
-                title: 'Haqiqatdan ham ushbu mahsulotni savatdan o\'chirmoqchimisiz?',
+                title: 'Are you sure you want to remove this product from the list?',
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Ha, o\'chirish!',
-                cancelButtonText: 'Bekor qilish'
+                confirmButtonText: 'Yes, remove it!',
+                cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.isConfirmed) {
                     var xhr = new XMLHttpRequest();
                     xhr.open('GET', 'remove_heart.php?remove_item=' + itemId, true);
                     xhr.send();
-                    xhr.onload = function() {
+                    xhr.onload = function () {
                         if (xhr.status == 200) {
                             Swal.fire({
                                 icon: 'success',
-                                title: 'Mahsulot muvaffaqiyatli o\'chirildi!',
+                                title: 'Product successfully removed!',
                                 showConfirmButton: false,
                                 timer: 1500
                             }).then(() => {
@@ -148,7 +166,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
                         } else {
                             Swal.fire({
                                 icon: 'error',
-                                title: 'Xato yuz berdi!',
+                                title: 'Error occurred!',
                                 text: xhr.statusText
                             });
                         }
@@ -165,11 +183,11 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
                         icon: 'success',
-                        title: 'Mahsulot savatchaga qo\'shildi!',
+                        title: 'Product added to cart!',
                         showConfirmButton: false,
                         timer: 1500
                     });
