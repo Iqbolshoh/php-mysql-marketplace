@@ -86,7 +86,7 @@ class Query
         return $this->select($table, "*", $condition);
     }
 
-    public function registerUser($name, $number, $email, $username, $password, $profile_image, $role)
+    public function registerUser($name, $number, $email, $username, $password, $role)
     {
         $name = $this->validate($name);
         $number = $this->validate($number);
@@ -101,7 +101,6 @@ class Query
             'email' => $email,
             'username' => $username,
             'password' => $password_hash,
-            'profile_image' => $profile_image,
             'role' => $role
         );
 

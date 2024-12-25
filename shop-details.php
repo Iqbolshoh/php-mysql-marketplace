@@ -68,7 +68,12 @@ $product = $query->getProduct($product_id);
                                 <span>$<?php echo $product['price_old'] ?></span>
                             </div>
                         </div>
-                        <p><?php echo "<b>Product details: </b>" . $product['description'] ?></p>
+
+                        <p style="text-align: justify;">
+                            <b>Product details:</b>
+                            <span style="white-space: pre-wrap;"><?= $product['description']; ?></span>
+                        </p>
+
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -89,7 +94,7 @@ $product = $query->getProduct($product_id);
                             <li><b>Rating</b> <span><?php echo $product['rating']; ?></span></li>
                             <li><b>Quantity</b> <span><?php echo $product['quantity']; ?></span></li>
                             <li><b>Number of
-                                    sales</b><?= $query->executeQuery("SELECT SUM(number_of_products) AS total_sales FROM cart WHERE product_id = $product_id")->fetch_all()[0][0] ?>
+                                    sales</b><?= $query->executeQuery("SELECT SUM(number_of_products) AS total_sales FROM cart WHERE product_id = $product_id")->fetch_all()[0][0] ?? 0 ?>
                             </li>
                         </ul>
                     </div>

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <link rel="icon" href="../favicon.ico">
-    <title>AdminLTE 3 | Starter</title>
+    <title>AdminLTE 3 | Users</title>
     <!-- CSS -->
     <?php include 'includes/css.php'; ?>
 </head>
@@ -43,13 +43,16 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-info">
                                 <div class="inner">
-                                    <h3>150</h3>
-                                    <p>New Orders</p>
+                                    <h3>
+                                        <?php print_r($query->executeQuery('SELECT * FROM accounts WHERE role = "seller"')->num_rows) ?>
+                                    </h3>
+                                    <p>Sellers</p>
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-bag"></i>
+
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i
+                                <a href="./sellers.php" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -57,13 +60,15 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-success">
                                 <div class="inner">
-                                    <h3>53<sup style="font-size: 20px">%</sup></h3>
-                                    <p>Bounce Rate</p>
+                                    <h3><?php print_r($query->executeQuery('SELECT * FROM accounts WHERE role = "user"')->num_rows) ?>
+                                    </h3>
+                                    <p>Users</p>
                                 </div>
                                 <div class="icon">
+
                                     <i class="ion ion-stats-bars"></i>
                                 </div>
-                                <a href="#" class="small-box-footer">More info <i
+                                <a href="./users.php" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
                         </div>
@@ -71,9 +76,11 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-warning">
                                 <div class="inner">
-                                    <h3>44</h3>
-                                    <p>User Registrations</p>
+                                    <h3><?php print_r($query->executeQuery('SELECT * FROM categories')->num_rows) ?>
+                                    </h3>
+                                    <p>Product types</p>
                                 </div>
+
                                 <div class="icon">
                                     <i class="ion ion-person-add"></i>
                                 </div>
@@ -85,8 +92,10 @@
                         <div class="col-lg-3 col-6">
                             <div class="small-box bg-danger">
                                 <div class="inner">
-                                    <h3>65</h3>
-                                    <p>Unique Visitors</p>
+                                    <h3><?php print_r($query->executeQuery('SELECT * FROM products')->num_rows) ?>
+                                    </h3>
+                                    <p>Number of products</p>
+
                                 </div>
                                 <div class="icon">
                                     <i class="ion ion-pie-graph"></i>
@@ -103,7 +112,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Foydalanuvchilar royxati</h3>
+                                <h3 class="card-title">Users List</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">

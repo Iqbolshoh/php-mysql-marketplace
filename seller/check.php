@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 include '../config.php';
@@ -16,7 +15,7 @@ if (!isset($_SESSION['id']) || empty($_SESSION['id'])) {
 }
 
 $userStatus = $query->select('accounts', 'status', 'WHERE id = "' . $_SESSION['id'] . '"');
-if (!isset($userStatus[0]['status']) || $userStatus[0]['status'] === 'blocked') {
+if (!isset($userStatus[0]['status']) || empty($userStatus[0]['status']) || $userStatus[0]['status'] === 'blocked') {
     header("Location: ../blocked_page.php");
     exit;
 }

@@ -10,38 +10,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="../favicon.ico">
   <title>Seller | <?php echo $_SESSION['name'] ?></title>
-  <!-- css -->
   <?php include 'includes/css.php'; ?>
 </head>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">
 
-    <!-- Navbar -->
     <?php include 'includes/navbar.php'; ?>
 
-
-    <!-- Main Sidebar Container -->
     <?php
     include 'includes/aside.php';
     active('product', 'addproduct');
     ?>
 
-
-    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
-      <!-- Content Header (Page header) -->
       <?php
       $arr = array(
         ["title" => "Home", "url" => "/"],
-        ["title" => "Mahsulot", "url" => "/"],
-        ["title" => "Qo'shish", "url" => "#"],
+        ["title" => "Product", "url" => "/"],
+        ["title" => "Add", "url" => "#"],
       );
-      pagePath('Mahsulot qo\'shish', $arr);
+      pagePath('Add Product', $arr);
       ?>
-
-
 
       <section class="content">
         <section class="content">
@@ -50,15 +41,15 @@
               <div class="col-lg-6 offset-lg-3">
                 <div class="card">
                   <div class="card-body">
-                    <h4>Mahsulotni qo'shish</h4>
+                    <h4>Add Product</h4>
                     <form action="add_product.php" method="POST" enctype="multipart/form-data"
                       onsubmit="return checkFilesCount()">
                       <div class="form-group">
-                        <label for="name">Mahsulot nomi:</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
+                        <label for="name">Product Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" required maxlength="30">
                       </div>
                       <div class="form-group">
-                        <label for="category_id">Mahsulot Kategoriyasi:</label>
+                        <label for="category_id">Product Category:</label>
                         <select class="form-control" id="category_id" name="category_id" required>
                           <?php
                           $categories = $query->getCategories();
@@ -69,27 +60,31 @@
                         </select>
                       </div>
                       <div class="form-group">
-                        <label for="price_old">Eski narxi:</label>
-                        <input type="number" class="form-control" id="price_old" name="price_old" required>
+                        <label for="price_old">Old Price:</label>
+                        <input type="number" class="form-control" id="price_old" name="price_old" required
+                          max="99999999999">
                       </div>
                       <div class="form-group">
-                        <label for="price_current">Joriy narxi:</label>
-                        <input type="number" class="form-control" id="price_current" name="price_current" required>
+                        <label for="price_current">Current Price:</label>
+                        <input type="number" class="form-control" id="price_current" name="price_current"
+                          max="99999999999">
                       </div>
                       <div class="form-group">
-                        <label for="description">Ta'rif:</label>
-                        <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+                        <label for="description">Description:</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required
+                          maxlength="2000"></textarea>
                       </div>
                       <div class="custom-file">
                         <input type="file" class="custom-file-input" id="image" name="image[]" accept="image/*"
                           multiple>
-                        <label class="custom-file-label" for="image">Rasmlarni tanlang...</label>
+                        <label class="custom-file-label" for="image">Select images...</label>
                       </div>
                       <div class="form-group">
-                        <label for="quantity">Miqdor:</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity" required>
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" class="form-control" id="quantity" name="quantity" required
+                          max="99999999999">
                       </div>
-                      <button type="submit" class="btn btn-primary">Saqlash</button>
+                      <button type="submit" class="btn btn-primary">Save</button>
                     </form>
                   </div>
                 </div>
@@ -97,16 +92,12 @@
             </div>
           </div>
         </section>
-
-
       </section>
     </div>
 
-    <!-- Main Footer -->
     <?php include 'includes/footer.php'; ?>
   </div>
 
-  <!-- SCRIPTS -->
   <script src="js/jquery.min.js"></script>
   <script src="js/adminlte.js"></script>
   <script>
@@ -114,16 +105,16 @@
       let files = document.getElementById('image').files;
       let fileLabel = document.getElementById('fileLabel');
       if (files.length > 7) {
-        alert("Siz faqatgina maksimum 7ta rasmlarni tanlashingiz mumkin.");
+        alert("You can only select up to 7 images.");
         return false;
       }
       return true;
     }
 
-    document.getElementById('image').addEventListener('change', function() {
+    document.getElementById('image').addEventListener('change', function () {
       let files = document.getElementById('image').files;
       let fileLabel = document.getElementById('fileLabel');
-      fileLabel.textContent = files.length + ' fayl tanlandi.';
+      fileLabel.textContent = files.length + ' files selected.';
     });
   </script>
 </body>

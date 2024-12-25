@@ -3,15 +3,13 @@ function active($Page, $Menu)
 { ?>
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
         <a href="/" class="brand-link">
-            <img src="../images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+            <img src="../images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+                style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
         </a>
 
-        <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <img src="../images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -21,7 +19,6 @@ function active($Page, $Menu)
                 </div>
             </div>
 
-            <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
@@ -29,7 +26,7 @@ function active($Page, $Menu)
                         <a href="#" class="nav-link <?php echo ($Page === 'product') ? 'active' : ''; ?>">
                             <i class="nav-icon fas fa-shopping-cart"></i>
                             <p>
-                                Mahsulot
+                                Product
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -37,15 +34,16 @@ function active($Page, $Menu)
                             <li class="nav-item">
                                 <a href="./" class="nav-link <?php echo ($Menu === 'products') ? 'active' : ''; ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Mahsulotlarim</p>
+                                    <p>My Products</p>
                                 </a>
                             </li>
                         </ul>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href="./addproduct.php" class="nav-link <?php echo ($Menu === 'addproduct') ? 'active' : ''; ?>">
+                                <a href="./addproduct.php"
+                                    class="nav-link <?php echo ($Menu === 'addproduct') ? 'active' : ''; ?>">
                                     <i class="far fa-circle nav-icon"></i>
-                                    <p>Qo'shish</p>
+                                    <p>Add Product</p>
                                 </a>
                             </li>
                         </ul>
@@ -54,25 +52,23 @@ function active($Page, $Menu)
                     <li class="nav-item">
                         <a onclick="logout()" class="nav-link <?php echo ($Menu === 'users') ? 'active' : ''; ?>">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Chiqish</p>
+                            <p>Logout</p>
                         </a>
                     </li>
 
                 </ul>
             </nav>
-            <!-- /.sidebar-menu -->
         </div>
-        <!-- /.sidebar -->
     </aside>
 
-<?php
+    <?php
 }
 ?>
 
 <?php
 function pagePath($pageTitle, $breadcrumb)
 {
-?>
+    ?>
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -81,11 +77,12 @@ function pagePath($pageTitle, $breadcrumb)
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <?php foreach ($breadcrumb as $item) : ?>
-                            <?php if ($item['url'] === '#') : ?>
+                        <?php foreach ($breadcrumb as $item): ?>
+                            <?php if ($item['url'] === '#'): ?>
                                 <li class="breadcrumb-item active"><?php echo $item['title']; ?></li>
-                            <?php else : ?>
-                                <li class="breadcrumb-item"><a href="<?php echo $item['url']; ?>"><?php echo $item['title']; ?></a></li>
+                            <?php else: ?>
+                                <li class="breadcrumb-item"><a href="<?php echo $item['url']; ?>"><?php echo $item['title']; ?></a>
+                                </li>
                             <?php endif; ?>
                         <?php endforeach; ?>
                     </ol>
@@ -94,7 +91,7 @@ function pagePath($pageTitle, $breadcrumb)
         </div>
     </div>
 
-<?php
+    <?php
 }
 ?>
 
@@ -103,14 +100,14 @@ function pagePath($pageTitle, $breadcrumb)
 <script>
     function logout() {
         Swal.fire({
-            title: 'Aniq chiqmoqchimisiz?',
-            text: "Siz bu amalni bekor qilolmaysiz!",
+            title: 'Are you sure you want to log out?',
+            text: "You won't be able to undo this action!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ha, chiqaman!',
-            cancelButtonText: 'Bekor qilish'
+            confirmButtonText: 'Yes, log out!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = '../logout/';

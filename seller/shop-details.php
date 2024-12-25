@@ -10,7 +10,6 @@ if (!is_numeric($product_id) or $query->select('products', 'id', 'where id = ' .
 $product = $query->getProduct($product_id);
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +18,7 @@ $product = $query->getProduct($product_id);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product | <?php echo $product['name']; ?></title>
     <link rel="icon" href="../favicon.ico">
-
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
     <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
@@ -36,9 +31,6 @@ $product = $query->getProduct($product_id);
 
 <body>
 
-
-
-    <!-- Product Details Section Begin -->
     <section class="product-details spad">
         <div class="container">
             <div class="row">
@@ -71,23 +63,21 @@ $product = $query->getProduct($product_id);
                                 <span>$<?php echo $product['price_old'] ?></span>
                             </div>
                         </div>
-                        <p><?php echo $product['description'] ?></p>
-                        <a href="/" class="primary-btn">Mahsulotlarga qaytish</a>
+
+                        <p style="text-align: justify;">
+                            <b>Product details:</b>
+                            <span style="white-space: pre-wrap;"><?= $product['description']; ?></span>
+                        </p>
+
+                        <a href="/" class="primary-btn">Back to Products</a>
                         <ul>
-                            <li><b>Categoriya</b>
+                            <li><b>Category</b>
                                 <span><? echo $query->select('categories', 'category_name', 'WHERE id=' . $product['category_id'])[0]['category_name'] ?></span>
                             </li>
-
-
-                            <li><b>Reyting</b> <span><?php echo $product['rating']; ?></span></li>
-                            <li><b>Miqdori</b> <span><?php echo $product['quantity']; ?></span></li>
-                            <li><b>Jo'natish</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </div>
+                            <li><b>Rating</b> <span><?php echo $product['rating']; ?></span></li>
+                            <li><b>Quantity</b> <span><?php echo $product['quantity']; ?></span></li>
+                            <li><b>Number of
+                                    sales</b><?= $query->executeQuery("SELECT SUM(number_of_products) AS total_sales FROM cart WHERE product_id = $product_id")->fetch_all()[0][0] ?? 0 ?>
                             </li>
                         </ul>
                     </div>
@@ -96,11 +86,8 @@ $product = $query->getProduct($product_id);
         </div>
     </section>
 
-    <!-- Footer Section Begin -->
     <?php include '../footer.php'; ?>
-    <!-- Footer Section End -->
 
-    <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>

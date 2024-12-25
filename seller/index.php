@@ -13,38 +13,30 @@ $seller_id = $_SESSION['id'];
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="../favicon.ico">
-    <title>AdminLTE 3 | Starter</title>
-    <!-- css -->
+    <title>AdminLTE 3 | My Products</title>
     <?php include 'includes/css.php'; ?>
-    <!-- Css Styles -->
     <link rel="stylesheet" href="../css/card.css" type="text/css">
 </head>
 
 <body class="hold-transition sidebar-mini">
     <div class="wrapper">
 
-        <!-- Navbar -->
         <?php include 'includes/navbar.php'; ?>
 
-
-        <!-- Main Sidebar Container -->
         <?php
         include 'includes/aside.php';
         active('product', 'products');
         ?>
 
-
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
 
-            <!-- Content Header (Page header) -->
             <?php
             $arr = array(
                 ["title" => "Home", "url" => "/"],
-                ["title" => "Mahsulot", "url" => "/"],
-                ["title" => "Mahsulotlarim", "url" => "#"],
+                ["title" => "Product", "url" => "/"],
+                ["title" => "My Products", "url" => "#"],
             );
-            pagePath('Mahsulotlarim', $arr);
+            pagePath('My Products', $arr);
             ?>
 
 
@@ -53,11 +45,9 @@ $seller_id = $_SESSION['id'];
 
                     <div class="row">
                         <div class="col-lg-3 col-6">
-
                             <div class="small-box bg-info">
                                 <div class="inner">
                                     <h3>150</h3>
-
                                     <p>New Orders</p>
                                 </div>
                                 <div class="icon">
@@ -69,11 +59,9 @@ $seller_id = $_SESSION['id'];
                         </div>
 
                         <div class="col-lg-3 col-6">
-
                             <div class="small-box bg-success">
                                 <div class="inner">
                                     <h3>53<sup style="font-size: 20px">%</sup></h3>
-
                                     <p>Bounce Rate</p>
                                 </div>
                                 <div class="icon">
@@ -88,7 +76,6 @@ $seller_id = $_SESSION['id'];
                             <div class="small-box bg-warning">
                                 <div class="inner">
                                     <h3>44</h3>
-
                                     <p>User Registrations</p>
                                 </div>
                                 <div class="icon">
@@ -100,11 +87,9 @@ $seller_id = $_SESSION['id'];
                         </div>
 
                         <div class="col-lg-3 col-6">
-
                             <div class="small-box bg-danger">
                                 <div class="inner">
                                     <h3>65</h3>
-
                                     <p>Unique Visitors</p>
                                 </div>
                                 <div class="icon">
@@ -113,7 +98,6 @@ $seller_id = $_SESSION['id'];
                                 <a href="#" class="small-box-footer">More info <i
                                         class="fas fa-arrow-circle-right"></i></a>
                             </div>
-
                         </div>
                     </div>
 
@@ -136,15 +120,14 @@ $seller_id = $_SESSION['id'];
                                                     class="fa fa-trash"></i></a></li>
                                         <li><a href="#" onclick="openProductDetails(<?php echo $product['id']; ?>)"><i
                                                     class="fa fa-retweet"></i></a></li>
-                                        <li><a href="#" onclick="edit_product(<?php echo $product['id']; ?>)"><i
-                                                    class="fa fa-pen"></i></a></li>
                                     </ul>
                                 </div>
                                 <div class="product__discount__item__text">
                                     <span><?php echo $category_name ?></span>
                                     <h5><a href="#"><?php echo $product['name'] ?></a></h5>
                                     <div class="product__item__price">$<?php echo $product['price_current'] ?>
-                                        <span>$<?php echo $product['price_old'] ?></span></div>
+                                        <span>$<?php echo $product['price_old'] ?></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -155,14 +138,11 @@ $seller_id = $_SESSION['id'];
             </section>
         </div>
 
-        <!-- Main Footer -->
         <?php include 'includes/footer.php'; ?>
     </div>
 
-    <!-- SCRIPTS -->
     <script src="../js/jquery.min.js"></script>
     <script src="../js/adminlte.js"></script>
-    <!-- Js Plugins -->
     <script src="../js/jquery-3.3.1.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/jquery.nice-select.min.js"></script>
@@ -174,14 +154,10 @@ $seller_id = $_SESSION['id'];
 
     <script>
         function delete_product(productId) {
-            if (confirm("Mahsulotni o'chirmoqchimisiz?")) {
+            if (confirm("Are you sure you want to delete this product?")) {
                 window.location.href = 'delete_product.php?product_id=' + productId;
             }
         }
-
-        // function edit_product(productId) {
-        //     window.location.href = 'editproduct.php?product_id=' + productId;
-        // }
 
         function openProductDetails(productId) {
             window.location.href = 'shop-details.php?product_id=' + productId;

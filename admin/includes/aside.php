@@ -2,16 +2,13 @@
 { ?>
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
         <a href="./" class="brand-link">
             <img src="../images/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                 style="opacity: .8">
             <span class="brand-text font-weight-light">AdminLTE 3</span>
         </a>
 
-        <!-- Sidebar -->
         <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="image">
                     <img src="../images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
@@ -21,7 +18,6 @@
                 </div>
             </div>
 
-            <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
@@ -54,16 +50,13 @@
                     <li class="nav-item">
                         <a onclick="logout()" class="nav-link <?php echo ($Menu === 'logout') ? 'active' : ''; ?>">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Chiqish</p>
+                            <p>Logout</p>
                         </a>
                     </li>
 
-
                 </ul>
             </nav>
-            <!-- /.sidebar-menu -->
         </div>
-        <!-- /.sidebar -->
     </aside>
 
     <?php
@@ -105,14 +98,14 @@ function pagePath($pageTitle, $breadcrumb)
 <script>
     function logout() {
         Swal.fire({
-            title: 'Aniq chiqmoqchimisiz?',
-            text: "Siz bu amalni bekor qilolmaysiz!",
+            title: 'Are you sure you want to log out?',
+            text: "You won't be able to cancel this action!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ha, chiqaman!',
-            cancelButtonText: 'Bekor qilish'
+            confirmButtonText: 'Yes, log out!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = '../logout/';

@@ -26,7 +26,6 @@ if (isset($_POST['submit'])) {
             $_SESSION['number'] = isset($user[0]['number']) ? $user[0]['number'] : null;
             $_SESSION['email'] = isset($user[0]['email']) ? $user[0]['email'] : null;
             $_SESSION['username'] = isset($user[0]['username']) ? $user[0]['username'] : null;
-            $_SESSION['profile_image'] = isset($user[0]['profile_image']) ? $user[0]['profile_image'] : null;
             $_SESSION['role'] = isset($user[0]['role']) ? $user[0]['role'] : 'user';
 
             header("Location: ../");

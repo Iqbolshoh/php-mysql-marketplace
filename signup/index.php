@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+
 include '../config.php';
 $query = new Query();
 
@@ -18,31 +18,29 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    $profile_image = $query->saveImage($_FILES['image'], "../images/users/");
 
     $existingUser = $query->executeQuery("SELECT * FROM accounts WHERE username='$username' OR email='$email' OR number='$number'");
 
     if ($existingUser->num_rows > 0) {
         $msg = [
-            "title" => "Xatolik!",
-            "text" => "Mavjud username, email yoki telefon raqam."
+            "title" => "Error!",
+            "text" => "Username, email, or phone number already exists."
         ];
     } else {
-        $result = $query->registerUser($name, $number, $email, $username, $password, $profile_image, $role);
+        $result = $query->registerUser($name, $number, $email, $username, $password, $role);
 
-        if ($result) {
+        if (!empty($result)) {
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = $result;
             $_SESSION['name'] = $name;
             $_SESSION['number'] = $number;
             $_SESSION['email'] = $email;
             $_SESSION['username'] = $username;
-            $_SESSION['profile_image'] = $profile_image ?? "no_image.png";
             $_SESSION['role'] = $role;
 
             $msg = [
-                "title" => "Muvaffaqiyat!",
-                "text" => "Ro'yxatdan o'tdingiz!",
+                "title" => "Success!",
+                "text" => "Registration completed!",
                 "icon" => "success"
             ];
 
@@ -50,8 +48,8 @@ if (isset($_POST['submit'])) {
             exit;
         } else {
             $msg = [
-                "title" => "Xatolik!",
-                "text" => "Ma'lumotlarni saqlashda xatolik yuz berdi."
+                "title" => "Error!",
+                "text" => "An error occurred while saving the data."
             ];
         }
     }
@@ -138,15 +136,8 @@ if (isset($_POST['submit'])) {
                 <label for="password">Password</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" required="" maxlength="255">
-                    <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="file-input" class="font-weight-bold">Choose Image</label>
-                <div class="custom-file">
-                    <input type="file" id="file-input" class="custom-file-input" accept="image/*" name="image">
-                    <label class="custom-file-label" for="file-input">Choose file</label>
+                    <button type="button" id="toggle-password" class="password-toggle"><i
+                            class="fas fa-eye"></i></button>
                 </div>
             </div>
 
@@ -162,11 +153,12 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        $('#file-input').on('change', function() {
+        $('#file-input').on('change', function () {
             var fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').html(fileName);
         });
-        document.getElementById('toggle-password').addEventListener('click', function() {
+
+        document.getElementById('toggle-password').addEventListener('click', function () {
             const passwordField = document.getElementById('password');
             const toggleIcon = this.querySelector('i');
 
@@ -180,39 +172,34 @@ if (isset($_POST['submit'])) {
                 toggleIcon.classList.add('fa-eye');
             }
         });
-    </script>
 
-
-    <script>
-        $(document).ready(function() {
-            $('input[name="number"]').on('input', function() {
+        $(document).ready(function () {
+            $('input[name="number"]').on('input', function () {
                 var number = $(this).val();
                 if (number.length > 0 && !/^\d+$/.test(number)) {
-                    $('#number-error').text('Nomer faqat sondan iborat bo\'lishi kerak');
+                    $('#number-error').text('Number must contain only digits');
                 } else {
                     $('#number-error').text('');
                 }
             });
 
-            $('input[name="email"]').on('input', function() {
+            $('input[name="email"]').on('input', function () {
                 var email = $(this).val();
                 if (email.length > 0 && !/\S+@\S+\.\S+/.test(email)) {
-                    $('#email-error').text('Xato email.');
+                    $('#email-error').text('Invalid email.');
                 } else {
                     $('#email-error').text('');
                 }
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             function isOne(value, callback) {
                 $.ajax({
                     url: 'check_username.php',
                     type: 'POST',
-                    data: {
-                        username: value
-                    },
-                    success: function(response) {
+                    data: { username: value },
+                    success: function (response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -222,7 +209,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="username"]').on('input', function() {
+            $('input[name="username"]').on('input', function () {
                 var username = $(this).val();
                 if (username.length > 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
                     $('#username-error').text('Username should contain only letters, digits, and underscores.');
@@ -230,9 +217,9 @@ if (isset($_POST['submit'])) {
                     $('#username-error').text('');
                 }
                 if (username.length > 0) {
-                    isOne(username, function(result) {
+                    isOne(username, function (result) {
                         if (result) {
-                            $('#username-error').text('Bunday username mavjud.');
+                            $('#username-error').text('This username already exists.');
                         } else {
                             $('#username-error').text('');
                         }
@@ -241,15 +228,13 @@ if (isset($_POST['submit'])) {
             });
         });
 
-        $(document).ready(function() {
+        $(document).ready(function () {
             function isEmailExists(email, callback) {
                 $.ajax({
                     url: 'check_email.php',
                     type: 'POST',
-                    data: {
-                        email: email
-                    },
-                    success: function(response) {
+                    data: { email: email },
+                    success: function (response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -259,18 +244,17 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="email"]').on('input', function() {
-                console.log($('input[name="email"]').val())
+            $('input[name="email"]').on('input', function () {
                 var email = $(this).val();
                 if (email.length > 0 && !isValidEmail(email)) {
-                    $('#email-error').text('Email haqiqiy emas.');
+                    $('#email-error').text('Invalid email.');
                 } else {
                     $('#email-error').text('');
                 }
                 if (email.length > 0) {
-                    isEmailExists(email, function(result) {
+                    isEmailExists(email, function (result) {
                         if (result) {
-                            $('#email-error').text('Bunday email mavjud.');
+                            $('#email-error').text('This email already exists.');
                         } else {
                             $('#email-error').text('');
                         }
@@ -282,15 +266,14 @@ if (isset($_POST['submit'])) {
                 return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
             }
         });
-        $(document).ready(function() {
+
+        $(document).ready(function () {
             function isNumberExists(number, callback) {
                 $.ajax({
                     url: 'check_number.php',
                     type: 'POST',
-                    data: {
-                        number: number
-                    },
-                    success: function(response) {
+                    data: { number: number },
+                    success: function (response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -300,17 +283,17 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="number"]').on('input', function() {
+            $('input[name="number"]').on('input', function () {
                 var number = $(this).val();
                 if (number.length > 0 && !/^\d+$/.test(number)) {
-                    $('#number-error').text('Nomer faqat sondan iborat bo\'lishi kerak');
+                    $('#number-error').text('Number must contain only digits');
                 } else {
                     $('#number-error').text('');
                 }
                 if (number.length > 0) {
-                    isNumberExists(number, function(result) {
+                    isNumberExists(number, function (result) {
                         if (result) {
-                            $('#number-error').text('Bunday raqam mavjud.');
+                            $('#number-error').text('This number already exists.');
                         } else {
                             $('#number-error').text('');
                         }
@@ -323,10 +306,11 @@ if (isset($_POST['submit'])) {
             $('.error').hide();
         }
     </script>
+
     <?php if (isset($msg)): ?>
         <script>
-            $(document).ready(function() {
-                setTimeout(function() {
+            $(document).ready(function () {
+                setTimeout(function () {
                     hideErrorMessage();
                 }, 4000);
             });

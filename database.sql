@@ -10,7 +10,6 @@ CREATE TABLE accounts (
   username VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
   role VARCHAR(20) NOT NULL DEFAULT 'user',
-  profile_image VARCHAR(255) DEFAULT 'no_image.png',
   status ENUM('active', 'blocked') NOT NULL DEFAULT 'active',
   registration_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
@@ -65,11 +64,11 @@ CREATE TABLE wishes (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
-INSERT INTO accounts (id, name, number, email, username, password, role, profile_image, status, registration_date) VALUES
-(1, 'Iqbolshoh', '997799333', 'Iqbolshoh@gmail.com', 'Iqbolshoh', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'admin', 'no_image.png', 'active', '2024-05-14 11:17:25'),
-(2, 'seller', '997733999', 'seller@gmail.com', 'seller', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'seller', 'no_image.png', 'active', '2024-05-14 11:17:25'),
-(3, 'user', '993399777', 'user@gmail.com', 'user', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'no_image.png', 'active', '2024-05-14 11:17:25'),
-(4, 'userAKA', '993399177', 'userAKA@gmail.com', 'userAKA', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'no_image.png', 'active', '2024-05-14 11:17:25');
+INSERT INTO accounts (id, name, number, email, username, password, role, status, registration_date) VALUES
+(1, 'Iqbolshoh', '997799333', 'Iqbolshoh@gmail.com', 'Iqbolshoh', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'admin', 'active', '2024-05-14 11:17:25'),
+(2, 'seller', '997733999', 'seller@gmail.com', 'seller', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'seller', 'active', '2024-05-14 11:17:25'),
+(3, 'user', '993399777', 'user@gmail.com', 'user', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25'),
+(4, 'userAKA', '993399177', 'userAKA@gmail.com', 'userAKA', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25');
 
 INSERT INTO categories (id, category_name) VALUES
 (1, 'Phone'),
