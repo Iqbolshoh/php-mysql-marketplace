@@ -12,9 +12,6 @@ if (isset($_GET['product_id']) && isset($_SESSION['id'])) {
             unlink($imageFilePath);
         }
     }
-    $query->delete('cart', "WHERE product_id = $productId");
-    $query->delete('wishes', "WHERE product_id = $productId");
-    $query->delete('product_images', "WHERE product_id = $productId");
     $query->delete('products', "WHERE id = $productId");
 
     header("Location: ./");

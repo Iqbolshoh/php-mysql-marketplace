@@ -21,10 +21,12 @@ function countTable($table)
     </div>
     <div class="humberger__menu__cart">
         <ul>
-            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo countTable('wishes'); ?></span></a></li>
-            <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo countTable('cart'); ?></span></a></li>
+            <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo countTable('wishes'); ?></span></a>
+            </li>
+            <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
+                    <span><?php echo countTable('cart'); ?></span></a></li>
         </ul>
-        <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2); ?></span></div>
+        <div class="header__cart__price">Total: <span>$<?php echo number_format($total_price, 2); ?></span></div>
     </div>
     <div class="humberger__menu__widget">
         <div class="header__top__right__auth">
@@ -37,9 +39,9 @@ function countTable($table)
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li><a href="./">Asosiy</a></li>
-            <li><a href="./heart.php">Saralangan</a></li>
-            <li><a href="./shoping-cart.php">Savat</a></li>
+            <li><a href="./">Home</a></li>
+            <li><a href="./heart.php">Wishlist</a></li>
+            <li><a href="./shoping-cart.php">Cart</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -52,7 +54,7 @@ function countTable($table)
     <div class="humberger__menu__contact">
         <ul>
             <li><i class="fa fa-envelope"></i> iilhomjonov777@gmail.com </li>
-            <li>Free Shipping for all Order of $99</li>
+            <li>Free Shipping for all Orders over $99</li>
         </ul>
     </div>
 </div>
@@ -67,7 +69,7 @@ function countTable($table)
                     <div class="header__top__left">
                         <ul>
                             <li><i class="fa fa-envelope"></i> iilhomjonov777@gmail.com </li>
-                            <li>Free Shipping for all Order of $99</li>
+                            <li>Free Shipping for all Orders over $99</li>
                         </ul>
                     </div>
                 </div>
@@ -101,19 +103,22 @@ function countTable($table)
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li><a href="./">Asosiy</a></li>
-                        <li><a href="./heart.php">Saralangan</a></li>
-                        <li><a href="./shoping-cart.php">Savat</a></li>
+                        <li><a href="./">Home</a></li>
+                        <li><a href="./heart.php">Wishlist</a></li>
+                        <li><a href="./shoping-cart.php">Cart</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="./heart.php"><i class="fa fa-heart"></i> <span><?php echo countTable('wishes'); ?></span></a></li>
-                        <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i> <span><?php echo countTable('cart'); ?></span></a></li>
+                        <li><a href="./heart.php"><i class="fa fa-heart"></i>
+                                <span><?php echo countTable('wishes'); ?></span></a></li>
+                        <li><a href="./shoping-cart.php"><i class="fa fa-shopping-bag"></i>
+                                <span><?php echo countTable('cart'); ?></span></a></li>
                     </ul>
-                    <div class="header__cart__price">Jami: <span>$<?php echo number_format($total_price, 2); ?></span></div>
+                    <div class="header__cart__price">Total: <span>$<?php echo number_format($total_price, 2); ?></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,6 +129,13 @@ function countTable($table)
 </header>
 <!-- Header Section End -->
 
+<style>
+    .hero__categories__all:after {
+        content: '';
+        display: block;
+    }
+</style>
+
 <!-- Hero Section Begin -->
 <section class="hero hero-normal" style="margin-bottom: -50px;">
     <div class="container">
@@ -132,13 +144,16 @@ function countTable($table)
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>Categoriya</span>
+                        <span>Category</span>
                     </div>
                     <ul>
                         <?php
                         $categories = $query->select('categories', '*');
                         foreach ($categories as $category): ?>
-                            <li><a href="category.php?category=<?php echo $category['id']; ?>"><?php echo $category['category_name']; ?></a></li>
+                            <li>
+                                <a
+                                    href="category.php?category=<?php echo $category['id']; ?>"><?php echo $category['category_name'] ?></a>
+                            </li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -148,9 +163,9 @@ function countTable($table)
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                Barcha Categoriyalar
+                                All Categories
                             </div>
-                            <input type="text" placeholder="Sizga nima kerak?">
+                            <input type="text" placeholder="What do you need?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -160,7 +175,7 @@ function countTable($table)
                         </div>
                         <div class="hero__search__phone__text">
                             <h5>+998 (99) 779 99 33</h5>
-                            <span>support 24/7 time</span>
+                            <span>support 24/7</span>
                         </div>
                     </div>
                 </div>
@@ -176,14 +191,14 @@ function countTable($table)
 <script>
     function logout() {
         Swal.fire({
-            title: 'Aniq chiqmoqchimisiz?',
-            text: "Siz bu amalni bekor qilolmaysiz!",
+            title: 'Are you sure you want to log out?',
+            text: "You cannot undo this action!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ha, chiqaman!',
-            cancelButtonText: 'Bekor qilish'
+            confirmButtonText: 'Yes, log out!',
+            cancelButtonText: 'Cancel'
         }).then((result) => {
             if (result.isConfirmed) {
                 window.location.href = './logout/';

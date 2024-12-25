@@ -75,7 +75,7 @@ $product = $query->getProduct($product_id);
                                 <span>$<?php echo $product['price_old'] ?></span>
                             </div>
                         </div>
-                        <p><?php echo $product['description'] ?></p>
+                        <p><?php echo "<b>Product details: </b>" . $product['description'] ?></p>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -133,7 +133,7 @@ $product = $query->getProduct($product_id);
                     $price_old = $product['price_old'];
                     $product_id = $product['id'];
                     $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                ?>
+                    ?>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
@@ -187,7 +187,7 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     // SweetAlert2 bilan muvaffaqiyatli xabar
                     Swal.fire({
@@ -212,7 +212,7 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function() {
+            xhr.onreadystatechange = function () {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
                         title: 'Muvaffaqiyat!',

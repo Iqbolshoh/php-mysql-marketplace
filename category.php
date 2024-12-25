@@ -111,25 +111,6 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        $(function() {
-            var min_price = <?php echo $min_price; ?>;
-            var max_price = <?php echo $max_price; ?>;
-
-            $(".price-range").slider({
-                range: true,
-                min: min_price,
-                max: max_price,
-                values: [min_price, max_price],
-                slide: function(event, ui) {
-                    $("#minamount").val(ui.values[0]);
-                    $("#maxamount").val(ui.values[1]);
-                }
-            });
-            $("#minamount").val($(".price-range").slider("values", 0));
-            $("#maxamount").val($(".price-range").slider("values", 1));
-        });
-    </script>
-    <script>
         function addToCart(productId) {
             var xhr = new XMLHttpRequest();
             var url = 'add_to_cart.php?product_id=' + productId;

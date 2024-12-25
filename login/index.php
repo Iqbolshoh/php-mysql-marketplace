@@ -13,22 +13,29 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 $error = '';
 
 if (isset($_POST['submit'])) {
-    $user = $query->authenticate($_POST['username'], $_POST['password'], 'accounts');
+    $username = isset($_POST['username']) ? trim($_POST['username']) : '';
+    $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
-    if ($user) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['id'] = $user[0]['id'];
-        $_SESSION['name'] = $user[0]['name'];
-        $_SESSION['number'] = $user[0]['number'];
-        $_SESSION['email'] = $user[0]['email'];
-        $_SESSION['username'] = $user[0]['username'];
-        $_SESSION['profile_image'] = $user[0]['profile_image'];
-        $_SESSION['role'] = $user[0]['role'];
+    if ($username && $password) {
+        $user = $query->authenticate($username, $password, 'accounts');
 
-        header("Location: ../");
-        exit;
+        if ($user) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['id'] = isset($user[0]['id']) ? $user[0]['id'] : null;
+            $_SESSION['name'] = isset($user[0]['name']) ? $user[0]['name'] : null;
+            $_SESSION['number'] = isset($user[0]['number']) ? $user[0]['number'] : null;
+            $_SESSION['email'] = isset($user[0]['email']) ? $user[0]['email'] : null;
+            $_SESSION['username'] = isset($user[0]['username']) ? $user[0]['username'] : null;
+            $_SESSION['profile_image'] = isset($user[0]['profile_image']) ? $user[0]['profile_image'] : null;
+            $_SESSION['role'] = isset($user[0]['role']) ? $user[0]['role'] : 'user';
+
+            header("Location: ../");
+            exit;
+        } else {
+            $error = "The login or password is incorrect.";
+        }
     } else {
-        $error = "The login or password is incorrect.";
+        $error = "Please fill in all the fields.";
     }
 }
 ?>
@@ -58,13 +65,14 @@ if (isset($_POST['submit'])) {
         <form method="post" action="">
             <div class="form-group">
                 <label for="username">Username or Email</label>
-                <input type="text" id="username" name="username" required="" maxlength="255">
+                <input type="text" id="username" name="username" required maxlength="255">
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-container">
-                    <input type="password" id="password" name="password" required="" maxlength="255">
-                    <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
+                    <input type="password" id="password" name="password" required maxlength="255">
+                    <button type="button" id="toggle-password" class="password-toggle"><i
+                            class="fas fa-eye"></i></button>
                 </div>
             </div>
             <div class="form-group">
@@ -78,7 +86,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             <?php if ($error): ?>
                 Swal.fire({
                     icon: 'error',
@@ -91,7 +99,7 @@ if (isset($_POST['submit'])) {
                 });
             <?php endif; ?>
 
-            document.getElementById('toggle-password').addEventListener('click', function() {
+            document.getElementById('toggle-password').addEventListener('click', function () {
                 const passwordField = document.getElementById('password');
                 const toggleIcon = this.querySelector('i');
 

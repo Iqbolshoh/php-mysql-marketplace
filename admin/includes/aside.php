@@ -66,14 +66,14 @@
         <!-- /.sidebar -->
     </aside>
 
-<?php
+    <?php
 }
 ?>
 
 <?php
 function pagePath($pageTitle, $breadcrumb)
 {
-?>
+    ?>
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -96,7 +96,7 @@ function pagePath($pageTitle, $breadcrumb)
         </div>
     </div>
 
-<?php
+    <?php
 }
 ?>
 
