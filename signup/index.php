@@ -28,10 +28,11 @@ if (isset($_POST['submit'])) {
         ];
     } else {
         $result = $query->registerUser($name, $number, $email, $username, $password, $role);
+        $userData = $query->executeQuery("SELECT * FROM accounts WHERE username='$username'")->fetch_assoc();
 
-        if (!empty($result)) {
+        if (!empty($result) && !empty($userData) && isset($userData['id'])) {
             $_SESSION['loggedin'] = true;
-            $_SESSION['id'] = $result;
+            $_SESSION['id'] = $userData['id'];
             $_SESSION['name'] = $name;
             $_SESSION['number'] = $number;
             $_SESSION['email'] = $email;
