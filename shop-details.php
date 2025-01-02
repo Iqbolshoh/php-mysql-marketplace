@@ -122,7 +122,7 @@ $product = $query->getProduct($product_id);
                     $price_old = $product['price_old'];
                     $product_id = $product['id'];
                     $image = $query->select('product_images', 'image_url', "where product_id = '$product_id'")[0]['image_url'];
-                    ?>
+                ?>
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
@@ -171,13 +171,13 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
-                        title: 'Success!',
-                        text: 'Product added to cart!',
                         icon: 'success',
-                        confirmButtonText: 'OK'
+                        title: 'Product added to cart!',
+                        showConfirmButton: false,
+                        timer: 1500
                     }).then(() => {
                         window.location.reload();
                     });
@@ -195,13 +195,13 @@ $product = $query->getProduct($product_id);
             xhr.open('GET', url, true);
             xhr.send();
 
-            xhr.onreadystatechange = function () {
+            xhr.onreadystatechange = function() {
                 if (xhr.readyState == 4 && xhr.status == 200) {
                     Swal.fire({
-                        title: 'Success!',
-                        text: 'Product added to wishlist!',
                         icon: 'success',
-                        confirmButtonText: 'OK'
+                        title: 'Product added to wishlist!',
+                        showConfirmButton: false,
+                        timer: 1500
                     });
                 }
             };
