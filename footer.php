@@ -4,7 +4,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__about__logo">
-                        <a href="./"><img src="images/logo.png" alt=""></a>
+                        <a href="./"><img src="./src/images/logo.png" alt=""></a>
                     </div>
                     <ul>
                         <li>Address: Samarkand</li>

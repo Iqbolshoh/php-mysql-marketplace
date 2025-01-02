@@ -19,14 +19,14 @@ $product = $query->getProduct($product_id);
     <link rel="icon" href="./favicon.ico">
     <title>Product | <?php echo $product['name']; ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -44,16 +44,16 @@ $product = $query->getProduct($product_id);
                         <div class="product__details__pic__item">
                             <?php
                             $arr = $query->getProductImageID($product_id);
-                            echo '<img " class="product__details__pic__item--large" src="' . "images/products/" . $query->getProductImage($arr[0]) . '" alt="">';
+                            echo '<img " class="product__details__pic__item--large" src="' . "./src/images/products/" . $query->getProductImage($arr[0]) . '" alt="">';
                             ?>
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <?php
                             foreach ($arr as $id) {
                                 if (count($arr)) {
-                                    echo '<img data-imgbigurl="' . "images/products/" . $query->getProductImage($id) . '" src="' . "images/products/" . $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "./src/images/products/" . $query->getProductImage($id) . '" src="' . "./src/images/products/" . $query->getProductImage($id) . '" alt="">';
                                 } elseif ($id + 1 <= end($arr)) {
-                                    echo '<img data-imgbigurl="' . "images/products/" . $query->getProductImage($id + 1) . '" src="' . "images/products/" . $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "./src/images/products/" . $query->getProductImage($id + 1) . '" src="' . "./src/images/products/" . $query->getProductImage($id) . '" alt="">';
                                 }
                             }
                             ?>
@@ -126,7 +126,7 @@ $product = $query->getProduct($product_id);
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
-                                data-setbg="images/products/<?php echo $image ?>">
+                                data-setbg="./src/images/products/<?php echo $image ?>">
                                 <ul class="product__item__pic__hover">
                                     <li><a onclick="addToWishlist(<?php echo $product_id; ?>)"><i
                                                 class="fa fa-heart"></i></a></li>
@@ -155,14 +155,14 @@ $product = $query->getProduct($product_id);
 
     <?php include 'footer.php'; ?>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./src/js/jquery-3.3.1.min.js"></script>
+    <script src="./src/js/bootstrap.min.js"></script>
+    <script src="./src/js/jquery.nice-select.min.js"></script>
+    <script src="./src/js/jquery-ui.min.js"></script>
+    <script src="./src/js/jquery.slicknav.js"></script>
+    <script src="./src/js/mixitup.min.js"></script>
+    <script src="./src/js/owl.carousel.min.js"></script>
+    <script src="./src/js/main.js"></script>
 
     <script>
         function addToCart(productId, quantity) {

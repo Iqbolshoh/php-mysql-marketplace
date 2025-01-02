@@ -16,14 +16,14 @@ $cartItems = $query->getCartItems($_SESSION['id']);
     <link rel="icon" href="./favicon.ico">
     <title>Shopping Cart</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -94,7 +94,7 @@ $cartItems = $query->getCartItems($_SESSION['id']);
                                     <?php foreach ($cartItems as $item) { ?>
                                         <tr>
                                             <td class="shoping__cart__item">
-                                                <img src="images/products/<?php echo $query->getProductImages($item['id'])[0] ?>"
+                                                <img src="./src/images/products/<?php echo $query->getProductImages($item['id'])[0] ?>"
                                                     style="width: 55px;" alt="">
                                                 <h5><?php echo $item['name']; ?></h5>
                                             </td>
@@ -148,14 +148,14 @@ $cartItems = $query->getCartItems($_SESSION['id']);
 
     <?php include 'footer.php'; ?>
 
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./src/js/jquery-3.3.1.min.js"></script>
+    <script src="./src/js/bootstrap.min.js"></script>
+    <script src="./src/js/jquery.nice-select.min.js"></script>
+    <script src="./src/js/jquery-ui.min.js"></script>
+    <script src="./src/js/jquery.slicknav.js"></script>
+    <script src="./src/js/mixitup.min.js"></script>
+    <script src="./src/js/owl.carousel.min.js"></script>
+    <script src="./src/js/main.js"></script>
 
     <script>
         function updateQuantity(itemId) {

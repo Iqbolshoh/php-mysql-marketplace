@@ -25,14 +25,14 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="./src/css/style.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 </head>
 
@@ -67,7 +67,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
                     <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="product__discount__item">
                             <div class="product__discount__item__pic set-bg"
-                                data-setbg="images/products/<?php echo $image ?>">
+                                data-setbg="./src/images/products/<?php echo $image ?>">
                                 <ul class="product__item__pic__hover">
                                     <li><a onclick="addToWishlist(<?php echo $product_id; ?>)"><i
                                                 class="fa fa-heart"></i></a></li>
@@ -100,14 +100,14 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="./src/js/jquery-3.3.1.min.js"></script>
+    <script src="./src/js/bootstrap.min.js"></script>
+    <script src="./src/js/jquery.nice-select.min.js"></script>
+    <script src="./src/js/jquery-ui.min.js"></script>
+    <script src="./src/js/jquery.slicknav.js"></script>
+    <script src="./src/js/mixitup.min.js"></script>
+    <script src="./src/js/owl.carousel.min.js"></script>
+    <script src="./src/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>

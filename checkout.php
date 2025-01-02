@@ -255,7 +255,7 @@ $price_current_Sum = 0;
 
                         $price_old_Sum += $price_old * $item['number_of_products'];
                         $price_current_Sum += $price_current * $item['number_of_products'];
-                        ?>
+                    ?>
                         <tr>
                             <td><?= $index + 1 ?></td>
                             <td><?= htmlspecialchars($product['name']); ?></td>
@@ -276,7 +276,7 @@ $price_current_Sum = 0;
                                 </div>
                             </td>
                         </tr>
-                        <?php
+                    <?php
                     }
                     ?>
                 </tbody>
