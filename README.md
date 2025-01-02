@@ -2,7 +2,7 @@
 
 This is a marketplace platform built using PHP and MySQL. It provides a user-friendly interface where users can buy and sell various products. The project showcases the use of PHP for server-side scripting and MySQL for database management.
 
-![Marketplace Banner](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/banner.png?raw=true)
+![Marketplace Banner](./src/images/banner.png?raw=true)
 
 ### Features
 
@@ -14,12 +14,12 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 
 ### Login Page
 
-![Roles](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/roles.png?raw=true)
+![Roles](./src/images/roles.png?raw=true)
 
 ## User Roles
 
 ### Admin
-![Admin](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/admin.png?raw=true)
+![Admin](./src/images/admin.png?raw=true)
    - Manages the entire marketplace.
    - Can view and manage all users and their products.
    - Can update or delete any listings.
@@ -28,13 +28,13 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 
 
 ### Seller
-![Seller](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/seller.png?raw=true)
+![Seller](./src/images/seller.png?raw=true)
    - Can list products for sale and manage their own product listings.
    - Can view and update their orders and order statuses.
    - Manages their own profile and product details.
 
 ### User
-![User](https://github.com/Iqbolshoh/php-mysql-marketplace/blob/main/images/user.png?raw=true)
+![User](./src/images/user.png?raw=true)
    - Can browse products, add them to the shopping cart, and make purchases.
    - Can create and manage their own profile.
    - Can view their own order history and track orders.
