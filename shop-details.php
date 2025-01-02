@@ -34,7 +34,7 @@ $product = $query->getProduct($product_id);
 
 <body>
 
-    <?php include 'header.php'; ?>
+    <?php include './includes/header.php'; ?>
 
     <section class="product-details spad">
         <div class="container">
@@ -153,7 +153,7 @@ $product = $query->getProduct($product_id);
         </div>
     </section>
 
-    <?php include 'footer.php'; ?>
+    <?php include './includes/footer.php'; ?>
 
     <script src="./src/js/jquery-3.3.1.min.js"></script>
     <script src="./src/js/bootstrap.min.js"></script>

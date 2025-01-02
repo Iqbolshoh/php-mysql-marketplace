@@ -38,7 +38,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
 
 <body>
 
-    <?php include 'header.php'; ?>
+    <?php include './includes/header.php'; ?>
 
     <!-- Product Section Begin -->
     <section class="product spad">
@@ -96,7 +96,7 @@ $name = $query->select('categories', 'category_name', "where id = '$category_id'
     <!-- Product Section End -->
 
     <!-- Footer Section Begin -->
-    <?php include 'footer.php'; ?>
+    <?php include './includes/footer.php'; ?>
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->

@@ -56,7 +56,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
 
 <body>
 
-    <?php include 'header.php'; ?>
+    <?php include './includes/header.php'; ?>
 
 
     <section class="shoping-cart spad">
@@ -126,7 +126,7 @@ $cartItemsHeart = $query->getWishes($_SESSION['id']);
         </div>
     </section>
 
-    <?php include 'footer.php'; ?>
+    <?php include './includes/footer.php'; ?>
 
     <script src="./src/js/jquery-3.3.1.min.js"></script>
     <script src="./src/js/bootstrap.min.js"></script>
