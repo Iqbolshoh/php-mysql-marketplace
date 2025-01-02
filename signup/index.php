@@ -5,8 +5,15 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    header("Location: ../");
-    exit;
+    if ($user['role'] == 'admin') {
+        header("Location: ../admin/");
+        exit;
+    } else if ($user['role'] == 'seller') {
+        header("Location: ../seller/");
+    } else {
+        header("Location: ../");
+        exit;
+    }
 }
 
 if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
