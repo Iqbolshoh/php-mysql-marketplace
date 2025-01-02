@@ -65,10 +65,10 @@ CREATE TABLE wishes (
 );
 
 INSERT INTO accounts (id, name, number, email, username, password, role, status, registration_date) VALUES
-(1, 'Iqbolshoh', '997799333', 'Iqbolshoh@gmail.com', 'Iqbolshoh', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'admin', 'active', '2024-05-14 11:17:25'),
-(2, 'seller', '997733999', 'seller@gmail.com', 'seller', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'seller', 'active', '2024-05-14 11:17:25'),
-(3, 'user', '993399777', 'user@gmail.com', 'user', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25'),
-(4, 'userAKA', '993399177', 'userAKA@gmail.com', 'userAKA', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25');
+(1, 'Iqbolshoh', '+998997799333', 'Iqbolshoh@gmail.com', 'Iqbolshoh', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'admin', 'active', '2024-05-14 11:17:25'),
+(2, 'seller', '+998997733999', 'seller@gmail.com', 'seller', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'seller', 'active', '2024-05-14 11:17:25'),
+(3, 'user', '+998993399777', 'user@gmail.com', 'user', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25'),
+(4, 'userAKA', '+998993399177', 'userAKA@gmail.com', 'userAKA', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25');
 
 INSERT INTO categories (id, category_name) VALUES
 (1, 'Phone'),

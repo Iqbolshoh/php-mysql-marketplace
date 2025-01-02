@@ -145,12 +145,12 @@ if (isset($_POST['submit'])) {
         <form method="post" action="" enctype="multipart/form-data" id="signup-form">
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="text" name="name" placeholder="Full Name" required maxlength="30">
             </div>
 
             <div class="form-group">
                 <label for="number">Number</label>
-                <input type="phone" name="number" placeholder="Tell: +998991234567" required>
+                <input type="phone" name="number" placeholder="Tell: +998991234567" required maxlength="20">
                 <p class="error-message" id="number-error"></p>
             </div>
 
@@ -166,13 +166,13 @@ if (isset($_POST['submit'])) {
 
             <div class="form-group">
                 <label for="name">Email</label>
-                <input type="email" name="email" placeholder="Email" required>
+                <input type="email" name="email" placeholder="Email" required maxlength="255">
                 <p class="error-message" id="email-error"></p>
             </div>
 
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" name="username" placeholder="Username" required>
+                <input type="text" name="username" placeholder="Username" required maxlength="255">
                 <p class="error-message" id="username-error"></p>
             </div>
 
