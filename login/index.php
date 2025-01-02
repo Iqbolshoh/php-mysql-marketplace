@@ -10,6 +10,38 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     exit;
 }
 
+if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
+
+    if (session_id() !== $_COOKIE['session_token']) {
+        session_write_close();
+        session_id($_COOKIE['session_token']);
+        session_start();
+    }
+
+    $username = $_COOKIE['username'];
+
+    $result = $query->select('accounts', 'id, role', "username = $username");
+
+    if (!empty($result)) {
+        $user = $result[0];
+
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+
+        if ($user['role'] == 'admin') {
+            header("Location: ../admin/");
+            exit;
+        } else if ($user['role'] == 'seller') {
+            header("Location: ../seller/");
+        } else {
+            header("Location: ../");
+            exit;
+        }
+    }
+}
+
 $error = '';
 
 if (isset($_POST['submit'])) {
@@ -85,7 +117,7 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             <?php if ($error): ?>
                 Swal.fire({
                     icon: 'error',
@@ -98,7 +130,7 @@ if (isset($_POST['submit'])) {
                 });
             <?php endif; ?>
 
-            document.getElementById('toggle-password').addEventListener('click', function () {
+            document.getElementById('toggle-password').addEventListener('click', function() {
                 const passwordField = document.getElementById('password');
                 const toggleIcon = this.querySelector('i');
 
