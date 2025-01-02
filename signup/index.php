@@ -239,7 +239,7 @@ if (isset($_POST['submit'])) {
 
 
         $(document).ready(function() {
-            var button_active = true; // Initially the button is active
+            var button_active = true;
 
             function isOne(value, callback) {
                 $.ajax({
@@ -260,9 +260,9 @@ if (isset($_POST['submit'])) {
 
             function toggleSubmitButton() {
                 if (button_active) {
-                    $('#submit').prop('disabled', false); // Enable the submit button
+                    $('#submit').prop('disabled', false); 
                 } else {
-                    $('#submit').prop('disabled', true); // Disable the submit button
+                    $('#submit').prop('disabled', true); 
                 }
             }
 
