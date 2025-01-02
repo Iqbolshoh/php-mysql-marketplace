@@ -101,13 +101,13 @@ if (isset($_POST['submit'])) {
 
         <form method="post" action="" enctype="multipart/form-data" id="signup-form">
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" placeholder="Name" required>
+                <label for="name">Full Name</label>
+                <input type="text" name="name" placeholder="Full Name" required>
             </div>
 
             <div class="form-group">
                 <label for="number">Number</label>
-                <input type="phone" name="number" placeholder="Number" required>
+                <input type="phone" name="number" placeholder="Tell: +998991234567" required>
                 <p class="error-message" id="number-error"></p>
             </div>
 
@@ -122,7 +122,7 @@ if (isset($_POST['submit'])) {
 
 
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="name">Email</label>
                 <input type="email" name="email" placeholder="Email" required>
                 <p class="error-message" id="email-error"></p>
             </div>
@@ -136,7 +136,7 @@ if (isset($_POST['submit'])) {
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-container">
-                    <input type="password" id="password" name="password" required="" maxlength="255">
+                    <input type="password" id="password" name="password" required maxlength="255">
                     <button type="button" id="toggle-password" class="password-toggle"><i
                             class="fas fa-eye"></i></button>
                 </div>
