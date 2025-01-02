@@ -258,18 +258,19 @@ if (isset($_POST['submit'])) {
             $('input[name="username"]').on('input', function() {
                 var username = $(this).val();
                 if (username.length > 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
-                    $('#username-error').text('Username should contain only letters, digits, and underscores.');
+                    $('#username-error').text('Username can only contain letters, numbers, and underscores!');
                 } else {
                     $('#username-error').text('');
-                }
-                if (username.length > 0) {
-                    isOne(username, function(result) {
-                        if (result) {
-                            $('#username-error').text('This username already exists.');
-                        } else {
-                            $('#username-error').text('');
-                        }
-                    });
+
+                    if (username.length > 0) {
+                        isOne(username, function(result) {
+                            if (result) {
+                                $('#username-error').text('This username already exists.');
+                            } else {
+                                $('#username-error').text('');
+                            }
+                        });
+                    }
                 }
             });
         });
