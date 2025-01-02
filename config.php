@@ -1,6 +1,6 @@
 <?php
 
-class Query
+class Database
 {
     private $conn;
 

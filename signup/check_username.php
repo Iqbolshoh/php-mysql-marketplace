@@ -1,6 +1,6 @@
 <?php
 include '../config.php';
-$query = new Query();
+$query = new Database();
 
 if (isset($_POST['username'])) {
     $username = $_POST['username'];
