@@ -5,10 +5,10 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    if ($user['role'] == 'admin') {
+    if ($_SESSION['role'] == 'admin') {
         header("Location: ../admin/");
         exit;
-    } else if ($user['role'] == 'seller') {
+    } else if ($_SESSION['role'] == 'seller') {
         header("Location: ../seller/");
     } else {
         header("Location: ../");
@@ -26,8 +26,8 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
 
     $username = $_COOKIE['username'];
 
-    $result = $query->select('accounts', 'id, role', "username = $username");
-
+    $result = $query->select('accounts', 'id, role', "WHERE username = '$username'");
+ 
     if (!empty($result)) {
         $user = $result[0];
 
@@ -87,8 +87,15 @@ if (isset($_POST['submit'])) {
                 "icon" => "success"
             ];
 
-            header("Location: ../");
-            exit;
+            if ($user[0]['role'] == 'admin') {
+                header("Location: ../admin/");
+                exit;
+            } else if ($$user[0]['role'] == 'seller') {
+                header("Location: ../seller/");
+            } else {
+                header("Location: ../");
+                exit;
+            }
         } else {
             $msg = [
                 "title" => "Error!",

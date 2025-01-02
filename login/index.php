@@ -5,10 +5,10 @@ include '../config.php';
 $query = new Query();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-    if ($user['role'] == 'admin') {
+    if ($_SESSION['role'] == 'admin') {
         header("Location: ../admin/");
         exit;
-    } else if ($user['role'] == 'seller') {
+    } else if ($_SESSION['role'] == 'seller') {
         header("Location: ../seller/");
     } else {
         header("Location: ../");
@@ -26,8 +26,8 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
 
     $username = $_COOKIE['username'];
 
-    $result = $query->select('accounts', 'id, role', "username = $username");
-
+    $result = $query->select('accounts', 'id, role', "WHERE username = '$username'");
+ 
     if (!empty($result)) {
         $user = $result[0];
 
@@ -54,10 +54,15 @@ if (isset($_POST['submit'])) {
     $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? trim($_POST['password']) : '';
 
+
     if ($username && $password) {
         $user = $query->authenticate($username, $password, 'accounts');
 
         if ($user) {
+
+            setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
+            setcookie('session_token',  session_id(), time() + (86400 * 30), "/", "", true, true);
+
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = isset($user[0]['id']) ? $user[0]['id'] : null;
             $_SESSION['name'] = isset($user[0]['name']) ? $user[0]['name'] : null;
@@ -66,8 +71,15 @@ if (isset($_POST['submit'])) {
             $_SESSION['username'] = isset($user[0]['username']) ? $user[0]['username'] : null;
             $_SESSION['role'] = isset($user[0]['role']) ? $user[0]['role'] : 'user';
 
-            header("Location: ../");
-            exit;
+            if ($user[0]['role'] == 'admin') {
+                header("Location: ../admin/");
+                exit;
+            } else if ($$user[0]['role'] == 'seller') {
+                header("Location: ../seller/");
+            } else {
+                header("Location: ../");
+                exit;
+            }
         } else {
             $error = "The login or password is incorrect.";
         }
