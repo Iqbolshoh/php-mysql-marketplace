@@ -17,7 +17,9 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
         session_start();
     }
 
-    $result = $query->select('accounts', 'id, role', "username = ?", [$_COOKIE['username']], 's');
+    $username = $_COOKIE['username'];
+
+    $result = $query->select('accounts', 'id, role', "username = $username");
 
     if (!empty($result)) {
         $user = $result[0];
@@ -48,7 +50,7 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
-    
+
     setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
     setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true);
 
