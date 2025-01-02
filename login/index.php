@@ -154,19 +154,30 @@ if (isset($_POST['submit'])) {
                 }
             });
 
-            document.getElementById('username').addEventListener('input', function() {
-                const usernameField = this.value;
-                const errorElement = document.getElementById('username-error');
-                const usernameRegex = /^[a-zA-Z0-9_]+$/;
+            const usernameInput = document.getElementById('username');
+            const errorElement = document.getElementById('username-error');
+            const usernameRegex = /^[a-zA-Z0-9_]+$/;
 
-                if (usernameField && !usernameRegex.test(usernameField)) {
+            usernameInput.addEventListener('input', function() {
+                const usernameValue = this.value;
+
+                if (usernameValue && !usernameRegex.test(usernameValue)) {
                     errorElement.textContent = "Username can only contain letters, numbers, and underscores!";
                 } else {
                     errorElement.textContent = "";
                 }
             });
+
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                if (!usernameRegex.test(usernameInput.value)) {
+                    event.preventDefault();
+                    errorElement.textContent = "Username can only contain letters, numbers, and underscores!";
+                }
+            });
         });
     </script>
+
 </body>
 
 </html>
