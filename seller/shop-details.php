@@ -19,14 +19,14 @@ $product = $query->getProduct($product_id);
     <title>Product | <?php echo $product['name']; ?></title>
     <link rel="icon" href="../favicon.ico">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -39,16 +39,16 @@ $product = $query->getProduct($product_id);
                         <div class="product__details__pic__item">
                             <?php
                             $arr = $query->getProductImageID($product_id);
-                            echo '<img " class="product__details__pic__item--large" src="' . "../images/products/" . $query->getProductImage($arr[0]) . '" alt="">';
+                            echo '<img " class="product__details__pic__item--large" src="' . "../src/images/products/" . $query->getProductImage($arr[0]) . '" alt="">';
                             ?>
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <?php
                             foreach ($arr as $id) {
                                 if (count($arr)) {
-                                    echo '<img data-imgbigurl="' . "../images/products/" . $query->getProductImage($id) . '" src="' . "../images/products/" . $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "../src/images/products/" . $query->getProductImage($id) . '" src="' . "../src/images/products/" . $query->getProductImage($id) . '" alt="">';
                                 } elseif ($id + 1 <= end($arr)) {
-                                    echo '<img data-imgbigurl="' . "../images/products/" . $query->getProductImage($id + 1) . '" src="' . "../images/products/" . $query->getProductImage($id) . '" alt="">';
+                                    echo '<img data-imgbigurl="' . "../src/images/products/" . $query->getProductImage($id + 1) . '" src="' . "../src/images/products/" . $query->getProductImage($id) . '" alt="">';
                                 }
                             }
                             ?>
@@ -86,16 +86,16 @@ $product = $query->getProduct($product_id);
         </div>
     </section>
 
-    <?php include '../footer.php'; ?>
+    <?php include '../includes/footer.php'; ?>
 
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../src/js/jquery-3.3.1.min.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+    <script src="../src/js/jquery.nice-select.min.js"></script>
+    <script src="../src/js/jquery-ui.min.js"></script>
+    <script src="../src/js/jquery.slicknav.js"></script>
+    <script src="../src/js/mixitup.min.js"></script>
+    <script src="../src/js/owl.carousel.min.js"></script>
+    <script src="../src/js/main.js"></script>
 
     <script>
         function openProductDetails(productId) {

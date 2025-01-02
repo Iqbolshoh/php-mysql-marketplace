@@ -15,7 +15,7 @@ $seller_id = $_SESSION['id'];
     <link rel="icon" href="../favicon.ico">
     <title>AdminLTE 3 | My Products</title>
     <?php include 'includes/css.php'; ?>
-    <link rel="stylesheet" href="../css/card.css" type="text/css">
+    <link rel="stylesheet" href="../src/css/card.css" type="text/css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -114,7 +114,7 @@ $seller_id = $_SESSION['id'];
                         <div class="col-lg-2 col-md-4 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg"
-                                    data-setbg="../images/products/<?php echo $productImages[0]['image_url']; ?>">
+                                    data-setbg="../src/images/products/<?php echo $productImages[0]['image_url']; ?>">
                                     <ul class="product__item__pic__hover" style="height: 20px;">
                                         <li><a href="#" onclick="delete_product(<?php echo $product['id']; ?>)"><i
                                                     class="fa fa-trash"></i></a></li>
@@ -141,16 +141,16 @@ $seller_id = $_SESSION['id'];
         <?php include 'includes/footer.php'; ?>
     </div>
 
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/adminlte.js"></script>
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
+    <script src="../src/js/jquery.min.js"></script>
+    <script src="../src/js/adminlte.js"></script>
+    <script src="../src/js/jquery-3.3.1.min.js"></script>
+    <script src="../src/js/bootstrap.min.js"></script>
+    <script src="../src/js/jquery.nice-select.min.js"></script>
+    <script src="../src/js/jquery-ui.min.js"></script>
+    <script src="../src/js/jquery.slicknav.js"></script>
+    <script src="../src/js/mixitup.min.js"></script>
+    <script src="../src/js/owl.carousel.min.js"></script>
+    <script src="../src/js/main.js"></script>
 
     <script>
         function delete_product(productId) {

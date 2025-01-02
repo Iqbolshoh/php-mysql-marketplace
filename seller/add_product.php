@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $product_id = $query->lastInsertId('products', $data);
 
     if ($product_id) {
-        $uploaded_images = $query->saveImagesToDatabase($_FILES['image'], "../images/products/", $product_id);
+        $uploaded_images = $query->saveImagesToDatabase($_FILES['image'], "../src/images/products/", $product_id);
         header("Location: ./");
     }
 }

@@ -7,7 +7,7 @@ if (isset($_GET['product_id']) && isset($_SESSION['id'])) {
 
     $productImages = $query->select('product_images', "image_url", "WHERE product_id = $productId");
     foreach ($productImages as $image) {
-        $imageFilePath = '../images/products/' . $image['image_url'];
+        $imageFilePath = '../src/images/products/' . $image['image_url'];
         if (file_exists($imageFilePath)) {
             unlink($imageFilePath);
         }
