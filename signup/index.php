@@ -139,7 +139,6 @@ if (isset($_POST['submit'])) {
     <?php endif; ?>
 
     <div class="form-container">
-
         <h2>Sign Up</h2>
 
         <form method="post" action="" enctype="multipart/form-data" id="signup-form">
@@ -149,8 +148,8 @@ if (isset($_POST['submit'])) {
             </div>
 
             <div class="form-group">
-                <label for="number">Number</label>
-                <input type="phone" name="number" placeholder="Tell: +998991234567" required maxlength="20">
+                <label for="number">Phone Number</label>
+                <input type="text" name="number" placeholder="Tel: +998991234567" required maxlength="20">
                 <p class="error-message" id="number-error"></p>
             </div>
 
@@ -163,9 +162,8 @@ if (isset($_POST['submit'])) {
                 </select>
             </div>
 
-
             <div class="form-group">
-                <label for="name">Email</label>
+                <label for="email">Email</label>
                 <input type="email" name="email" placeholder="Email" required maxlength="255">
                 <p class="error-message" id="email-error"></p>
             </div>
@@ -179,194 +177,80 @@ if (isset($_POST['submit'])) {
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-container">
-                    <input type="password" id="password" name="password" required maxlength="255">
-                    <button type="button" id="toggle-password" class="password-toggle"><i
-                            class="fas fa-eye"></i></button>
+                    <input type="password" id="password" name="password" placeholder="Password" required maxlength="255">
+                    <button type="button" id="toggle-password" class="password-toggle">
+                        <i class="fas fa-eye"></i>
+                    </button>
                 </div>
             </div>
 
             <div class="form-group">
-                <input type="submit" name="submit" id="submit" value="Submit">
+                <input type="submit" name="submit" value="Submit">
             </div>
 
             <div class="text-center">
                 <p>Already have an account? <a href="../login/">Log in</a></p>
             </div>
         </form>
-
     </div>
 
     <script>
-        $('#file-input').on('change', function() {
-            var fileName = $(this).val().split('\\').pop();
-            $(this).next('.custom-file-label').html(fileName);
-        });
-
         document.getElementById('toggle-password').addEventListener('click', function() {
             const passwordField = document.getElementById('password');
             const toggleIcon = this.querySelector('i');
 
             if (passwordField.type === 'password') {
                 passwordField.type = 'text';
-                toggleIcon.classList.remove('fa-eye');
-                toggleIcon.classList.add('fa-eye-slash');
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
             } else {
                 passwordField.type = 'password';
-                toggleIcon.classList.remove('fa-eye-slash');
-                toggleIcon.classList.add('fa-eye');
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
             }
         });
 
-        $(document).ready(function() {
-            $('input[name="number"]').on('input', function() {
-                var number = $(this).val();
-                if (number.length > 0 && !/^\d+$/.test(number)) {
-                    $('#number-error').text('Number must contain only digits');
-                } else {
-                    $('#number-error').text('');
-                }
-            });
+        document.querySelector('input[name="username"]').addEventListener('input', function() {
+            const username = this.value;
+            const errorElement = document.getElementById('username-error');
+            const regex = /^[a-zA-Z0-9_]+$/;
 
-            $('input[name="email"]').on('input', function() {
-                var email = $(this).val();
-                if (email.length > 0 && !/\S+@\S+\.\S+/.test(email)) {
-                    $('#email-error').text('Invalid email.');
-                } else {
-                    $('#email-error').text('');
-                }
-            });
-        });
-
-        $(document).ready(function() {
-            function isOne(value, callback) {
-                $.ajax({
-                    url: 'check_username.php',
-                    type: 'POST',
-                    data: {
-                        username: value
-                    },
-                    success: function(response) {
-                        if (response === 'exists') {
-                            callback(true);
-                        } else {
-                            callback(false);
-                        }
-                    }
-                });
-            }
-
-            $('input[name="username"]').on('input', function() {
-                var username = $(this).val();
-                if (username.length > 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
-                    $('#username-error').text('Username should contain only letters, digits, and underscores.');
-                } else {
-                    $('#username-error').text('');
-                }
-                if (username.length > 0) {
-                    isOne(username, function(result) {
-                        if (result) {
-                            $('#username-error').text('This username already exists.');
-                        } else {
-                            $('#username-error').text('');
-                        }
-                    });
-                }
-            });
-        });
-
-        $(document).ready(function() {
-            function isEmailExists(email, callback) {
-                $.ajax({
-                    url: 'check_email.php',
-                    type: 'POST',
-                    data: {
-                        email: email
-                    },
-                    success: function(response) {
-                        if (response === 'exists') {
-                            callback(true);
-                        } else {
-                            callback(false);
-                        }
-                    }
-                });
-            }
-
-            $('input[name="email"]').on('input', function() {
-                var email = $(this).val();
-                if (email.length > 0 && !isValidEmail(email)) {
-                    $('#email-error').text('Invalid email.');
-                } else {
-                    $('#email-error').text('');
-                }
-                if (email.length > 0) {
-                    isEmailExists(email, function(result) {
-                        if (result) {
-                            $('#email-error').text('This email already exists.');
-                        } else {
-                            $('#email-error').text('');
-                        }
-                    });
-                }
-            });
-
-            function isValidEmail(email) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+            if (username && !regex.test(username)) {
+                errorElement.textContent = 'Username can only contain letters, numbers, and underscores!';
+            } else {
+                errorElement.textContent = '';
             }
         });
 
-        $(document).ready(function() {
-            function isNumberExists(number, callback) {
-                $.ajax({
-                    url: 'check_number.php',
-                    type: 'POST',
-                    data: {
-                        number: number
-                    },
-                    success: function(response) {
-                        if (response === 'exists') {
-                            callback(true);
-                        } else {
-                            callback(false);
-                        }
-                    }
-                });
-            }
+        document.querySelector('input[name="number"]').addEventListener('input', function() {
+            const number = this.value;
+            const errorElement = document.getElementById('number-error');
+            const regex = /^[+\d\s()-]+$/;
 
-            $('input[name="number"]').on('input', function() {
-                var number = $(this).val();
-                if (number.length > 0 && !/^\d+$/.test(number)) {
-                    $('#number-error').text('Number must contain only digits');
-                } else {
-                    $('#number-error').text('');
-                }
-                if (number.length > 0) {
-                    isNumberExists(number, function(result) {
-                        if (result) {
-                            $('#number-error').text('This number already exists.');
-                        } else {
-                            $('#number-error').text('');
-                        }
-                    });
-                }
-            });
+            if (number && !regex.test(number)) {
+                errorElement.textContent = 'Phone number must be valid!';
+            } else {
+                errorElement.textContent = '';
+            }
         });
 
-        function hideErrorMessage() {
-            $('.error').hide();
+        document.querySelector('input[name="email"]').addEventListener('input', function() {
+            const email = this.value;
+            const errorElement = document.getElementById('email-error');
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (email && !regex.test(email)) {
+                errorElement.textContent = 'Invalid email address!';
+            } else {
+                errorElement.textContent = '';
+            }
+        });
+
+        function hideErrorMessages() {
+            document.querySelectorAll('.error-message').forEach(msg => msg.textContent = '');
         }
+
+        setTimeout(hideErrorMessages, 4000);
     </script>
-
-    <?php if (isset($msg)): ?>
-        <script>
-            $(document).ready(function() {
-                setTimeout(function() {
-                    hideErrorMessage();
-                }, 4000);
-            });
-        </script>
-    <?php endif ?>
-
 </body>
+
 
 </html>

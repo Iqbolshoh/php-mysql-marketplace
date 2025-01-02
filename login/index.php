@@ -88,28 +88,33 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../css/login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
 </head>
-<style>
-    body {
-        height: 100vh;
-    }
-</style>
 
 <body>
-
     <div class="form-container">
         <h1>Login</h1>
         <form method="post" action="">
             <div class="form-group">
                 <label for="username">Username or Email</label>
                 <input type="text" id="username" name="username" required maxlength="255">
+                <p class="error-message" id="username-error"></p>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" required maxlength="255">
-                    <button type="button" id="toggle-password" class="password-toggle"><i
-                            class="fas fa-eye"></i></button>
+                    <button type="button" id="toggle-password" class="password-toggle"><i class="fas fa-eye"></i></button>
                 </div>
             </div>
             <div class="form-group">
@@ -142,17 +147,26 @@ if (isset($_POST['submit'])) {
 
                 if (passwordField.type === 'password') {
                     passwordField.type = 'text';
-                    toggleIcon.classList.remove('fa-eye');
-                    toggleIcon.classList.add('fa-eye-slash');
+                    toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
                 } else {
                     passwordField.type = 'password';
-                    toggleIcon.classList.remove('fa-eye-slash');
-                    toggleIcon.classList.add('fa-eye');
+                    toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
+                }
+            });
+
+            document.getElementById('username').addEventListener('input', function() {
+                const usernameField = this.value;
+                const errorElement = document.getElementById('username-error');
+                const usernameRegex = /^[a-zA-Z0-9_]+$/;
+
+                if (usernameField && !usernameRegex.test(usernameField)) {
+                    errorElement.textContent = "Username can only contain letters, numbers, and underscores!";
+                } else {
+                    errorElement.textContent = "";
                 }
             });
         });
     </script>
-
 </body>
 
 </html>
