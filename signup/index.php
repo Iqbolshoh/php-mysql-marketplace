@@ -58,9 +58,6 @@ if (isset($_POST['submit'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
-    setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true);
-
     $existingUser = $query->executeQuery("SELECT * FROM accounts WHERE username='$username' OR email='$email' OR number='$number'");
 
     if ($existingUser->num_rows > 0) {
@@ -80,6 +77,9 @@ if (isset($_POST['submit'])) {
             $_SESSION['email'] = $email;
             $_SESSION['username'] = $username;
             $_SESSION['role'] = $role;
+
+            setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
+            setcookie('session_token',  session_id(), time() + (86400 * 30), "/", "", true, true);
 
             $msg = [
                 "title" => "Success!",
@@ -260,9 +260,9 @@ if (isset($_POST['submit'])) {
 
             function toggleSubmitButton() {
                 if (button_active) {
-                    $('#submit').prop('disabled', false); 
+                    $('#submit').prop('disabled', false);
                 } else {
-                    $('#submit').prop('disabled', true); 
+                    $('#submit').prop('disabled', true);
                 }
             }
 
