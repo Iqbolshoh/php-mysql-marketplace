@@ -9,6 +9,36 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
     exit;
 }
 
+if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
+
+    if (session_id() !== $_COOKIE['session_token']) {
+        session_write_close();
+        session_id($_COOKIE['session_token']);
+        session_start();
+    }
+
+    $result = $query->select('accounts', 'id, role', "username = ?", [$_COOKIE['username']], 's');
+
+    if (!empty($result)) {
+        $user = $result[0];
+
+        $_SESSION['loggedin'] = true;
+        $_SESSION['username'] = $_COOKIE['username'];
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+
+        if ($user['role'] == 'admin') {
+            header("Location: ../admin/");
+            exit;
+        } else if ($user['role'] == 'seller') {
+            header("Location: ../seller/");
+        } else {
+            header("Location: ../");
+            exit;
+        }
+    }
+}
+
 $msg = [];
 
 if (isset($_POST['submit'])) {
@@ -18,6 +48,9 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $username = $_POST['username'];
     $password = $_POST['password'];
+    
+    setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
+    setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true);
 
     $existingUser = $query->executeQuery("SELECT * FROM accounts WHERE username='$username' OR email='$email' OR number='$number'");
 
@@ -55,6 +88,7 @@ if (isset($_POST['submit'])) {
         }
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -154,12 +188,12 @@ if (isset($_POST['submit'])) {
     </div>
 
     <script>
-        $('#file-input').on('change', function () {
+        $('#file-input').on('change', function() {
             var fileName = $(this).val().split('\\').pop();
             $(this).next('.custom-file-label').html(fileName);
         });
 
-        document.getElementById('toggle-password').addEventListener('click', function () {
+        document.getElementById('toggle-password').addEventListener('click', function() {
             const passwordField = document.getElementById('password');
             const toggleIcon = this.querySelector('i');
 
@@ -174,8 +208,8 @@ if (isset($_POST['submit'])) {
             }
         });
 
-        $(document).ready(function () {
-            $('input[name="number"]').on('input', function () {
+        $(document).ready(function() {
+            $('input[name="number"]').on('input', function() {
                 var number = $(this).val();
                 if (number.length > 0 && !/^\d+$/.test(number)) {
                     $('#number-error').text('Number must contain only digits');
@@ -184,7 +218,7 @@ if (isset($_POST['submit'])) {
                 }
             });
 
-            $('input[name="email"]').on('input', function () {
+            $('input[name="email"]').on('input', function() {
                 var email = $(this).val();
                 if (email.length > 0 && !/\S+@\S+\.\S+/.test(email)) {
                     $('#email-error').text('Invalid email.');
@@ -194,13 +228,15 @@ if (isset($_POST['submit'])) {
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             function isOne(value, callback) {
                 $.ajax({
                     url: 'check_username.php',
                     type: 'POST',
-                    data: { username: value },
-                    success: function (response) {
+                    data: {
+                        username: value
+                    },
+                    success: function(response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -210,7 +246,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="username"]').on('input', function () {
+            $('input[name="username"]').on('input', function() {
                 var username = $(this).val();
                 if (username.length > 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
                     $('#username-error').text('Username should contain only letters, digits, and underscores.');
@@ -218,7 +254,7 @@ if (isset($_POST['submit'])) {
                     $('#username-error').text('');
                 }
                 if (username.length > 0) {
-                    isOne(username, function (result) {
+                    isOne(username, function(result) {
                         if (result) {
                             $('#username-error').text('This username already exists.');
                         } else {
@@ -229,13 +265,15 @@ if (isset($_POST['submit'])) {
             });
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             function isEmailExists(email, callback) {
                 $.ajax({
                     url: 'check_email.php',
                     type: 'POST',
-                    data: { email: email },
-                    success: function (response) {
+                    data: {
+                        email: email
+                    },
+                    success: function(response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -245,7 +283,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="email"]').on('input', function () {
+            $('input[name="email"]').on('input', function() {
                 var email = $(this).val();
                 if (email.length > 0 && !isValidEmail(email)) {
                     $('#email-error').text('Invalid email.');
@@ -253,7 +291,7 @@ if (isset($_POST['submit'])) {
                     $('#email-error').text('');
                 }
                 if (email.length > 0) {
-                    isEmailExists(email, function (result) {
+                    isEmailExists(email, function(result) {
                         if (result) {
                             $('#email-error').text('This email already exists.');
                         } else {
@@ -268,13 +306,15 @@ if (isset($_POST['submit'])) {
             }
         });
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             function isNumberExists(number, callback) {
                 $.ajax({
                     url: 'check_number.php',
                     type: 'POST',
-                    data: { number: number },
-                    success: function (response) {
+                    data: {
+                        number: number
+                    },
+                    success: function(response) {
                         if (response === 'exists') {
                             callback(true);
                         } else {
@@ -284,7 +324,7 @@ if (isset($_POST['submit'])) {
                 });
             }
 
-            $('input[name="number"]').on('input', function () {
+            $('input[name="number"]').on('input', function() {
                 var number = $(this).val();
                 if (number.length > 0 && !/^\d+$/.test(number)) {
                     $('#number-error').text('Number must contain only digits');
@@ -292,7 +332,7 @@ if (isset($_POST['submit'])) {
                     $('#number-error').text('');
                 }
                 if (number.length > 0) {
-                    isNumberExists(number, function (result) {
+                    isNumberExists(number, function(result) {
                         if (result) {
                             $('#number-error').text('This number already exists.');
                         } else {
@@ -310,8 +350,8 @@ if (isset($_POST['submit'])) {
 
     <?php if (isset($msg)): ?>
         <script>
-            $(document).ready(function () {
-                setTimeout(function () {
+            $(document).ready(function() {
+                setTimeout(function() {
                     hideErrorMessage();
                 }, 4000);
             });
