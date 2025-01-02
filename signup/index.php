@@ -237,7 +237,10 @@ if (isset($_POST['submit'])) {
             });
         });
 
+
         $(document).ready(function() {
+            var button_active = true; // Initially the button is active
+
             function isOne(value, callback) {
                 $.ajax({
                     url: 'check_username.php',
@@ -255,23 +258,39 @@ if (isset($_POST['submit'])) {
                 });
             }
 
+            function toggleSubmitButton() {
+                if (button_active) {
+                    $('#submit').prop('disabled', false); // Enable the submit button
+                } else {
+                    $('#submit').prop('disabled', true); // Disable the submit button
+                }
+            }
+
             $('input[name="username"]').on('input', function() {
                 var username = $(this).val();
                 if (username.length > 0 && !/^[a-zA-Z0-9_]+$/.test(username)) {
                     $('#username-error').text('Username can only contain letters, numbers, and underscores!');
+                    button_active = false;
                 } else {
                     $('#username-error').text('');
+                    button_active = true;
 
                     if (username.length > 0) {
                         isOne(username, function(result) {
                             if (result) {
                                 $('#username-error').text('This username already exists.');
+                                button_active = false;
                             } else {
                                 $('#username-error').text('');
+                                toggleSubmitButton();
                             }
                         });
+                    } else {
+                        toggleSubmitButton();
                     }
                 }
+
+                toggleSubmitButton();
             });
         });
 
