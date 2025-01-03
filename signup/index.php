@@ -90,7 +90,7 @@ if (isset($_POST['submit'])) {
             if ($user[0]['role'] == 'admin') {
                 header("Location: ../admin/");
                 exit;
-            } else if ($$user[0]['role'] == 'seller') {
+            } else if ($user[0]['role'] == 'seller') {
                 header("Location: ../seller/");
             } else {
                 header("Location: ../");
