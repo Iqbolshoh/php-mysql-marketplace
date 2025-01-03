@@ -33,7 +33,7 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
 
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $_COOKIE['username'];
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
 
         if ($user['role'] == 'admin') {

@@ -33,7 +33,7 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
 
         $_SESSION['loggedin'] = true;
         $_SESSION['username'] = $_COOKIE['username'];
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
 
         if ($user['role'] == 'admin') {
@@ -60,9 +60,6 @@ if (isset($_POST['submit'])) {
 
         if ($user) {
 
-            setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
-            setcookie('session_token',  session_id(), time() + (86400 * 30), "/", "", true, true);
-
             $_SESSION['loggedin'] = true;
             $_SESSION['id'] = isset($user[0]['id']) ? $user[0]['id'] : null;
             $_SESSION['name'] = isset($user[0]['name']) ? $user[0]['name'] : null;
@@ -70,6 +67,9 @@ if (isset($_POST['submit'])) {
             $_SESSION['email'] = isset($user[0]['email']) ? $user[0]['email'] : null;
             $_SESSION['username'] = isset($user[0]['username']) ? $user[0]['username'] : null;
             $_SESSION['role'] = isset($user[0]['role']) ? $user[0]['role'] : 'user';
+
+            setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
+            setcookie('session_token',  session_id(), time() + (86400 * 30), "/", "", true, true);
 
             if ($user[0]['role'] == 'admin') {
                 header("Location: ../admin/");
