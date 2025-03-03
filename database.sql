@@ -64,11 +64,17 @@ CREATE TABLE wishes (
   FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 );
 
+-- ==============================  
+-- 📥 DATA INSERTION (COMPLETE)  
+-- ==============================  
+-- DEFAULT PASSWORD: "IQBOLSHOH" (HASHED FOR SECURITY)  
+-- ==============================  
+
 INSERT INTO accounts (id, name, number, email, username, password, role, status, registration_date) VALUES
-(1, 'Iqbolshoh', '+998997799333', 'Iqbolshoh@gmail.com', 'Iqbolshoh', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'admin', 'active', '2024-05-14 11:17:25'),
-(2, 'seller', '+998997733999', 'seller@gmail.com', 'seller', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'seller', 'active', '2024-05-14 11:17:25'),
-(3, 'user', '+998993399777', 'user@gmail.com', 'user', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25'),
-(4, 'userAKA', '+998993399177', 'userAKA@gmail.com', 'userAKA', '69b241e1e59cc71c1fe80720c0254c48e4397c4f3ac56c61f03879f13e29c765', 'user', 'active', '2024-05-14 11:17:25');
+(1, 'Iqbolshoh', '+998997799333', 'Iqbolshoh@gmail.com', 'Iqbolshoh', '52be5ff91284c65bac56f280df55f797a5c505f7ef66317ff358e34791507027', 'admin', 'active', '2024-05-14 11:17:25'),
+(2, 'seller', '+998997733999', 'seller@gmail.com', 'seller', '52be5ff91284c65bac56f280df55f797a5c505f7ef66317ff358e34791507027', 'seller', 'active', '2024-05-14 11:17:25'),
+(3, 'user', '+998993399777', 'user@gmail.com', 'user', '52be5ff91284c65bac56f280df55f797a5c505f7ef66317ff358e34791507027', 'user', 'active', '2024-05-14 11:17:25'),
+(4, 'userAKA', '+998993399177', 'userAKA@gmail.com', 'userAKA', '52be5ff91284c65bac56f280df55f797a5c505f7ef66317ff358e34791507027', 'user', 'active', '2024-05-14 11:17:25');
 
 INSERT INTO categories (id, category_name) VALUES
 (1, 'Phone'),
