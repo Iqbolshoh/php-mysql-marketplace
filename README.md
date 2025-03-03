@@ -15,6 +15,10 @@ This is a marketplace platform built using PHP and MySQL. It provides a user-fri
 ### Login Page
 
 ![Roles](./src/images/roles.png?raw=true)
+- **🖥 Admin Login:** `iqbolshoh`  
+- **👤 Seller Login:** `user`  
+- **👤 User Login:** `user`  
+- **🔑 Password:** `IQBOLSHOH`  
 
 ## User Roles
 
