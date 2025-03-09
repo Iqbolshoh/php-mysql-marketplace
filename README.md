@@ -1,98 +1,107 @@
-# PHP MySQL Marketplace
+# 🛒 PHP MySQL Marketplace  
 
-This is a marketplace platform built using PHP and MySQL. It provides a user-friendly interface where users can buy and sell various products. The project showcases the use of PHP for server-side scripting and MySQL for database management.
+This is an **online marketplace platform** built using **PHP and MySQL**, where users can **buy and sell products** with ease. The project demonstrates the use of **PHP for server-side scripting** and **MySQL for database management**.  
 
-![Marketplace Banner](./src/images/banner.png?raw=true)
+![🛍 Marketplace Banner](./src/images/banner.png?raw=true)  
 
-### Features
+---
 
-- **User Registration and Login:** Users can create accounts, log in, and manage their profiles.
-- **Product Listings:** Users can list products for sale with details such as price, description, and images.
-- **Search and Filters:** Users can search for products and filter them based on various criteria.
-- **Shopping Cart:** Users can add products to their shopping cart and proceed to checkout.
-- **Order Management:** Admins can manage orders, view order details, and update order statuses.
+## 🎯 **Features**  
 
-### Login Page
+✅ **🔐 User Registration & Login** – Users can create accounts, log in, and manage their profiles  
+✅ **🛍 Product Listings** – Sellers can list products with price, description, and images  
+✅ **🔎 Search & Filters** – Users can search for products and filter them based on various criteria  
+✅ **🛒 Shopping Cart** – Users can add products to their cart and proceed to checkout  
+✅ **📦 Order Management** – Admins can manage orders and update order statuses  
 
-![Roles](./src/images/roles.png?raw=true)
+---
+
+## 🔑 **Login Page**  
+
+![🔑 Login Roles](./src/images/roles.png?raw=true)  
+
 - **🖥 Admin Login:** `iqbolshoh`  
 - **👤 Seller Login:** `user`  
 - **👤 User Login:** `user`  
 - **🔑 Password:** `IQBOLSHOH`  
 
-## User Roles
+---
 
-### Admin
-![Admin](./src/images/admin.png?raw=true)
-   - Manages the entire marketplace.
-   - Can view and manage all users and their products.
-   - Can update or delete any listings.
-   - Oversees order management and resolves any issues.
-   - Can also block users.
+## 👥 **User Roles**  
 
+### 🏆 **Admin**  
+![⚙ Admin Panel](./src/images/admin.png?raw=true)  
+- 🔹 Manages the entire marketplace  
+- 🔹 Can view and manage all users and their products  
+- 🔹 Can update or delete any listings  
+- 🔹 Oversees order management and resolves issues  
+- 🔹 Can **block** users if needed  
 
-### Seller
-![Seller](./src/images/seller.png?raw=true)
-   - Can list products for sale and manage their own product listings.
-   - Can view and update their orders and order statuses.
-   - Manages their own profile and product details.
+### 🛒 **Seller**  
+![🛍 Seller Panel](./src/images/seller.png?raw=true)  
+- 🔹 Can **list** products for sale and manage their listings  
+- 🔹 Can view and update their **orders**  
+- 🔹 Manages their **profile and product details**  
 
-### User
-![User](./src/images/user.png?raw=true)
-   - Can browse products, add them to the shopping cart, and make purchases.
-   - Can create and manage their own profile.
-   - Can view their own order history and track orders.
+### 👤 **User (Customer)**  
+![🛍 User Panel](./src/images/user.png?raw=true)  
+- 🔹 Can **browse products**, add them to the cart, and **purchase**  
+- 🔹 Can create and manage their **profile**  
+- 🔹 Can view **order history** and track orders  
 
-### Installation
+---
 
-To get started with the PHP-MySQL Marketplace, follow these steps:
+## ⚡ **Installation Guide**  
 
-1. **Clone the Repository:**
-   ```bash
-   git clone https://github.com/Iqbolshoh/php-mysql-marketplace.git
-   ```
+To set up the **PHP-MySQL Marketplace**, follow these steps:  
 
-2. **Navigate to the Project Directory:**
-   ```bash
-   cd php-mysql-marketplace
-   ```
+### 1️⃣ **Clone the Repository**  
+```bash
+git clone https://github.com/Iqbolshoh/php-mysql-marketplace.git
+```
 
-3. **Set Up the Database:**
-   - Create a new MySQL database:
-     ```sql
-     CREATE DATABASE marketplace_db;
-     ```
+### 2️⃣ **Navigate to the Project Directory**  
+```bash
+cd php-mysql-marketplace
+```
 
-   - Import the `database.sql` file located in the `db` directory to set up the initial database structure:
-     ```bash
-     mysql -u yourusername -p marketplace_db < db/database.sql
-     ```
+### 3️⃣ **Set Up the Database**  
+- **Create a new MySQL database**:  
+  ```sql
+  CREATE DATABASE marketplace;
+  ```
+- **Import the database schema**:  
+  ```bash
+  mysql -u yourusername -p marketplace < db/database.sql
+  ```
 
-4. **Configure Database Connection:**
-   - Open the `config.php` file in the root directory.
-   - Update the database credentials to match your MySQL setup:
-     ```php
-     <?php
+### 4️⃣ **Configure Database Connection**  
+- Open the **`config.php`** file in the root directory  
+- Update the database credentials:  
+  ```php
+  <?php
 
-         public function __construct() {
-             $servername = "localhost";
-             $username = "your_username";
-             $password = "password";
-             $dbname = "marketplace_db";
+  public function __construct() {
+      $servername = "localhost";
+      $username = "your_username";
+      $password = "password";
+      $dbname = "marketplace";
 
-             $this->conn = new mysqli($servername, $username, $password, $dbname);
+      $this->conn = new mysqli($servername, $username, $password, $dbname);
 
-             if ($this->conn->connect_error) {
-                 die("Connection failed: " . $this->conn->connect_error);
-             }
-         }
-     ```
-   - Note: You should add the `class Database` in the `config.php` file and call the `getConnection` method to connect to the database.
+      if ($this->conn->connect_error) {
+          die("Connection failed: " . $this->conn->connect_error);
+      }
+  }
+  ```
+- **Ensure you have a `Database` class** in the `config.php` file  
 
-5. **Run the Application:**
-   - Deploy the application on a PHP-compatible server (e.g., Apache or Nginx).
-   - Access the marketplace through your web browser at `http://localhost/php-mysql-marketplace`.
-
+### 5️⃣ **Run the Application**  
+- Deploy on a **PHP-compatible server** (Apache, Nginx, or XAMPP)  
+- Open your browser and access:  
+  ```
+  http://localhost/php-mysql-marketplace
+  ```
 
 ---
 
@@ -106,7 +115,6 @@ To get started with the PHP-MySQL Marketplace, follow these steps:
     <img src="https://img.shields.io/badge/PHP-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white" alt="PHP">
     <img src="https://img.shields.io/badge/MySQL-%234479A1.svg?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL">
 </div>
-
 
 ---
 
