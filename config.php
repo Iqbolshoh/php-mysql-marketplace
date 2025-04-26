@@ -73,7 +73,7 @@ class Database
         $sql = "DELETE FROM $table $condition";
         return $this->executeQuery($sql);
     }
-    
+
     public function hashPassword($password)
     {
         return hash_hmac('sha256', $password, 'iqbolshoh');
