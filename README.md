@@ -2,7 +2,7 @@
 
 This is an **online marketplace platform** built using **PHP and MySQL**, where users can **buy and sell products** with ease. The project demonstrates the use of **PHP for server-side scripting** and **MySQL for database management**.  
 
-![🛍 Marketplace Banner](./src/images/banner.png?raw=true)  
+![🛍 Marketplace Banner](./src/images/banner.png?raw=true)
 
 ---
 
@@ -16,9 +16,8 @@ This is an **online marketplace platform** built using **PHP and MySQL**, where 
 
 ---
 
-## 🔑 **Login Page**  
-
-![🔑 Login Roles](./src/images/roles.png?raw=true)  
+## 🔑 **Login Page** 
+![🔑 Login Roles](./src/images/roles.png?raw=true)
 
 - **🖥 Admin Login:** `iqbolshoh`  
 - **👤 Seller Login:** `user`  
@@ -28,9 +27,8 @@ This is an **online marketplace platform** built using **PHP and MySQL**, where 
 ---
 
 ## 👥 **User Roles**  
-
 ### 🏆 **Admin**  
-![⚙ Admin Panel](./src/images/admin.png?raw=true)  
+![⚙ Admin Panel](./src/images/admin.png?raw=true)
 - 🔹 Manages the entire marketplace  
 - 🔹 Can view and manage all users and their products  
 - 🔹 Can update or delete any listings  
@@ -38,13 +36,13 @@ This is an **online marketplace platform** built using **PHP and MySQL**, where 
 - 🔹 Can **block** users if needed  
 
 ### 🛒 **Seller**  
-![🛍 Seller Panel](./src/images/seller.png?raw=true)  
+![🛍 Seller Panel](./src/images/seller.png?raw=true)
 - 🔹 Can **list** products for sale and manage their listings  
 - 🔹 Can view and update their **orders**  
 - 🔹 Manages their **profile and product details**  
 
 ### 👤 **User (Customer)**  
-![🛍 User Panel](./src/images/user.png?raw=true)  
+![🛍 User Panel](./src/images/user.png?raw=true)
 - 🔹 Can **browse products**, add them to the cart, and **purchase**  
 - 🔹 Can create and manage their **profile**  
 - 🔹 Can view **order history** and track orders  
